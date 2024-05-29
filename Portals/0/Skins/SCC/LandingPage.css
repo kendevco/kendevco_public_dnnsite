@@ -1,0 +1,444 @@
+/***
+RWD Breakpoints for this Landing Page
+
+MobileXS - 270px
+Mobile - 640px
+Desktop - 1280px
+
+Desktop Content Container - 800px
+
+***/
+
+.landing-page {
+  font-family: "Montserrat", sans-serif;
+}
+.landing-page .container {
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+.tablet-hide {
+  display: none;
+}
+@media (min-width: 800px) {
+  .landing-page .container {
+    width: 800px;
+  }
+  .tablet-hide {
+    display: inline;
+  }
+}
+.landing-page h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 1.1;
+  padding: 10px 0;
+  text-align: left;
+}
+@media (min-width: 640px) {
+  .landing-page h1 {
+    font-size: 36px;
+    text-align: center;
+  }
+}
+@media (min-width: 800px) {
+  .landing-page h1 {
+    font-size: 45px;
+  }
+}
+.landing-page h3 {
+  font-family: "Montserrat", sans-serif;
+  color: #00539b;
+  font-size: 30px;
+  line-height: 1.1;
+}
+.landing-page h3 a {
+  color: #00539b;
+  text-decoration: none;
+}
+.landing-page h4 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.1;
+}
+.landing-page h5 {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 50px;
+  line-height: 1.1;
+  font-weight: bold;
+}
+.landing-page p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+.landing-page p strong {
+  font-weight: 700;
+}
+.landing-page a {
+  overflow: visible;
+  color: #00acf1;
+}
+
+.image-align-left img {
+  float: left;
+  margin: 10px 20px;
+  display: block;
+  margin: 0 auto;
+}
+.image-align-left p {
+  float: left;
+  width: 75%;
+}
+.image-align-left a img {
+  transform: scale(0.95);
+  transition: all 0.4s ease-in-out;
+}
+.image-align-left a:hover img {
+  transform: scale(1.1);
+}
+@media (min-width: 640px) {
+  .image-align-left img {
+  }
+  .image-align-left p {
+  }
+  .image-align-left {
+    margin: 0 auto;
+    width: 450px;
+  }
+}
+
+.site-banner-container {
+  padding: 13px 0;
+  background-color: #e7b521;
+}
+.site-banner-container h4 {
+  margin: 0;
+  color: #00529b;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+@media (min-width: 270px) {
+  .site-banner-container h4 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 640px) {
+  .site-banner-container h4 {
+    font-size: 16px;
+  }
+  .site-banner-container h4 br {
+    display: none;
+  }
+}
+#dnn_SiteBanner {
+}
+#dnn_VideoBanner {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  background: url("Images/video-poster.jpg") center center no-repeat;
+  background-size: cover;
+}
+.HeartLandingPage #dnn_VideoBanner {
+  background-image: url("/Portals/0/heart-video-poster.jpg");
+}
+.GILandingPage #dnn_VideoBanner {
+  background-image: url("/Portals/0/gi_landing_hero.jpg");
+}
+.landing-page .infographic {
+  display: block;
+  margin: 0 auto;
+  width: 377px;
+  padding: 60px 0;
+}
+#dnn_VideoBanner a.fancybox {
+  display: block;
+  overflow: visible;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: white;
+  margin: -50px 0 0 0;
+  padding: 40px 0 0;
+  text-align: center;
+  text-indent: -999em;
+  transition: all 0.4s ease-in-out;
+}
+#dnn_VideoBanner a.fancybox:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50px;
+  height: 100%;
+  width: 100%;
+  background: url("Images/icon-play.png") center center no-repeat;
+  background-size: cover;
+  opacity: 0.2;
+  transition: all 0.4s ease-in-out;
+}
+#dnn_VideoBanner a.fancybox:hover:after {
+  opacity: 0.8;
+}
+
+#dnn_TextBanner {
+}
+.text-banner-container {
+  text-align: center;
+  background-color: #00529b;
+}
+.text-banner-container * {
+  color: white;
+}
+.text-banner-container span {
+  color: #00acf1;
+}
+#dnn_ContentPane {
+}
+.main-content-container {
+  color: #00529b;
+  padding: 50px 0;
+}
+.main-content-container p,
+.main-content-container strong {
+  color: #00529b;
+  text-align: center;
+}
+.main-content-container .heart-button {
+  text-align: center;
+}
+.main-content-container .heart-button img {
+  max-width: 100%;
+  transform: scale(0.95);
+  transition: all 0.4s ease-in-out;
+}
+.main-content-container .intro {
+  max-width: 350px;
+  margin: 0 auto;
+}
+.main-content-container .heart-button:hover img {
+  transform: scale(1.1);
+}
+@media (min-width: 640px) {
+  .main-content-container p {
+    display: block;
+    text-align: left;
+  }
+  .main-content-container .intro {
+    float: left;
+    width: 50%;
+    margin: 0;
+  }
+  .main-content-container .heart-button {
+    float: right;
+    width: 50%;
+  }
+}
+#dnn_ContentSidebar {
+}
+.content-sidebar-container {
+  padding: 50px 0;
+  background-color: #eaeaea;
+}
+.circle-container {
+  margin: 0 auto;
+}
+.cta-circle {
+  margin: 0 auto;
+  max-width: 300px;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-circle a img {
+  max-width: 100%;
+  transform: scale(0.95);
+  transition: all 0.4s ease-in-out;
+}
+.cta-circle a:hover img {
+  transform: scale(1.1);
+}
+.cta-circle p {
+  font-size: 14px;
+}
+@media (min-width: 640px) {
+  .circle-container {
+    width: 450px;
+  }
+  .cta-circle {
+    width: 300px;
+  }
+  .cta-circle p {
+    font-size: 18px;
+  }
+}
+@media (min-width: 800px) {
+  .circle-container {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+  .cta-circle {
+    width: 250px;
+  }
+}
+.find-doctor-container {
+  clear: both;
+  background: url("Images/bg-orange-medical.png") right top no-repeat #e7b521;
+  background-size: auto 100%;
+  background-position: 120px top;
+}
+.find-doctor-container .container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#dnn_FindDoctorBanner {
+}
+.find-doctor-container h5 {
+  color: white;
+  font-size: 24px;
+}
+.find-doctor-container .image-align-left p {
+  color: white;
+  width: 72%;
+  font-size: 18px;
+}
+.find-doctor-container .image-align-left img {
+  margin: 10px;
+}
+@media (min-width: 270px) {
+  .find-doctor-container {
+    background-position: 130% top;
+  }
+}
+@media (min-width: 640px) {
+  .find-doctor-container {
+    background-image: none;
+  }
+  #dnn_FindDoctorBanner {
+    background: url("Images/bg-orange-medical.png") 20px top no-repeat;
+    background-size: auto 100%;
+  }
+  .find-doctor-container h5 {
+    width: 185px;
+    float: left;
+    font-size: 34px;
+    margin: 10px 0 0 30px;
+  }
+  .find-doctor-container h3 {
+    display: block;
+    font-size: 21px;
+  }
+  .find-doctor-container .image-align-left {
+    width: 510px;
+    margin: 0 0 0 40px;
+    width: 58%;
+    float: left;
+  }
+  .find-doctor-container .image-align-left p {
+  }
+}
+
+@media (min-width: 800px) {
+  .find-doctor-container .image-align-left p {
+    font-size: 22px;
+  }
+  .find-doctor-container h5 {
+    margin-left: 40px;
+  }
+  .find-doctor-container .image-align-left {
+    width: 470px;
+  }
+  .find-doctor-container h3 {
+    font-size: 28px;
+  }
+}
+.website-banner-container {
+  padding: 50px 0;
+  background-color: white;
+}
+.website-banner-container .image-align-left p {
+  font-size: 18px;
+  width: 72%;
+}
+@media (min-width: 640px) {
+  .website-banner-container .image-align-left img {
+    margin: 0 0 0 20px;
+  }
+  .website-banner-container .image-align-left p {
+    width: 75%;
+    font-size: 30px;
+  }
+}
+.website-links {
+  clear: both;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.website-links li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  padding: 0 5px 0 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: bold;
+  color: #252829;
+  border-right: 1px solid #252829;
+}
+.website-links li:last-child {
+  border: none;
+}
+.website-links li a {
+  color: #252829;
+}
+@media (min-width: 640px) {
+  .website-banner-container .image-align-left {
+    margin: 0 auto;
+    width: 500px;
+  }
+  .website-banner-container .image-align-left p {
+    width: 81%;
+  }
+}
+@media (min-width: 640px) {
+  .website-banner-container .image-align-left {
+    margin: 0;
+    width: 532px;
+    float: left;
+  }
+  .website-links {
+    display: block;
+  }
+  .website-banner-container .computer {
+    float: right;
+  }
+}
+.website-banner-container p {
+  color: #00acf1;
+}
+/****************************
+  Overrides for BJC Site
+*****************************/
+.DNNContainer_Title_h2 h2:first-child {
+  display: none;
+}
+.fancybox-close {
+  text-indent: -99em;
+}
+
+.landing-page .appointNum a {
+  font-family: "opensanslight", sans-serif;
+  color: white !important;
+}

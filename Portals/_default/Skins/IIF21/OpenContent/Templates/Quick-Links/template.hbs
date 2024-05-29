@@ -1,0 +1,24 @@
+<div class="quick-links">
+    <button id="quicklinks-toggle" class="quick-links--toggle" aria-controls="quicklinks-nav" aria-expanded="false">
+        <div class="toggle-text">Quick Links</div>
+        <svg class="icon icon__svg icon__toggle">
+            <use xlink:href="#icon__chevron-down" />
+        </svg>  
+    </button>
+
+    <ul id="quicklinks-nav" aria-controlledby="quicklinks-toggle" aria-hidden="true">
+        {{#each Quick_Links}}
+            <li>
+                <a href="{{Link}}"><span>{{Text}}</span></a>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
+<script>
+  var loader = setInterval(function () {
+    if(document.readyState !== "complete") return;
+    clearInterval(loader);
+    toggleLinks("quicklinks-toggle","quicklinks-nav");
+  }, 300);
+</script>

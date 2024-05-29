@@ -1,0 +1,30 @@
+.tab-nav li{
+  min-height: 290px;
+}
+
+/**
+ * Tab
+ */
+.tab {
+  display: none;
+}
+
+.tab.is-active {
+  display: block;
+}
+
+/**
+ * Tabs no-js fallback
+ */
+.tabbed-content.no-js .tab-nav {
+  display: none !important;
+}
+
+.tabbed-content.no-js .tab {
+  display: block !important;
+  margin-bottom: 1.5em;
+}
+
+.tabbed-content.no-js .tab:last-child {
+  margin-bottom: 0;
+}

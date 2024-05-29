@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Create and Show Variables</h2>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+<h3>Basic set variable and show</h3>
+<p><code>var Firstname = "Terry"</code> and <code>show with @@firstName</code></p>
+<snippet id="basic-set-show">
+@{
+  var firstName = "Terry";
+}
+
+Name: @firstName
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-set-show", Size = 120 }) 
+</hide-silent>
+
+
+
+<hr>
+<h3>Numbers and Dates</h3>
+<snippet id="basic-numbers-dates">
+@{
+  var age = 27;
+  var birthday = new DateTime(1999, 09, 09);
+}
+
+Age: @age <br>
+Birthday: @birthday <br>
+Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
+Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-numbers-dates", Size = 200 }) 
+</hide-silent>
+
+
+<hr>
+<h3>Arrays (lists of things)</h3>
+<snippet id="basic-arrays">
+@{
+  var dogs = new string[] { "hound", "dackel", "doggy" };
+  birthday = new DateTime(1999, 09, 09);
+}
+
+Age: @age <br>
+Birthday: @birthday <br>
+Birthday nicer using ToString("d"): @birthday.ToString("d") <br>
+Birthday as ISO ToString("yyyy-MM-dd"): @birthday.ToString("yyyy-MM-dd")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-arrays", Size = 200 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
+</hide>

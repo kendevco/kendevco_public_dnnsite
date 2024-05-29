@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CategoryViewIntro.Text" xml:space="preserve">
+    <value>&lt;p&gt;Sending an e-greeting is a great way to send a personal message to a patient in the hospital. Before you begin you will need the patient&amp;rsquo;s first name and last name if you want the e-greeting to go to a specific patient. Please also include the patient&amp;rsquo;s room number if you know it.&amp;nbsp;Please note, &amp;ldquo; to add a photo or other attachment you must use the create your own card feature&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;Messages can be delivered to patients listed in the hospital directory whose status is inpatient. We apologize, but we cannot deliver messages to patients coming to the hospital for same-day surgery, outpatient or clinic visits. If the patient is no longer a patient of the hospital or is not listed in the hospital directory, the message will not be delivered and you will be notified by e-mail.&lt;/p&gt;
+
+&lt;p&gt;Choose from one of the categories below to begin your e-greeting.&lt;/p&gt;
+
+&lt;p&gt;Messages are hand delivered Monday - Friday from 8 a.m. to 5 p.m. If you submit a message outside this time or on the weekend, we will deliver your message during the next delivery window.&lt;/p&gt;</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Ecards Setting</value>
+  </data>
+  <data name="DefaultImageWidth.Text" xml:space="preserve">
+    <value>600</value>
+  </data>
+  <data name="DefaultThumbHeight.Text" xml:space="preserve">
+    <value>180</value>
+  </data>
+  <data name="DefaultThumbPageSize" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="DefaultThumbWidth.Text" xml:space="preserve">
+    <value>250</value>
+  </data>
+  <data name="DetailViewIntro.Text" xml:space="preserve">
+    <value>&lt;p&gt;Choose one of the designs below to begin writing your e-greeting to your Hospital patient. Please note, &amp;ldquo; to add a photo or other attachment you must use the create your own card feature&amp;quot;. The message has a maximum of 500 characters.&lt;/p&gt;
+
+&lt;p&gt;Please be aware that your message is not confidential. Messages deemed inappropriate will immediately be destroyed without delivery. In no event shall our Hospital be liable to you or anyone else for any damages, fees, fines, penalties or liabilities arising out of or relating in any way to the content contained in your patient greeting.&lt;/p&gt;
+
+&lt;p&gt;Messages are hand delivered Monday - Friday from 8 a.m. to 5 p.m. If you submit a message outside this time or on the weekend, we will deliver your message during the next delivery window.&lt;/p&gt;</value>
+  </data>
+  <data name="EmailSubject.Text" xml:space="preserve">
+    <value>E-card</value>
+  </data>
+  <data name="GeneralCustomBGColor.Text" xml:space="preserve">
+    <value>DeepSkyBlue</value>
+  </data>
+  <data name="GeneralCustomCardId.Text" xml:space="preserve">
+    <value>186</value>
+  </data>
+  <data name="GeneralLogo.Text" xml:space="preserve">
+    <value>~/Portals/0/Ecards/Logos/logo.png</value>
+  </data>
+  <data name="GeneralThankYouPageURL.Text" xml:space="preserve">
+    <value>/patients-and-visitors/egreeting-card-thank-you</value>
+  </data>
+  <data name="GeneralThumbPageSize.Text" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="GeneralUrlIndexCustCardId.Text" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lblCategoryIntro.Help" xml:space="preserve">
+    <value>This is the intro text which will be displayed above category list.</value>
+  </data>
+  <data name="lblCategoryIntro.Text" xml:space="preserve">
+    <value>Category View Intro Text</value>
+  </data>
+  <data name="lblCustomCardColor.Help" xml:space="preserve">
+    <value>System.Drawing.Color name for bg color of custom card</value>
+  </data>
+  <data name="lblCustomCardColor.Text" xml:space="preserve">
+    <value>Custom BG Color</value>
+  </data>
+  <data name="lblCustomCardId.Help" xml:space="preserve">
+    <value>Custom Card for uploading image.</value>
+  </data>
+  <data name="lblCustomCardId.Text" xml:space="preserve">
+    <value>Custom Card ID</value>
+  </data>
+  <data name="lblCustomCardSplit.Help" xml:space="preserve">
+    <value>This is the index of Split(/) function - for example /EGreeting/ctl/Send/mid/407/cardId/186 you would put 7.</value>
+  </data>
+  <data name="lblCustomCardSplit.Text" xml:space="preserve">
+    <value>URLIndex Cust. CardID</value>
+  </data>
+  <data name="lblDetailIntro.Help" xml:space="preserve">
+    <value>This is the intro text which will be displayed above category list.</value>
+  </data>
+  <data name="lblDetailIntro.Text" xml:space="preserve">
+    <value>Detail View Intro Text</value>
+  </data>
+  <data name="lblEmailSubject.Help" xml:space="preserve">
+    <value>The email subject</value>
+  </data>
+  <data name="lblEmailSubject.Text" xml:space="preserve">
+    <value>Email Subject</value>
+  </data>
+  <data name="lblFromEmailAddress.Help" xml:space="preserve">
+    <value>From Email Address</value>
+  </data>
+  <data name="lblFromEmailAddress.Text" xml:space="preserve">
+    <value>From Email Address</value>
+  </data>
+  <data name="lblImageWidth.Help" xml:space="preserve">
+    <value>The width of image in detail view</value>
+  </data>
+  <data name="lblImageWidth.Text" xml:space="preserve">
+    <value>Image Width</value>
+  </data>
+  <data name="lblLogoURL.Help" xml:space="preserve">
+    <value>The relative url of BJH Logo file. Ex: ~/Portals/0/Skins/BJH/images/barnes-jewish-logo.png</value>
+  </data>
+  <data name="lblLogoURL.Text" xml:space="preserve">
+    <value>BJH Logo</value>
+  </data>
+  <data name="lblMessage.Help" xml:space="preserve">
+    <value>Thank you message after sending e-card.</value>
+  </data>
+  <data name="lblMessage.Text" xml:space="preserve">
+    <value>Thank you message</value>
+  </data>
+  <data name="lblSenderBody.Help" xml:space="preserve">
+    <value>Email content is sent to senders.</value>
+  </data>
+  <data name="lblSenderBody.Text" xml:space="preserve">
+    <value>Sender Body Email</value>
+  </data>
+  <data name="lblSenderSubject.Help" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="lblSenderSubject.Text" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="lblThankYouMessage.Help" xml:space="preserve">
+    <value>Text which appears on the last page after pressing send.</value>
+  </data>
+  <data name="lblThankYouMessage.Text" xml:space="preserve">
+    <value>Thank You Message</value>
+  </data>
+  <data name="lblThankYouPageURL.Help" xml:space="preserve">
+    <value>Thank you page URL</value>
+  </data>
+  <data name="lblThankYouPageURL.Text" xml:space="preserve">
+    <value>Thank you page URL </value>
+  </data>
+  <data name="lblThumbHeight.Help" xml:space="preserve">
+    <value>Thumbnail height of images in list</value>
+  </data>
+  <data name="lblThumbHeight.Text" xml:space="preserve">
+    <value>Thumbnail Height</value>
+  </data>
+  <data name="lblThumbPageSize.Help" xml:space="preserve">
+    <value>The page size of thumbnail list</value>
+  </data>
+  <data name="lblThumbPageSize.Text" xml:space="preserve">
+    <value>Thumb Page Size</value>
+  </data>
+  <data name="lblThumbWidth.Help" xml:space="preserve">
+    <value>Thumbnail width of images in list</value>
+  </data>
+  <data name="lblThumbWidth.Text" xml:space="preserve">
+    <value>Thumbnail Width</value>
+  </data>
+  <data name="lblToEmailAddress.Help" xml:space="preserve">
+    <value>The default email address which the e-card will be sent to. Separate multiple email addresses by comma or semicolon.</value>
+  </data>
+  <data name="lblToEmailAddress.Text" xml:space="preserve">
+    <value>To Email Address</value>
+  </data>
+  <data name="SenderEmailBody.Text" xml:space="preserve">
+    <value>&lt;p&gt;Dear [NAME],&lt;/p&gt;
+
+&lt;p&gt;Thank you for sending an e-greeting to a Barnes-Jewish Hospital guest. Messages are hand delivered Monday - Friday from 8 a.m. to 5 p.m. If you submit a message outside this time or on the weekend, your message will be delivered during the next delivery window.&lt;/p&gt;</value>
+  </data>
+  <data name="SenderEmailSubject.Text" xml:space="preserve">
+    <value>E-Card from Hospital</value>
+  </data>
+  <data name="ThankYouMessage.Text" xml:space="preserve">
+    <value>Thank you for sending your EGreeting. Send Another?</value>
+  </data>
+  <data name="VolunteerEmailFromAddress.Text" xml:space="preserve">
+    <value>noreply@bjc.org</value>
+  </data>
+  <data name="VolunteerEmailSubject.Text" xml:space="preserve">
+    <value>E-Card from Hospital</value>
+  </data>
+  <data name="VolunteerEmailToAddress.Text" xml:space="preserve">
+    <value>noreply@bjc.org</value>
+  </data>
+</root>

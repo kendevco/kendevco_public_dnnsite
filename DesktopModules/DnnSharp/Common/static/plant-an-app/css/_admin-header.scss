@@ -1,0 +1,71 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        z-index: 99;
+    }
+
+    .papp-header {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 80px;
+        border-bottom: 1px solid #d3d3d3;
+
+        .title-with-icon {
+            display: flex;
+            align-items: center;
+
+            .title {
+                color: $gray800;
+                font-size: 24px;
+                font-weight: 400;
+                line-height: 1;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .subtitle {
+                font-size: 22px;
+                line-height: 28px;
+                margin: 0;
+                color: $gray700;
+            }
+
+            .id {
+                color: $gray600;
+                font-size: 70%;
+            }
+
+            .material-icons {
+                color: #222726;
+                margin: 0 8px 0 16px;
+
+                &.int {
+                    margin: 0 8px;
+                }
+            }
+
+            .green {
+                color: $primary-color;
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+            margin-left: 16px;
+            margin-right: 16px;
+            align-items: center;
+
+            .btn {
+                text-transform: uppercase;
+            }
+        }
+    }
+}

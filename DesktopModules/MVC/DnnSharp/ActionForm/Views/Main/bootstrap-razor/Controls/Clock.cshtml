@@ -1,0 +1,24 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.ClockFieldVM>
+@using avt.ActionForm
+
+@{
+	AddCommonAttributes(true, true, true, "form-control clock-field", "keyup");
+	AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+	AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+	AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+}
+
+<div load-on-demand="'clock'">
+	<clock update-field="updateField(field, val)"
+		   data-field="settings.Fields['@(Model.Name)']"
+		   id="@Model.ElementId"
+		   digital-format="@Model.ClockDigitalFormat"
+		   gmt-offset="@Model.ClockGMTOffset"
+		   clock-type="@Model.ClockType"
+		   show-gmt-info="@Model.ClockGMTInfo"
+		   theme="@Model.ClockTheme"
+		   start-time="@Model.Value"
+		   digital-styles="@Model.DigitalStyles"
+		   @ElementAttributes()>
+	</clock>
+</div>

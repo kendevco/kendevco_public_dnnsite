@@ -1,0 +1,15 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<CustomLayoutVM>
+@using System.Web.Mvc
+@using avt.ActionForm.Core.ViewModels.Main
+
+@foreach (var part in Model.Parts)
+{
+    if (part.Type == CustomLayoutVM.PartType.Html)
+    {
+        @Raw(part.Value.ToString())
+    }
+    else
+    {
+        @TemplatePartial("_FieldRender", new FieldRendererVM(part.Value as FieldVM))
+    }
+}

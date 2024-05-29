@@ -1,0 +1,47 @@
+<h2>
+    Tutorial for using the REST API
+</h2>
+<p>
+The following views show various applications of the REST api. Just try them, discover the code and adapt to your needs. 
+
+</p>
+
+<h3>Basic demos with jQuery</h3><p>
+The basic demos help you understand the principle. 
+
+<h3>Some general notes</h3>
+
+<ol>
+    <li>I included the code in the html-template page - but you should usually put your code "outside" in a separate JS</li>
+    <li>in most examples I'm using the comfortable syntax, usually using a js object like <b>$2sxc(...).webApi.get(...)</b>. This is ideal and efficient when using JS-code on a DNN-module, because the $2sxc knows which module it's on, what app this is etc.</li>
+    <li>You could also do it the very way, manually building a AJAX request using jquery $.ajax(...). The hard work is actually the DNN-security layer. So we've included the "hard" way in the first two samples, but then skipped it. If you really want to do that, no problem, but we don't recommend it.</li>
+    <li>Then there is the scenario where you want to access an </li>
+    
+</ol>
+
+<h3>Notes about security</h3>
+    <p>There are three security layers you should know about</p>
+
+    <ol>
+        <li>
+            The DNN security layer for in-page / in-module calls - this expects ajax-requests to include information about the module it's on + a security-token which tells DNN that the request is valid and comes from a DNN page. This is important for js-apps accessing <em>it's own data (read &amp; write).</em> 
+        </li>
+        <li>
+            The 2sxc security layer, which let's the admin specify which content-types may be read/written by what kind of users (any user, owner of an item, users who have read-access, users who have write, ...). This applies to content-types and queries - each can have own security settings. Read more about [permissions](http://2sxc.org/help?tag=permissions)
+        </li>
+        <li>
+            The C# WebApi security layer. This is only important if you have own WebApis. You need this, to specify if anonymous users may access the api, or if certain permissions (like DNN permissions) must exist. This security layer also lets you specify which API calls are public and which ones require a DNN-token (meaning the request must come from a DNN-page).
+        </li>
+    </ol>
+
+<p>Here some more notes about all of that </p>
+
+<ol>   
+    <li>If you want to auto-run some scripts retrieving data inside an app, you must wait for the page-read (using $(yourcode)) because the DNN-security isn't ready at first</li>
+</ol>
+
+<h3>AngularJS Demos</h3>
+<p>
+    As you'll see these look much simpler, straight forward, less code etc. 
+    This is the way we recommend you to go.
+</p>

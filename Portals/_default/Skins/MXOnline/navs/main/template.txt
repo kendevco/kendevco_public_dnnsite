@@ -1,0 +1,8 @@
+<ul class="navbar-nav">
+[*>NODE]
+</ul>
+[>NODE]
+    <li class="nav-item [?BREADCRUMB]active[/?]">
+        <a href="[?ENABLED][=URL][?ELSE]#[/?]" target="[=TARGET]" class="nav-link">[=TEXT]</a>
+    </li>
+[/>]

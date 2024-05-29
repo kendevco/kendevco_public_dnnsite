@@ -1,0 +1,103 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Module_SubTitle": {
+      "type": "text"
+    },
+    "Counter": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Counter_Title": {
+            "type": "text"
+          },
+          "Counter_End": {
+            "type": "number",
+            "helper": "Enter a number value without special characters (ex. \"$\", \",\", \"%\")"
+          },
+          "Counter_Data_Type_Prefix": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "USD ($)",
+              "Custom"
+            ],
+            "helper": "This displays at the beginning of the counter value (ex: \"%\"). Custom option allows for extra flexibility"
+          },
+          "Custom_Data_Type_Prefix": {
+            "type": "text",
+            "dependencies": {
+              "Counter_Data_Type_Prefix": [
+                "custom",
+                " $"
+              ]
+            }
+          },
+          "Counter_Data_Type_Suffix": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Percent",
+              "Custom"
+            ],
+            "helper": "This gets tacked on at the end of the counter value (ex: \"%\"). Custom option allows for extra flexibility"
+          },
+          "Custom_Data_Type_Suffix": {
+            "type": "text",
+            "dependencies": {
+              "Counter_Data_Type_Suffix": [
+                "custom",
+                " %"
+              ]
+            }
+          },
+          "Counter_Timing": {
+            "type": "number"
+          },
+          "Icon_Version": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "FontAwesome v4 (Free)",
+              "FontAwesome v5 (Free & Pro)"
+            ]
+          },
+          "Icon_v4": {
+            "type": "icon",
+            "glyphicons": false,
+            "bootstrap": false,
+            "fontawesome": true,
+            "dependencies": {
+              "Icon_Version": [
+                "v4",
+                " v5"
+              ]
+            }
+          },
+          "Icon_v5": {
+            "type": "text",
+            "helper": "Paste full HTML icon code from https://fontawesome.com/icons",
+            "dependencies": {
+              "Icon_Version": [
+                "v5",
+                " v4"
+              ]
+            }
+          },
+          "Content_Color": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Pink",
+              "Green",
+              "Orange",
+              "Blue"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

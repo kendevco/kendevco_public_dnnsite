@@ -1,0 +1,62 @@
+<h2>Simple get content-items out of a <em>query</em> with REST</h2>
+<p>
+    The following demo how to call a 2sxc-query using REST - from external (where no module-context is given). There are a few differences:
+    <ol>
+        <li>no $2sxc used </li>
+        <li>the app-name is not "auto" but "Tut-JS-REST", as it can't auto-detect the app</li>
+        <li>note that this requires the settings to allow anonymous access</li>
+    </ol>
+</p>
+<p>
+    Note that it works for admins by default - to make it work for visitors you have to allow read-permissions for anonymous users (or users with view permissions). This is configured on the queries-types - for more infos read <a href="http://2sxc.org/help?tag=permissions">Permissions Help</a>. 
+</p>
+<p> 
+    <input type="button" value="Press to run" onclick="getSortedCategoriesPublic()">
+</p>
+<h2>These is where the categories will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+
+
+<script>
+
+function getSortedCategoriesPublic() {
+    // this is the manual setup using $.ajax
+    $.ajax({
+        url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/query/EverythingSorted',
+        success: handleResult,
+        error: alertAboutError
+    });
+
+};
+
+function handleResult(data) {
+    // use the data to show a message
+    $('#message').html("Success, the $.ajax(...) worked! I found " + data.Category.length + " categories, the first one is '" + data.Category[0].Title + "'");
+
+    // use the data to show a list of items
+    var items = [];
+    // use the data to show a list of items
+    var items = [];
+    $.each(data.Category, function(idx, itm) {
+        items.push( "<li>Cat: " + itm.Title + "</li>" );
+    });
+    $.each(data.Feedback, function(idx, itm) {
+        items.push( "<li>Feedback: " + itm.Title + "</li>" );
+    });
+
+    $(items.join("")).appendTo($('#categories'));
+
+}
+
+
+</script>
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>
+
+@RenderPage("_helper endpoint.cshtml")

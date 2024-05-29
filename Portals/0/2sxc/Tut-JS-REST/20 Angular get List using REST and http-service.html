@@ -1,0 +1,33 @@
+<h2>AngularJS Simple get content-items list with $http and REST</h2>
+<p> 
+    The following demo shows how to use simple JavaScript to retrieve all Feedback items in this app.
+</p>
+<p>
+    This uses AngularJS and will use $http to do the ajax and will add the returned items to the ol-tags. <br>
+    Note that we recommend using the content service, but this is to demonstrate absolute basics
+</p>
+<p>
+    Note that it works for admins by default - to make it work for visitors you have to allow read-permissions for anonymous users (or users with view permissions). This is configured on the content-types - for more infos read <a href="http://2sxc.org/help?tag=permissions">Permissions Help</a>. 
+</p>
+
+
+<h2>These is where the categories will appear</h2>
+
+<div sxc-app="AngularRestDemos" id="app-[Module:ModuleId]" ng-controller="GetList as vm">
+    <div>{{ vm.message }}</div>
+    <ol>
+        <li ng-repeat="c in vm.items"> {{ c.Title }} </li>
+    </ol>
+</div>
+
+
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="[App:Path]/assets/tutorial-helpers.js"></script>
+
+<script src="/DesktopModules/ToSIC_SexyContent/Js/AngularJS/angular.min.js" data-enableoptimizations="101"></script>
+<script src="/DesktopModules/ToSIC_SexyContent/Js/AngularJS/2sxc4ng.js" data-enableoptimizations="110"></script>
+<script src="[App:Path]/assets/AngularRestDemosController_20.js" data-enableoptimizations="120"></script>

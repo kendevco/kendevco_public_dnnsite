@@ -1,0 +1,46 @@
+﻿<div style="display:inline" class="agreement-links-popup">
+    <span class="agree-title">
+        {{field.Title}}
+        <span class="agree-link" ng-repeat="link in content">
+            <a role="button" ng-click="openModal(enforce? content[index] : link)">{{link.LinkText}}</a>
+            <span class="agree-separator" ng-if="!$last">
+                {{separator}}
+            </span>
+        </span>
+    </span>
+    <div class="modal-bs3 modal fade" id="{{modalId}}">
+        <div class="modal-dialog" style="height:{{popupHeight}}; width:{{popupWidth}}">
+            <div class="modal-content" style="min-height:{{height + 'px'}};">
+                <div class="modal-header">
+                    <!--bs3-->
+                    <button ng-if="!isBs5" type="button" class="close" ng-click="closeModal(false)" aria-label="close">x</button>
+                    <h4 class="modal-title">
+                        {{field.Title}} {{contentId}}
+                    </h4>
+                    <!--bs5-->
+                    <button ng-if="isBs5" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <ng-bind-html ng-bind-html="$sce.trustAsHtml(contentHtml)" ng-if="contentHtml">
+                            ...
+                        </ng-bind-html>
+                        <iframe ng-if="termsUrl" name="" ng-src="{{termsUrl}}" style="border:none;width:100%;height: {{height +'px' }}; min-height: {{popupHeight}}; overflow-x:auto;" class="col-md-12"></iframe>
+                    </div>
+
+                    <div class="modal-footer" ng-if="agreeButton">
+                        <button type="button" class="btn btn-primary" ng-click="agree(true)">
+                            {{agreeButton}}
+                        </button>
+                        <button type="button" class="btn btn-default" ng-show="disagreeButton" ng-click="disagree()">
+                            {{disagreeButton}}
+                        </button>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+</div>

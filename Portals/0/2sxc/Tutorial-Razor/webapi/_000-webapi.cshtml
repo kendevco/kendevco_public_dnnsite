@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <p>
+        Learn how to create and use <strong>WebApi</strong> to provide data to JavaScript SPA apps. 
+      </p>
+
+      <h2>Some notes before we start</h2>
+      <p>
+        WebApi is not directly razor, as it's not meant to actualy render HTML. It's coded using C# just like razor, 
+        but won't have commands like <code>@@Html.Raw(...)</code>. Since it's the best way to communicate from the server with your JavaScript apps, we've included the basics in this tutorial. 
+      </p>
+      <p>
+        Our examples use very trivial JavaScript code to call the API and show the results. Your SPA apps will usually be more sophisticated, but that would then be a topic for a JavaScript tutorial. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+@Html.Partial("../shared/_PreCodeFooter.cshtml")

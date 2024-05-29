@@ -1,0 +1,17 @@
+{
+  "fields": {
+    "Downloads": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Link_Text": {
+            "type": "text"
+          },
+          "Download_Link": {
+            "type": "url"
+          }
+        }
+      }
+    }
+  }
+}

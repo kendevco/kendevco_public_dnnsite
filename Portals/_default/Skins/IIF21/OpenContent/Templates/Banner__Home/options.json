@@ -1,0 +1,28 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Banner_Image": {
+      "type": "image",
+      "uploadfolder": "Banners",
+      "typeahead": {
+        "Folder": "Banners"
+      }
+    },
+    "Banner_Content": {
+      "type": "object",
+      "fields": {
+        "Content_Heading": {
+          "type": "text"
+        },
+        "Content_Text": {
+          "type": "ckeditor",
+          "ckeditor": {
+            "extraAllowedContent": "*(*);*{*}"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  Kit.Page.Activate("2sxc.JsCore"); 
+}
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>App.Data WebApi Examples</h2>
+      <p>In this example, we'll get app-data from the WebApi.</p>
+
+      <p>Click to see the result of a WebApi call with the shared code:</p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+<button type="button" class="btn btn-primary" onclick="getPersons(this)">
+  Get Persons Custom
+</button> 
+
+<button type="button" class="btn btn-primary" onclick="getBooks(this)">
+  Get Books Custom
+</button> 
+
+<button type="button" class="btn btn-primary" onclick="getPersonsAuto(this)">
+  Get Persons with Auto-Convert
+</button> 
+
+<snippet id="api-data">
+<script>
+  function getPersons(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('books/persons')
+      .then(function(data) {
+        alert('Found ' + data.length + ' persons. \n'
+          + 'The first one is "' + data[0].FirstName + ' ' + data[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(data)
+        );
+      });
+  }
+
+  function getBooks(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('books/books')
+      .then(function(results) {
+        alert('Found ' + results.length + ' books. \n'
+          + 'The first one is "' + results[0].Title + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+          );
+      });
+  }
+
+  function getPersonsAuto(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('books/personsAuto')
+      .then(function(results) {
+        alert('On WebApi with Auto-Convert: Found ' + results.length + ' persons. \n'
+          + 'The first one is "' + results[0].FirstName + ' ' + results[0].LastName + '"\n\n'
+          + 'The raw JSON: \n' + JSON.stringify(results)
+        );
+      });
+  }
+</script>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "api-data", Size = 650 }) 
+</hide-silent>
+
+
+<hide>
+@* 2sxclint:disable:no-inline-script *@
+
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1200 }) 
+
+@Html.Partial("_MessageHybrid.cshtml")
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "BooksController.cs",
+  Size = 1200,
+  TitlePath = "/api/"
+}) 
+</hide>

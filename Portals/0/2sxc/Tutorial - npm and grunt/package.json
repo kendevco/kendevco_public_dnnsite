@@ -1,0 +1,32 @@
+{
+  "name": "ToSic_2sxc_App_Tutorial_npm_and_grunt",
+  "version": "1.0.0",
+  "description": "Learn npm and Grunt",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2sic/App-Tutorial-npm-and-grunt"
+  },
+
+  "keywords": [
+    "2sxc",
+    "2sic",
+    "npm",
+    "Grunt",
+    "DNN",
+    "DotNetNuke",
+    "Automation"
+  ],
+  "author": "2sic Internet Solutions",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/2sic/App-Tutorial-npm-and-grunt/issues"
+  },
+  "homepage": "https://github.com/2sic/App-Tutorial-npm-and-grunt",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-ng-annotate": "^0.10.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Anchor": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "text"
+          },
+          "Link": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.StarRatingFieldVM>
+@using avt.ActionForm
+
+@{
+
+    AddCommonAttributes(true, true, true, "form-control", touchEvent: "keyup");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddPlaceholderAttributes();
+
+
+    var isEnabled = "true";
+    if (!Model.IsConditionallyEnabled) {
+        isEnabled = "false";
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled)) {
+        isEnabled = Model.BindEnableCompiled;
+    }
+}
+
+<div load-on-demand="'ngstars'">
+    <input ngstars=""
+           on-stars-change="uptStarRating(value,name)"
+           starsno="@(Model.StarsNo)"
+           step="@(Model.Step)"
+           size="@(Model.Size)"
+           minimumrating="@(Model.MinimumRating)"
+           maximumrating="@(Model.MaximumRating)"
+           selectedstarcolor="@(Model.SelectedStarColor)"
+           unselectedstarcolor="@(Model.UnselectedStarColor)"
+           clearcaption="@(Model.ClearCaption)"
+           starcaptions="@(Model.StarCaptions)"
+           starcaptionclasses="@(Model.StarCaptionClasses)"
+           showcaption="@(Model.ShowCaption)"
+           showclear="@(Model.ShowClear)"
+           value="@(Model.Value)"
+           field-id="@(Model.Name)"
+           fname="@(Model.Name)"
+           glyphicon="false"
+           is-enabled="@isEnabled"
+           @ElementAttributes() />
+</div>

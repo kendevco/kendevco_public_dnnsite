@@ -1,0 +1,17 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // This is a partial template which is re-used in many other templates, so it's shared here
+  // its shows the detailitem data like name, position, contact data and description
+  var detailitem = DynamicModel.data;
+}
+<div class="mb-2">
+
+  @if (Text.Has(detailitem.Icon)) {
+    <div><i class='fas @detailitem.Icon fa-10x' style='--fa-primary-color: rgb(0, 82, 155); --fa-secondary-color: rgb(163, 181, 195);'></i></div>
+  }
+
+  <h3 class="lead"><strong>@detailitem.Title</strong></h3><br/>
+  <div>@Html.Raw((string)detailitem.Description)</div>
+  
+</div>

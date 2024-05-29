@@ -1,0 +1,231 @@
+.site-logo img {
+	width: 110px;
+    height: 68px;
+}
+
+.site-logo-footer {
+	width: 110px;
+    height: 68px;
+    filter: brightness(100);
+}
+
+.home-header {
+    background-position: center center;
+    background-size: cover;
+    min-height: 50vh;
+    max-height: 499px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 25px -4px rgba(0, 0, 0, 0.15);
+}
+
+.home-title {
+    font-size: 5rem;
+}
+
+.home-subtitle {
+    font-size: 1.7em;
+}
+
+.page-title {
+    background-position: center center;
+    background-size: cover;
+    min-height: 25vh;
+    max-height: 249px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 25px -4px rgba(0, 0, 0, 0.15);
+}
+
+.home-title, .home-subtitle, .page-title {
+    text-shadow: 0 0 6px #000000, 0 0 5px #000000;
+}
+
+.bg-gradient {
+  -moz-linear-gradient(top, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.nav-secondary {
+    display: block;
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border-right: 1px solid #eee;
+}
+
+.nav-secondary:hover {
+    text-decoration:none;
+}
+
+.nav-secondary:first-child {
+    border-left: 1px solid #eee;
+}
+
+.nav-secondary-container {
+	-webkit-box-shadow: 0 1px 30px -6px #bbb;
+	-moz-box-shadow: 0 1px 30px -6px #bbb;
+	box-shadow: 0 1px 30px -6px #bbb;
+}
+
+.nav-link-secondary {
+    display: block;
+    padding-top: 0.5rem;
+    text-decoration:none;
+}
+
+.nav-secondary i.fas {
+    width: inherit;
+}
+
+.btn-circle{
+    border-radius: 100%;
+    height: 3.125rem;
+    width: 3.125rem;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 !important;
+}
+
+.btn-circle-sm{
+    border-radius: 100%;
+    height: 2.25rem;
+    width: 2.25rem;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 !important;
+}
+
+
+.icon:before { content: "\f15b"; }
+
+/* My Account */
+.icon-myprofile:before { content: "\f007"; }
+.icon-mycompany:before { content: "\f1ad"; }
+.icon-mymembership:before { content: "\f2bb"; }
+.icon-myregistrations:before { content: "\f022"; }
+.icon-myinvoices:before { content: "\f543"; }
+.icon-mycolleagues:before { content: "\f500"; }
+.icon-mydownloads:before { content: "\f019"; }
+.icon-mysettings:before { content: "\f0ad"; }
+.icon-mypassword:before { content: "\f084"; }
+.icon-myusername:before { content: "\f507"; }
+.icon-myautopayaccount:before { content: "\f09d"; }
+
+/* Membership */
+.icon-join:before { content: "\f358"; }
+.icon-apply:before { content: "\f058"; }
+.icon-member:before { content: "\f007"; }
+.icon-renew:before { content: "\f079"; }
+.icon-memberpackages:before { content: "\f187"; }
+
+/* Get Involved */
+.icon-ourchapters:before { content: "\f02e"; }
+.icon-ourcommittees:before { content: "\f0c0"; }
+
+/* Directories */
+.icon-boardofdirectors:before { content: "\f0e8"; }
+.icon-members:before { content: "\f183"; }
+.icon-membercompanies:before { content: "\f1ad"; }
+.icon-companylocations:before { content: "\f276"; }
+.icon-memberlocations:before { content: "\f14e"; }
+
+/* Events */
+.icon-calendarofevents:before { content: "\f073"; }
+.icon-courses:before { content: "\f51c"; }
+.icon-webinars:before { content: "\f0ac"; }
+
+/* Shop */
+.icon-productcatalog:before { content: "\f291"; }
+.icon-donate:before { content: "\f4b9"; }
+.icon-subscriptions:before { content: "\f217"; }
+.icon-contribute:before { content: "\f4c0"; }
+.icon-packages:before { content: "\f49e"; }
+.icon-shoppingcart:before { content: "\f07a"; }
+
+
+/* DNN overrides */
+.DNNModuleContent.ModDNNHTMLC .Normal {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    word-wrap: inherit;
+}
+
+.DnnModule-MX-MeetingReg-Controller > div,
+.DnnModule-MX-MembershipApp-Controller > div {
+    padding: 0 !important;
+}
+
+/* MEDIA QUERIES */
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .home-header {
+        display: block;
+        padding-top:6em;
+    }
+
+    .page-title {
+        padding-top:5em;
+    }
+}
+
+@media (max-width: 992px) {
+	.site-logo {
+		margin-left: -20px;
+	}
+
+  	.site-logo img {
+		width: 44px;
+        height: 27.2px;
+	}
+
+	.presentation-title {
+    	font-size:3rem;
+	}
+	
+	.presentation-subtitle {
+    	font-size: 1em;
+	}
+
+	.nav-secondary {
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    	font-size: 0.75rem;
+	}	
+}
+
+@media (max-width: 768px) {
+	.nav-secondary {
+        padding-top: 1.2rem;
+    	font-size: 0.65rem;
+	}	
+}

@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Speaker": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Speaker_Name": {
+            "type": "text"
+          },
+          "Speaker_Title": {
+            "type": "text"
+          },
+          "Speaker_Image": {
+            "type": "image"
+          }
+        }
+      }
+    },
+    "View_All": {
+      "type": "text"
+    }
+  }
+}

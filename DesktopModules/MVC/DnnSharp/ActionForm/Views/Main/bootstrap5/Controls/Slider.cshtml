@@ -1,0 +1,45 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.SliderFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    string containerClasses = "";
+    var hasCaptions = !string.IsNullOrEmpty(Model.StartText) || !string.IsNullOrEmpty(Model.EndText) || !string.IsNullOrEmpty(Model.Help) || !string.Equals(Model.SliderCaptions, "[]") || !string.Equals(Model.SliderCaptionClasses, "[]");
+
+    if (hasCaptions)
+    {
+        containerClasses = "mb-20";
+    }
+
+    var containerModel = new ContainerVM(Model)
+                {
+                    AddClasses = containerClasses
+                };
+
+    @TemplatePartial("_Container", containerModel, new ViewDataDictionary(ViewData) { {"renderInner", "true"} })
+}
+else
+{
+    AddCommonAttributes(true, true, true);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddPlaceholderAttributes();
+
+    <div load-on-demand="'slider'">
+        <input type="hidden" data-slider="" data-itemvalue="value" update-field="updateField(field, val)"
+           data-slider-orientation="@Model.SliderOrientation"
+           data-slider-starttext="@Model.StartText"
+           data-slider-endtext="@Model.EndText"
+           data-slider-helptext="@Model.Help"
+           captions="@Model.SliderCaptions"
+           caption-classes="@Model.SliderCaptionClasses"
+           data-slider-min="@Model.MinValue"
+           data-val="@Model.Value"
+           data-slider-width="@Model.Width"
+           data-slider-max="@Model.MaxValue"
+           data-slider-step="@Model.StepValue"
+           displaytooltip="@Model.DisplayTooltip.ToString()"
+           @ElementAttributes() />
+    </div>
+}

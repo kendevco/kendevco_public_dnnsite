@@ -1,0 +1,13 @@
+@inherits Custom.Hybrid.Razor14
+@* This is a shared, re-used fragment *@
+@{
+  var topicHome = DynamicModel.Topic;
+  var topicUrl = DynamicModel.TopicKey;
+}
+
+<a href='@Link.To()'>Tutorial Home</a>
+
+@if(!string.IsNullOrEmpty(topicHome)) {
+  <text> › </text>
+  <a href="@Link.To(parameters: topicUrl)">@topicHome</a>
+}

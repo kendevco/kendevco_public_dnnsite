@@ -1,0 +1,37 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  var post = DynamicModel.Post;
+  var author = post.author;
+  var publicationDate = post.PublicationMoment.ToString("d");
+}
+
+  <p class="card-text">
+   @* Post Date *@
+  Finished on: <time pubdate datetime='@publicationDate'>@publicationDate</time>
+  </p>
+
+  <p class="card-text">
+  @* Author Info & Link to Authors Posts *@
+  <div class="post-author mr-2">
+    <a href='@Link.To(parameters: "author=" + author.FullName)'>
+      @if(Text.Has(author.Image)) {
+        <img loading="lazy" src='@Link.Image(author.Image, Settings.Images.Author)' alt="@author.FullName" style="width: 40px" class="rounded-circle" /> 
+         @author.FullName
+      } else {
+        @author.FullName 
+      }
+    </a>
+  </div>
+  </p>
+
+  <p class="card-text">
+  @* List categories of post *@
+  @foreach(var category in post.Categories) {
+    <span>
+    <a class="post-category" href='@Link.To(parameters: "category=" + category.Key)' title="@category.Name">
+      @category.Name
+    </a>
+    </span>
+  }
+  </p>

@@ -1,0 +1,72 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var fancybox = CreateInstance("../shared/Fancybox.cs");
+}
+</hide>
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Example from CSV which was uploaded as an App Setting</h2>
+    <p>
+      This is similar to the previous example, except that the CSV file 
+      can be uploaded again and again in the App-Settings UI. So the path isn't hard-coded.  
+      <br>
+    </p>
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/query-products-csv.png", 400, 200)
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+<snippet id="data-csv-query-settings">
+@{
+  // get the query
+  var query = App.Query["ProductsFromCsvInAppSettings"];
+
+  // get the data from the query
+  var products = AsList(query);
+
+  // get the current author (if available) from the stream Current
+  var current = AsList(query["Current"]).FirstOrDefault();
+}
+<ul>
+  @foreach(var product in products) {
+    <!-- this li will have class=selected if it's the current one -->
+    <li class='@(product == current ? "selected" : "")'>
+      <!-- this creates a link to the current tutorial (data220) and product=id -->
+      <a href='@Link.To(parameters: "data231=true&product=" + product.EntityId)'>
+        @product.Name (#@product.Id)
+      </a>
+      @if(current == product) {
+        <br>
+        <em>
+          @current.Description 
+          (<a href="@product.Link" target="_blank">find out more</a>)
+        </em>
+      }
+    </li>
+  }
+</ul>
+
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "data-csv-query-settings", Size = 600 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  File = "assets/products.csv",
+  Size = 300, 
+  Type = "csv"
+}) 
+</hide>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 900 }) 
+</hide>

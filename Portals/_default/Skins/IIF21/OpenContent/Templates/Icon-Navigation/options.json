@@ -1,0 +1,62 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Nav_Item": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Nav_Text": {
+            "type": "text"
+          },
+          "Nav_Link": {
+            "type": "text"
+          },
+          "Icon_Version": {
+            "type": "radio",
+            "sort": false,
+            "optionLabels": [
+              "Image",
+              "Font Awesome 4 Icon",
+              "Font Awesome 5 Icon"
+            ],
+            "vertical": false
+          },
+          "Nav_Icon_vFour": {
+            "type": "icon",
+            "glyphicons": false,
+            "bootstrap": false,
+            "fontawesome": true,
+            "dependencies": {
+              "Icon_Version": [
+                "FontAwesome4"
+              ]
+            }
+          },
+          "Nav_Icon_vFive": {
+            "type": "text",
+            "helper": "Copy and past the HTML code from the font awesome site after selecting an icon here: https://fontawesome.com/icons",
+            "dependencies": {
+              "Icon_Version": [
+                "FontAwesome5"
+              ]
+            }
+          },
+          "Nav_Image": {
+            "type": "image",
+            "uploadfolder": "Icons",
+            "typeahead": {
+              "Folder": "Icons"
+            },
+            "dependencies": {
+              "Icon_Version": [
+                "Image"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

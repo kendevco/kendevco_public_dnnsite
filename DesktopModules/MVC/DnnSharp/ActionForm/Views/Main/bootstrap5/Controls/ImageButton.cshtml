@@ -1,0 +1,34 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<ImageButtonFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "btnc-" + Model.ButtonAlign.ToLower() },
+        new ViewDataDictionary(ViewData) { { "renderInner", "true" } }
+    )
+}
+else
+{
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized));
+    AddAttribute("ng-click", "form.fields." + Model.Name + ".onChange(form);", !string.IsNullOrWhiteSpace(Model.BindOnChange));
+    AddAttribute("data-validation", "on", Model.CausesValidation);
+    if (Model.IsConditionallyEnabled)
+    {
+        AddAttribute("data-submiturl", Model.Settings.GetMvcAjaxUrl("Submit") + "&event=click&b=" + Model.Id);
+        AddAttribute("data-submitquery", Model.Settings.GetAjaxQuery() + "&event=click&b=" + Model.Id);
+    }
+
+    var imgAttrs = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.CssStyles))
+    {
+        AppendRawStyles(imgAttrs, Model.CssStyles);
+    }
+
+    <div role="button" id="@Model.ElementId" class="submit form-button d-inline-block img-button-parent @Model.CssClass" @ElementAttributes()>
+        <img src="@Model.ImageURL" class="img-fluid" @ElementAttributes(imgAttrs) />
+    </div>
+}

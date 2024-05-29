@@ -1,0 +1,36 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont        : RooneyPro-Regular, Georgia, serif;
+@pageFont          : 'Open Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@googleFontFamily  : 'Open+Sans:400italic,400|Oswald:400,800';
+
+@borderRadius      : 0px;
+
+
+/*-------------------
+    Base Sizes
+--------------------*/
+
+@emSize      : 14px;
+@fontSize    : 14px;
+
+
+/*-------------------
+    Colors
+--------------------*/
+
+@white         : #fff;
+@lightGray     : #f1f2f2;
+@darkGray      : #555;
+@mediumGray    : lighten(@darkGray, 30%);
+@mainBlue      : #00529b;
+@lightBlue     : #00aeef;
+@yellow        : #fcb425;
+
+@primaryColor: @mainBlue;
+@secondaryColor: @yellow;
+
+@largeSpotlightWidth : 250px;
+@smallSpotlightWidth : 168px;

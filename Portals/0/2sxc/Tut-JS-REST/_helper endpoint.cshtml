@@ -1,0 +1,18 @@
+
+
+<div style="border: 1px solid black; padding: 10px">
+    <h4>Helper Values for this Tutorial</h4>
+    When calling REST &amp; WebApi of the <em>current module</em> then the system can automatically figure out which module etc. is used. But when using external calls (from another module, from the skin or from another site), then the URL must include this information. The field below offer the values for the current system/portal (it changes a bit on sub-portals and dnn-versions). In real-life calls you would hard-wire them into your external scripts / code.
+    <br>
+    Endpoint root: <input id="apiEndPointRoot" type="text" value="">
+    <br>
+</div>
+<script>
+    // retrieve the api-root path for the current site
+    $(function(){
+        var dnnSf = $.ServicesFramework(0);
+        $("#apiEndPointRoot").val(
+            dnnSf.getServiceRoot("2sxc").toLowerCase()
+        );
+    });
+</script>

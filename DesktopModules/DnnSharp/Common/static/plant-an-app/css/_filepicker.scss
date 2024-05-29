@@ -1,0 +1,34 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+    .dnnsf-filepicker {
+    }
+
+    .dnnsf-filepicker .file {
+        padding: 4px;
+        font-size: 0.9em;
+        border: none;
+    }
+
+    .dnnsf-filepicker .selected {
+        background-color: #428bca !important;
+        color: #fff !important;
+        border-radius: 2px;
+    }
+
+    .dnnsf-filepicker .expand {
+        font-family: monospace;
+        text-decoration: none;
+    }
+
+    .dnnsf-filepicker .folder-list ul {
+        margin: 0;
+        padding-left: 13px;
+    }
+
+    .dnnsf-filepicker .folder-list li {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0;
+    }
+}

@@ -1,0 +1,64 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+  var fancybox = CreateInstance("../shared/Fancybox.cs");
+  var width = 200;
+  var height = 200;
+
+  // TODO: doesn't work in Oqtane
+}
+</hide>
+@using ToSic.Razor.Blade;
+@using System.Linq;
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>SQL from a App.Query, setting Params</h2>
+    <p>
+      The easiest way to get SQL data is using Visual Query. Note that this only works, if your razor is inside 2sxc/eav. This example gets the list of files from DNN using a query like <br>
+      <code>Select Top 10 * from Files Where PortalId = [Params:PortalId]</code> <br>
+      Here we override the parameter <code>PortalId=1</code>. 
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+<hr>
+
+</trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Root Portal</h2>
+    <div>In this example we will set the PortalId for the SQL query.</div>
+    <snippet id="sql-query-params">
+    @{
+      // get the query and set a parameter
+      var query = App.Query["DnnFilesFromSql"];
+      query.Params("PortalId", "0");
+      var rootFiles = AsList(query);
+    }
+    <ul>
+      @foreach(var file in rootFiles) {
+        <li>
+          @file.FileName
+        </li>
+      }
+    </ul>
+    </snippet>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-query-params", Size = 300 }) 
+    </hide-silent>
+  </div>
+  <div class="col-lg-5">
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-dnn-files.png", width, height, "float-left", label: "Query Tree") 
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-configuration.png", width, height, "float-left", label: "Query Configuration with Params and Test-Values")
+    @fancybox.PreviewWithLightbox(App.Path + "/data/assets/sql-query-select-statement.png", width, height, "float-left", label: "SQL Query using Params")
+  </div>
+</div>
+
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
+</hide>

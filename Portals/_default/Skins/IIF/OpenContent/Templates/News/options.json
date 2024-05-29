@@ -1,0 +1,42 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Title_Icon": {
+      "type": "image"
+    },
+    "News_Feed": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Article_Title": {
+            "type": "text"
+          },
+          "Article_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Article_Content": {
+            "type": "wysihtml"
+          },
+          "Article_Link": {
+            "type": "text"
+          }
+        }
+      }
+    },
+    "View_All": {
+      "type": "checkbox"
+    },
+    "View_All_Link": {
+      "type": "text",
+      "dependencies": {
+        "View_All": [
+          "true",
+          " false"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Media_Title": {
+      "type": "text"
+    },
+    "Media_Type": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Image",
+        "Video"
+      ]
+    },
+    "Media_Image": {
+      "type": "image",
+      "uploadfolder": "Media-Images",
+      "typeahead": {
+        "Folder": "Media-Images"
+      },
+      "dependencies": {
+        "Media_Type": [
+          "Image",
+          " Video"
+        ]
+      }
+    },
+    "Media_Image_Alt": {
+      "type": "text",
+      "dependencies": {
+        "Media_Type": [
+          "Image",
+          " Video"
+        ]
+      }
+    },
+    "Media_Video": {
+      "type": "text",
+      "dependencies": {
+        "Media_Type": [
+          "Video",
+          " Image"
+        ]
+      }
+    },
+    "Media_Caption": {
+      "type": "textarea"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{{registerstylesheet "css/template.css"}}
+
+<div class="table-overflow">
+	<table class="engage-responsive-table" width="100%" cellpadding="0" cellspacing="0">
+		<thead>
+			{{#each Table_Row}}
+				<tr>
+					{{#each Table_Cell}}
+			    		<th>
+			    			{{Cell_Heading}}
+			    		</th>
+					{{/each}}
+				</tr>
+			{{/each}}
+		</thead>
+		<tbody>
+			{{#each Table_Row}}
+				<tr>
+					{{#each Table_Cell}}
+			    		<td>
+			    			<span class="cell-heading">{{Cell_Heading}}</span>
+			    			{{Cell_Content}}
+			    		</td>
+					{{/each}}
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,66 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@*
+// TODO: doesn't work in Oqtane
+*@
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+@using System.Configuration
+@using System.Data
+@using System.Data.SqlClient
+
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>The top 10 files found in this portal as returned from DB</h2>
+    <p>
+      This example queries the DNN SQL for the files using <code>DataReader</code> objects.
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+<snippet id="sql-datareader">
+@{
+  // load the sql connection name from Web.Config
+  // the default connection string for DNN is SiteSqlServer
+  var conString = ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString();
+
+  var con = new SqlConnection(conString);
+  con.Open();
+
+  // You should always write parameters using the @-syntaxt,
+  // and never write them directly into the SQL using string-concatenation
+  // to protect yourself from SQL injection attacks
+  var command = new SqlCommand("Select Top 10 * from Files Where PortalId = @PortalId", con);
+  command.Parameters.Add("@PortalId", CmsContext.Site.Id);
+  var myReader = command.ExecuteReader();
+}
+
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-datareader", Size = 350 }) 
+</hide-silent>
+
+<snippet id="sql-read">
+<ol>
+  @while (myReader.Read())
+  {
+    <li>@myReader["FileName"]</li>
+  }
+</ol>
+@{
+  myReader.Close();
+}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "sql-read", Size = 200 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 850 }) 
+</hide>

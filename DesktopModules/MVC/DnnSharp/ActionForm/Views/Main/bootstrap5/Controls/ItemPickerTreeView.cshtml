@@ -1,0 +1,95 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<ItemPickerTreeViewVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+	var rootAttributes = NewAttributes();
+
+	if (!Model.InlineTree)
+	{
+		AppendClasses(rootAttributes, "treecontrol-dropdown-container");
+	}
+
+	var inputGroupAttributes = NewAttributes();
+
+	AppendClasses(inputGroupAttributes, "input-group");
+	AppendRawStyles(inputGroupAttributes, "cursor: pointer; width:100%");
+	inputGroupAttributes["ng-click"] = "form.fields." + Model.Name + ".showdrop == true ? form.fields." + Model.Name + ".showdrop = false : form.fields." + Model.Name + ".showdrop = true";
+
+	var addClasses = "col-md-12 form-control treecontrol-dropdown-input";
+	if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+	{
+		addClasses += " required";
+	}
+	AddCommonAttributes(true, true, false, addClasses, "keyup");
+
+	Attributes["ng-model"] = "form.fields." + Model.Name + ".text";
+	Attributes["data-val"] = "{{form.fields." + Model.Name + ".value}}";
+	Attributes["type"] = "text";
+	Attributes["disabled"] = "";
+	AddPlaceholderAttributes();
+
+	var inputGroupBtnAttributes = NewAttributes();
+	AppendClasses(inputGroupBtnAttributes, "input-group-btn");
+	if (Model.InlineTree)
+	{
+		AppendRawStyles(inputGroupBtnAttributes, "display:none");
+	}
+
+	var dropdownToggleAttributes = NewAttributes();
+	dropdownToggleAttributes["type"] = "button";
+	AppendClasses(dropdownToggleAttributes, "btn btn-default dropdown-toggle");
+	dropdownToggleAttributes["data-toggle"] = "dropdown";
+
+	var dropdownGlyphicon = NewAttributes();
+	AppendClasses(dropdownGlyphicon, "glyphicon glyphicon-chevron-down");
+	dropdownGlyphicon["ng-class"] = "{'glyphicon-chevron-down': !form.fields." + Model.Name + ".showdrop, 'glyphicon-chevron-up': form.fields." + Model.Name + ".showdrop }";
+
+	var dropdownPanelAttributes = NewAttributes();
+	if (!Model.InlineTree)
+	{
+		AppendClasses(dropdownPanelAttributes, "panel treecontrol-dropdown-panel");
+	}
+
+	var dropdownContainerAttributes = NewAttributes();
+	if (!Model.InlineTree)
+	{
+		AppendClasses(dropdownContainerAttributes, "treecontrol-dropdown treecontrol-dropdown-container");
+		dropdownContainerAttributes["ng-show"] = "form.fields." + Model.Name + ".showdrop";
+	}
+
+	var directiveAttributes = NewAttributes();
+	AppendClasses(directiveAttributes, "tree-boot ng-cloak");
+	directiveAttributes["update-field"] = "updateField(field, val)";
+	directiveAttributes["tree-model"] = "form.fields." + Model.Name + ".options";
+	directiveAttributes["mid"] = Model.Settings.ModuleId.ToString();
+	directiveAttributes["on-selection"] = "showSelected(node, selected , form.fields." + Model.Name + ".name)";
+	directiveAttributes["on-click-elem"] = "closeDropdown(e,form.fields." + Model.Name + ".name)";
+	directiveAttributes["field"] = "settings.Fields['" + Model.Name + "']";
+	directiveAttributes["field-id"] = Model.Id.ToString();
+	directiveAttributes["get-items"] = "form.getItemsUrl";
+	directiveAttributes["init-val"] = "'" + Model.Value + "'";
+	directiveAttributes["data-af-field"] = Model.Name;
+}
+
+<div @ElementAttributes(rootAttributes)>
+	<div @ElementAttributes(inputGroupAttributes)>
+		<input @ElementAttributes()/>
+		<span @ElementAttributes(inputGroupBtnAttributes)>
+			<button @ElementAttributes(dropdownToggleAttributes)>
+				<span @ElementAttributes(dropdownGlyphicon)>
+				</span>
+			</button>
+		</span>
+	</div>
+</div>
+<div @ElementAttributes(dropdownPanelAttributes)>
+	<div load-on-demand="'treecontrol'">
+		<div @ElementAttributes(dropdownContainerAttributes)>
+			<treecontrol @ElementAttributes(directiveAttributes)>
+				<span ng-bind="node.text"></span>
+			</treecontrol>
+		</div>
+	</div>
+</div>

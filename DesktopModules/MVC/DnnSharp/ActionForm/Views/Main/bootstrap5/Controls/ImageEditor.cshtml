@@ -1,0 +1,23 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.ImageEditorFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+}
+
+<div load-on-demand="'imageeditor'">
+    <div data-settings="settings" submit-data="" imageeditor=""
+         data-register-control="registerControl(control)"
+         update-field="updateField(field, val)"
+         data-field="settings.Fields['@(Model.Name)']"
+         data-fieldid="@Model.Id"
+         data-output="@Model.Output"
+         data-drag-mode="@Model.DragMode"
+         data-crop-box-resizable="@Model.CropBoxResizable"
+         data-crop-box-width="@Model.CropBoxWidth"
+         data-crop-box-height="@Model.CropBoxHeight"
+         @ElementAttributes()>
+    </div>
+</div>

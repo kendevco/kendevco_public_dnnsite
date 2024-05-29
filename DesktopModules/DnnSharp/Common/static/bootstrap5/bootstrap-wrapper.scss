@@ -1,0 +1,17 @@
+﻿@import "variable-overrides";
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+.btn-primary, .btn-primary:hover, .btn-primary:active,
+.btn-primary:focus, .btn-primary:focus-visible
+.btn-outline-primary:hover {
+    color: #f9fafa;
+}
+
+.btn-outline-secondary {
+    color: #444E4D;
+    border-color: #EEF0F0;
+}
+
+.sticky-top {
+    z-index: 900;
+}

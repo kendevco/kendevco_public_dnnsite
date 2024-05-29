@@ -1,0 +1,64 @@
+﻿@import "../../../../../Common/static/bootstrap5/variable-overrides";
+
+/* copied from /templates/form/bootstrap/common.less */
+
+.fileupload-root {
+  table {
+    margin: 0;
+    td {
+      vertical-align: middle;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .fileinput-button {
+    position: relative;
+    overflow: hidden;
+
+    input {
+      position: absolute !important;
+      top: 0 !important;
+      right: 0 !important;
+      margin: 0 !important;
+      opacity: 0 !important;
+      filter: alpha(opacity=0) !important;
+      transform: translate(-300px, 0) scale(4) !important;
+      font-size: 23px !important;
+      direction: ltr !important;
+      cursor: pointer !important;
+      height: 30px !important;
+      border-width: 0 !important;
+    }
+  }
+
+  .fileupload-buttonbar .btn,
+  .fileupload-buttonbar .toggle {
+    margin-bottom: 5px;
+  }
+
+  .progress-animated .bar {
+    background: url(../bootstrap/img/progressbar.gif) !important;
+    filter: none;
+  }
+
+  .fileupload-loading {
+    float: right;
+    width: 32px;
+    height: 32px;
+    background: url(../bootstrap/img/loading.gif) center no-repeat;
+    background-size: contain;
+    display: none;
+  }
+
+  .fileupload-processing .fileupload-loading {
+    display: block;
+  }
+
+  .files audio,
+  .files video {
+    max-width: 300px;
+  }
+}

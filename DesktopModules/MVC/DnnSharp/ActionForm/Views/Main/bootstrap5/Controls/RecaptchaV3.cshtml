@@ -1,0 +1,17 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.RecaptchaFieldVM>
+@using avt.ActionForm
+
+<div load-on-demand="'recaptchav3'">
+    <input id="@Model.ElementId"
+           name="@Model.ElementId"
+           style="display: none;"
+           recaptchav3=""
+           data-register-control="registerControl(control)"
+           submit-data=""
+           type="text"
+           data-fieldid="@Model.Id"
+           data-af-field="@Model.Name"
+           ng-model="form.fields.@(Model.Name).value"
+           field="settings.Fields['@(Model.Name)']"
+           key="'@(Model.SiteKey)'">
+</div>

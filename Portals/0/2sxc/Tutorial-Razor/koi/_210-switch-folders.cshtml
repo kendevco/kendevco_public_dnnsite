@@ -1,0 +1,61 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="row">
+        <div class="col-lg-8">
+          <h2>Switch between template files based on Bootstrap Version</h2>
+          <p>
+            In this example, we'll assume you have a Bootstrap3 and a Bootstrap4 template in the folders <code>bs3/_Line.cshtml</code> and the same in <code>bs4/_Line.cshtml</code>. We'll use Koi to load the right template file. 
+          </p>
+          <p>
+            You can see in the source-codes that BS3 uses <code>pull-left</code> and another class on the blockquote tag than BS4.
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <img loading="lazy" src="@App.Path/koi/assets/koi.png?w=200">
+        </div>
+      </div>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+@*
+  This page is just an entry point for your code. It will do the following:
+  1. Check if it can detect the CSS framework used by the theme
+    - if yes, it will use that
+    - otherwise it will fallback to assume it's bootstrap 4 = "bs4"
+    - note that the BS4 edition has an additional check for unknown frameworks
+  2. Then it will load the real cshtml-template from the matching edition-folder
+*@
+@{ 
+  var folder = Kit.Css.Is("bs3") ? "bs3" : "bs4";
+}
+@Html.Partial(folder + "/_Alert.cshtml")
+
+<hide>
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Title = "Bootstrap3 template in /bs3/",
+  Path = App.PhysicalPath + "/koi/bs3/",
+  File = "Alert",
+  Size = 200
+}) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Title = "Bootstrap4 template in /bs4/",
+  Path = App.PhysicalPath + "/koi/bs4/",
+  File = "Alert",
+  Size = 200
+}) 
+</hide>

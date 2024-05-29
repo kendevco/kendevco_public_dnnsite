@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@{
+  var hlp = CreateInstance("shared/Helpers.cs");
+  Kit.Page.SetBase();
+  var newConfig = Kit.Toolbar
+    .Metadata(CmsContext.View, "TutorialViewSharing")
+    .Settings(hover: "left");
+
+  @Html.Partial("shared/_OpenGraphHeaders.cshtml")
+}
+
+<div class="tutorial-wrapper" @Edit.TagToolbar(Content)>
+  <div @Edit.TagToolbar(newConfig)>
+    @hlp.Title(Content.Title + " (" + App.Configuration.Version + ")")
+  </div>
+  @Html.Raw(Content.Teaser)
+
+  @* Show all the sections - they are in the demo-data of the current view *@
+  @{
+    var group = "";
+    var sections = AsList(Content.Sections as object);
+    var grouped = sections.Select(s => {
+      group = (s.Subsection == true) ? group : s.NameId;
+      return new { Group = group, Section = s };
+    })
+    .GroupBy(g => g.Group);
+  }
+
+  @foreach (var sectionGroup in grouped)
+  {
+    @Html.Partial("_Home-Section.cshtml", new { 
+      TutorialSet = sectionGroup.First().Section, 
+      IsSubSection = false,
+      SubSections = sectionGroup.Skip(1).Select(s => { return s.Section; }) 
+    })
+    // Create a thicker line after sub-sections
+    <hr style='height: 4px'>
+  }
+
+  @* Show the other links which are still ideas etc. and don't exist as views *@
+  @{
+    var wipSection = new {
+      NameId = "wip",
+      Title = "Next Tutorials (Work-In-Progress)",
+      Introduction = "We'll create some more tutorials in 2022, incl. the following",
+      Tutorials = new[]{
+        new { Title = "UI Formulas" },
+        new { Title = "Linking around in dnn" },
+        new { Title = "Using js/css and image resources in the app folder" },
+        new { Title = "Using app settings and resources" },
+        new { Title = "Navigation links" },
+        new { Title = "Leveraging Connect.Koi" },
+        new { Title = "Permission examples" },
+        new { Title = "In-Page Editing experience" },
+        new { Title = "Customizing Search Results" },
+        new { Title = "Work with icon-fonts, font-awesome etc." },
+        new { Title = "More data examples, working with users, SQL-write, PetaPoco etc." },
+        new { Title = "Working with DataSources in all kinds of ways" },
+        new { Title = "Using data from other apps" },
+        new { Title = "Customizing search from data" },
+        new { Title = "Custom dynamic WebApi" },
+      }
+    };
+  }
+  @Html.Partial("_Home-Section.cshtml", new { TutorialSet = wipSection })
+</div>
+
+@Html.Partial("./_home.PartAssets.cshtml")

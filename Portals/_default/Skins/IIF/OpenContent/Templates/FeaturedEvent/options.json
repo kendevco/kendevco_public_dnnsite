@@ -1,0 +1,33 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Event_Title": {
+      "type": "text"
+    },
+    "Event_Date": {
+      "type": "text"
+    },
+    "Event_Location": {
+      "type": "text"
+    },
+    "Event_Image": {
+      "type": "image"
+    },
+    "Event_CTA": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Event_Link": {
+            "type": "text"
+          },
+          "Event_Link_Text": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

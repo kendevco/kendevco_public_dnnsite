@@ -1,0 +1,44 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.AgreementLinksVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "form-checkbox-agree-to-terms-popup" },
+        new ViewDataDictionary(ViewData) { { "renderInner", "true" } }
+    )
+}
+else
+{
+    var labelAttrs = NewAttributes();
+    AddAttribute(labelAttrs, "title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    AddCommonAttributes(true, true, true, "normalCheckBox ignore-submit-hidden-fields", "click");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("checked", "checked", string.Equals("true", Model.Value, StringComparison.OrdinalIgnoreCase));
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+
+    <div class="agreement-links">
+        <label class="@Model.LabelCssClass" style="@Model.LabelCssStyles" @ElementAttributes(labelAttrs)>
+            <input type="checkbox" @ElementAttributes() />
+
+            <span load-on-demand="'agreementlinks'">
+                <span agreementlinks
+                  ng-model="form.fields.@(Model.Name).value"
+                  data-field="settings.Fields['@(Model.Name)']"
+                  content="@Model.TermsAndConditions"
+                  enforce="@Model.EnforceReading.ToString()"
+                  separator="@Model.WordBetween"
+                  popup-width="@Model.PopupWidth"
+                  popup-height="@Model.PopupHeight"
+                  close-button="@Model.CloseButton"
+                  disagree-button="@Model.DisagreeButton"
+                  is-bs5="false">
+                </span>
+            </span>
+        </label>
+        <div class="err-placeholder"></div>
+    </div>
+}

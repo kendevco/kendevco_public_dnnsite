@@ -1,0 +1,47 @@
+{{registerstylesheet "css/template.css"}}
+{{registerscript "js/accordion.min.js"}}
+
+<div class="accordion-wrapper">
+	{{#each Accordion}}
+		<div class="accordion-container" id="accordion-container-{{@index}}">
+			{{#if @first}}
+				<div class="accordion-tab" aria-expanded="true"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Bg_Color}} background: {{Accordion_Color_Options.Panel_Heading_Bg_Color}};{{/if}}"{{/if}}>
+					<h4 {{#if Change_Colors}}style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}}color: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>{{Panel_Heading}}</h4>
+					<div class="accordion--indicator"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} border-color: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                    <svg class="icon icon__svg icon__plus"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} fill: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                        <use xlink:href="#icon__plus" />
+	                    </svg>  
+	                    <svg class="icon icon__svg icon__minus"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} fill: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                        <use xlink:href="#icon__minus" />
+	                    </svg> 
+	                </div>
+				</div>
+			{{else}}
+				<div class="accordion-tab" aria-expanded="false"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Bg_Color}} background: {{Accordion_Color_Options.Panel_Heading_Bg_Color}};{{/if}}{{#if Accordion_Color_Options.Panel_Heading_Text_Color}}color: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+					<h4 {{#if Change_Colors}}style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}}color: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>{{Panel_Heading}}</h4>
+					<div class="accordion--indicator"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} border-color: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                    <svg class="icon icon__svg icon__plus"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} fill: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                        <use xlink:href="#icon__plus" />
+	                    </svg>  
+	                    <svg class="icon icon__svg icon__minus"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Heading_Text_Color}} fill: {{Accordion_Color_Options.Panel_Heading_Text_Color}};{{/if}}"{{/if}}>
+	                        <use xlink:href="#icon__minus" />
+	                    </svg> 
+	                </div>
+				</div>
+			{{/if}}
+			{{#if @first}}
+				<div class="accordion-content" aria-hidden="false"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Bg_Color}} background: {{Accordion_Color_Options.Panel_Bg_Color}};{{/if}}{{#if Accordion_Color_Options.Panel_Text_Color}}color: {{Accordion_Color_Options.Panel_Text_Color}};{{/if}}"{{/if}}>
+					<div class="accordion-content--wrapper">
+						{{Panel_Content}}
+					</div>
+				</div>
+				{{else}}
+				<div class="accordion-content" aria-hidden="true"{{#if Change_Colors}} style="{{#if Accordion_Color_Options.Panel_Bg_Color}} background: {{Accordion_Color_Options.Panel_Bg_Color}};{{/if}}{{#if Accordion_Color_Options.Panel_Text_Color}}color: {{Accordion_Color_Options.Panel_Text_Color}};{{/if}}"{{/if}}>
+					<div class="accordion-content--wrapper">
+						{{Panel_Content}}
+					</div>
+				</div>
+			{{/if}}
+		</div>
+	{{/each}}
+</div>

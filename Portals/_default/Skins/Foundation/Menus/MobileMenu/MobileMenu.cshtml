@@ -1,0 +1,44 @@
+@using DotNetNuke.Web.DDRMenu;
+
+@using System.Dynamic;
+
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{ if (nodes.Count > 0)
+  {
+    <ul class="">
+      @foreach (var node in nodes)
+      {
+        var itemClass = node.HasChildren() ? "has-children" : "";
+        var isActive = node.Breadcrumb ? "active" : "";
+
+        if (node.Text == "Give Now Link")
+        {
+          <li class="mobile-give-now">
+            <a href="/how-to-give/give-now" class="ui secondary button">
+              Give Now
+            </a>
+          </li>
+        }
+        else
+        {
+          <li class="@itemClass">
+            <a target="@node.Target" class="@isActive" href="@node.Url">@node.Text</a>
+            @if (node.HasChildren())
+            {
+              <a href="#" class="toggle-submenu">
+                <i class="material-icons">add</i>
+              </a>
+            }
+            @RenderNodes(node.Children)
+          </li>
+        }
+      }
+    </ul>
+}
+}
+
+@RenderNodes(root.Children)

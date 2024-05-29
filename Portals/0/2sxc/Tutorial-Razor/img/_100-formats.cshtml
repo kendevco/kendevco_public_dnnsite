@@ -1,0 +1,64 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  /* Internal remarks for the tutorial developers
+    To reall see the images loading they must have different names in each tutorial.
+    Otherwise some image is already loaded because of a different example, and the user won't see lazy-loading on resize.
+  */
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h1>The <code>&lt;img&gt;</code> Tag and Different Image Formats</h1>
+      <p>
+        The <code>&lt;img&gt;</code> tag is used to show Images. 
+        It's important that you know the core image formats:
+      </p>
+      <ul>
+        <li><strong>JPG</strong> <br>
+          <code>.jpg</code> files are ideal for Photos, as they compress natural color gradients very well. 
+          It doesn't support transparancy, which is a problem for various use cases. 
+        </li>
+        <li><strong>PNG</strong> <br>
+          PNG is similar to <strong>GIF</strong> and is perfect for images which have areas with the exactly same color - something that's common in artificial images like Logos, but not in Photos. 
+          It also supports transparencies. Unfortunately the compression isn't so good for photos (see sample below).
+        </li>
+        <li>
+          <strong>WebP</strong> <br>
+          WebP combines and levereges the features of JPG and PNG compression. With WebP you can have lossy compression and an alpha channel. 
+          For the lossy compression which is similar to JPG, WEBP optimizes the process of DCT quantization by using prediction models 
+          and compressing it using <a href="https://en.wikipedia.org/wiki/Arithmetic_coding">Arithmetic encoding</a> instead of Huffman.
+          The alpha channel remains intact by compressing it seperatly using Huffman. 
+        </li>
+      </ul>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<trim>
+  <hr>
+  <h2>Standard <code>img</code> Image</h2>
+  <p>
+    This is used for showing an image, and we won't go into much detail, because you probably already know this one. 
+    It shows the same picture as jpg, png and <a href="https://en.wikipedia.org/wiki/WebP" target="_blank">webp</a>:
+  </p>
+</trim>
+
+<snippet id="img-basic">
+  <div class="row">
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.jpg"> <br> (jpg 15k)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.png"> <br> (png 11k - note the dithering)</div>
+    <div class="col-sm"><img src="@App.Path/img/assets/koi-400.webp"> <br> (webp 8k)</div>
+  </div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "img-basic", Size = 120 }) 
+</hide-silent>
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+</hide>

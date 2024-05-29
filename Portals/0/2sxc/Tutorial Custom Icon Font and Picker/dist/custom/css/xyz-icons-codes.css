@@ -1,0 +1,18 @@
+
+.icon-xyz-heart:before { content: '\e800'; } /* '' */
+.icon-xyz-heart-empty:before { content: '\e801'; } /* '' */
+.icon-xyz-star:before { content: '\e802'; } /* '' */
+.icon-xyz-star-empty:before { content: '\e803'; } /* '' */
+.icon-xyz-star-half:before { content: '\e804'; } /* '' */
+.icon-xyz-star-half-alt:before { content: '\e805'; } /* '' */
+.icon-xyz-snow-inv:before { content: '\e806'; } /* '' */
+.icon-xyz-snow-heavy-inv:before { content: '\e807'; } /* '' */
+.icon-xyz-hail-inv:before { content: '\e808'; } /* '' */
+.icon-xyz-windy-rain-inv:before { content: '\e809'; } /* '' */
+.icon-xyz-clouds-inv:before { content: '\e80a'; } /* '' */
+.icon-xyz-clouds-flash-inv:before { content: '\e80b'; } /* '' */
+.icon-xyz-github-circled-alt2:before { content: '\e80c'; } /* '' */
+.icon-xyz-github:before { content: '\e80d'; } /* '' */
+.icon-xyz-theatre:before { content: '\e80e'; } /* '' */
+.icon-xyz-reddit:before { content: '\e80f'; } /* '' */
+.icon-xyz-odnoklassniki-rect:before { content: '\e810'; } /* '' */

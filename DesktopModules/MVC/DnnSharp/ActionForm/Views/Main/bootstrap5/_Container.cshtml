@@ -1,0 +1,68 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.ContainerVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    var attributes = NewAttributes();
+    AppendClasses(attributes, "field-container af-slide");
+    if (!string.IsNullOrWhiteSpace(Model.Field.CssClass))
+    {
+        AppendClasses(attributes, "form-group-" + Model.Field.FirstCssClass);
+    }
+
+    AppendClasses(attributes, Model.AddClasses);
+    AppendRawStyles(attributes, Model.AddStyles);
+
+    if (Model.Settings.FloatingLabels && Model.Field.SupportsFloatingLabel)
+    {
+        AppendClasses(attributes, "form-floating");
+    }
+
+    if (Model.Settings.HasCustomLayout.Value)
+    {
+        var isLabelTopOrInside = Model.Settings.LabelAlign == eLabelAlign.Top || Model.Settings.LabelAlign == eLabelAlign.Inside;
+
+        if (Model.Field.ColOffset > 0 && isLabelTopOrInside)
+        {
+            AppendClasses(attributes, "offset-sm-" + Model.Field.ColOffset);
+        }
+
+        var colSpan = Model.Field.ColSpan;
+        if (!Model.FullSpan && Model.Settings.LabelWidth > 0 && !isLabelTopOrInside && !Model.Field.NoLabel)
+        {
+            colSpan = Model.Field.ColSpan - Model.Settings.LabelWidth.Value.Value;
+        }
+        AppendClasses(attributes, "col-" + colSpan);
+    }
+
+    var showTopLabel = (Model.Settings.LabelAlign == eLabelAlign.Top && !Model.Settings.FloatingLabels) ||
+                       (Model.Settings.FloatingLabels && !Model.Field.SupportsFloatingLabel);
+
+    foreach (var attr in Model.Attributes)
+    {
+        attributes[attr.Key] = attr.Value;
+    }
+
+    if (Model.Settings.HasCustomLayout.Value)
+    {
+        if (!Model.Field.BindPreserveLayout)
+        {
+            AddAttribute(attributes, "ng-show", Model.Field.BindShowCompiled, !string.IsNullOrWhiteSpace(Model.Field.BindShowCompiled));
+        }
+        else
+        {
+            attributes["ng-style"] = "{ visibility:" + Model.Field.BindShowCompiled + " ? 'visible' : 'hidden' }";
+        }
+    }
+}
+
+<div @ElementAttributes(attributes)>
+
+    @if (!Model.Field.NoLabel && showTopLabel)
+    {
+        @TemplatePartial("_Label", new FieldLabelVM(Model.BaseId, Model.Settings, Model.Field))
+    }
+
+    @TemplatePartial("_FieldRender", FieldRendererVM.InputOnly(Model.Field))
+
+</div>

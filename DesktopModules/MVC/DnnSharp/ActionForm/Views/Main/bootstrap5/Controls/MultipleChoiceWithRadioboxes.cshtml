@@ -1,0 +1,127 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<MultipleChoiceWithRadioboxesFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    var containerAttributes = NewAttributes();
+    containerAttributes["id"] = Model.ElementId;
+    containerAttributes["role"] = "radiogroup";
+    containerAttributes["aria-label"] = "radio group";
+
+    var containerModel = new ContainerVM(Model) { Attributes = containerAttributes, AddClasses = "multiple-choice-radio" };
+    <div class="radiocontainer">
+        @TemplatePartial("_Container", containerModel, new ViewDataDictionary(ViewData) { {"renderInner", "true"} })
+    </div>
+}
+else
+{
+    var divAttributes = NewAttributes();
+
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+    {
+        AppendClasses(divAttributes, "required");
+    }
+    AppendClasses(divAttributes, Model.CssClass);
+    AppendClasses(divAttributes, "form-check");
+    if (Model.Horizontal)
+    {
+        AppendClasses(divAttributes, "form-check-inline");
+    }
+
+    var labelAttributes = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.CssStyles))
+    {
+        labelAttributes["style"] = Model.CssStyles;
+    }
+    if (Model.Settings.LabelAlign == eLabelAlign.Inside && !string.IsNullOrWhiteSpace(Model.ShortDescTokenized))
+    {
+        labelAttributes["title"] = Model.ShortDescTokenized;
+    }
+    AppendClasses(labelAttributes, "form-check-label");
+
+    var inputAttributes = NewAttributes();
+    AppendClasses(inputAttributes, "form-check-input normalCheckBox ignore-submit-hidden-fields");
+    AppendClasses(inputAttributes, Model.CssClass);
+    if (!string.IsNullOrWhiteSpace(Model.ValidationGroup))
+    {
+        AppendClasses(inputAttributes, Model.ValidationGroup);
+        if (!string.IsNullOrWhiteSpace(Model.GroupValidator))
+        {
+            AppendClasses(inputAttributes, Model.ValidationGroup + "-" + Model.GroupValidatorJsName);
+        }
+    }
+    if (Model.Settings.ClientSideValidation && !Model.HasValidationCondition)
+    {
+        if (Model.IsRequired)
+        {
+            AppendClasses(inputAttributes, "required");
+        }
+        AppendClasses(inputAttributes, Model.CustomValidator1JsName);
+        AppendClasses(inputAttributes, Model.CustomValidator2JsName);
+    }
+    if (!Model.IsConditionallyEnabled)
+    {
+        inputAttributes["disabled"] = "disabled";
+    }
+    if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+    {
+        inputAttributes["af-bindvalue"] = Model.BindValueCompiled;
+    }
+    if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+    {
+        inputAttributes["ng-change"] = "form.fields." + Model.Name + ".onChange(form);";
+    }
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+    {
+        inputAttributes["ng-disabled"] = "!(" + Model.BindEnableCompiled + ")";
+    }
+
+    if (Model.RadioType == false)
+    {
+        <div ng-cloak ng-repeat="o in form.fields.@(Model.Name).options" @ElementAttributes(divAttributes)>
+
+            <input type="radio" name="@Model.ElementId" id="@(Model.ElementId + "-{{$index}}")" field-id="@Model.Name"
+           ng-model="form.fields.@(Model.Name).value" ng-click="form.fields.@(Model.Name).touched = true;"
+           ng-truevalue="o.value" value="{{o.value}}" @ElementAttributes(inputAttributes) />
+
+            <label ng-bind-html="$sce.trustAsHtml(dnnsf.localization[o.text] || o.text)"
+           for="@(Model.ElementId + "-{{$index}}")" @ElementAttributes(labelAttributes)>
+            </label>
+
+            <div repeat-done ng-if="$last"></div>
+        </div>
+    }
+    else // Show radios as buttons (bs5 native)
+    {
+        AppendClasses(divAttributes, string.Format("d-flex align-items-center m-0 p-0 user-select-none {0}", Model.Horizontal ? "" : "flex-column"));
+
+        var radioBtnGroupAttributes = NewAttributes();
+        AppendClasses(radioBtnGroupAttributes, Model.Horizontal ? "d-flex" : "d-grid w-max-content");
+
+        <div role="group" @ElementAttributes(radioBtnGroupAttributes)>
+            <div ng-cloak ng-repeat="o in form.fields.@(Model.Name).options" @ElementAttributes(divAttributes)>
+                <input type="radio" class="btn-check" autocomplete="off" name="@Model.ElementId"
+               id="@(Model.ElementId + "-{{$index}}")" field-id="@Model.Name" ng-model="form.fields.@(Model.Name).value"
+               ng-click="form.fields.@(Model.Name).touched = true;" ng-truevalue="o.value" value="{{o.value}}"
+               @ElementAttributes(inputAttributes)>
+
+                <label class="@Model.BtnClass" style="@Model.BtnStyles" ng-bind-html="$sce.trustAsHtml(dnnsf.localization[o.text] || o.text)"
+               for="@(Model.ElementId + "-{{$index}}")" @ElementAttributes(labelAttributes)>
+                </label>
+
+                <div class="radio-btn-text p-2">
+                    <span ng-if="($index + 1) !== form.fields.@(Model.Name).options.length" class="radio-boxes-buttons-words"
+                  style="@Model.WordBetweenStyles">
+                        @Model.WordBetween
+                    </span>
+                </div>
+
+                <div repeat-done ng-if="$last"></div>
+            </div>
+        </div>
+    }
+
+    <div class="err-placeholder" style="padding-left:15px"></div>
+}

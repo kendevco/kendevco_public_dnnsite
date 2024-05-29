@@ -1,0 +1,22 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.MultipleChoiceMultiSelectFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "form-control");
+    AddPlaceholderAttributes();
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    AddAttribute("field", "settings.Fields['" + Model.Name + "']");
+    AddAttribute("data-suggestions", "form.fields." + Model.Name + ".options");
+}
+
+<div load-on-demand="'tagify'">
+    <input type="text"
+           tagify=""
+           update-field="updateField(field, val)"
+           register-control="registerControl(control)"
+           data-limit="@(Model.Limit)"
+           @ElementAttributes() />
+</div>

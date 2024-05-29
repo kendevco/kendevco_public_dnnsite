@@ -1,0 +1,89 @@
+<div class="twitter-rotator rotator__{{ModuleTitle}}" id="{{ModuleTitle}}">
+    <div class="swiper-container">
+        <div class="swiper-wrapper twitter-feed">
+            {{#each Twitter_Feed}}
+                <div class="swiper-slide tweet-container">
+                    <div class="tweet">
+                        <div class="tweet--header">
+                            <div class="tweet--profile-image">
+                                <img src="{{Profile_Image}}" width="36" height="36" alt="Profile Image" />
+                            </div>
+                            <a href="#" class="tweet--profile">
+                                <div class="profile--name">{{Profile_Name}}</div>
+                                <div class="profile--handle">{{Twitter_Handle}}</div>
+                            </a>
+                        </div>
+                        <div class="tweet--body">
+                            <div class="tweet--content">{{Tweet_Content}}</div>
+                            <div class="tweet--date">{{formatDateTime Tweet_Date "dd MMM yyyy"}}</div>
+                        </div>
+                        <div class="tweet--footer">
+                            <div class="tweet--comment">
+                                <a href="#">
+                                    <svg class="icon icon__svg">
+                                        <use xlink:href="#icon__comment" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="tweet--retweet">
+                                <a href="#">
+                                    <svg class="icon icon__svg">
+                                        <use xlink:href="#icon__retweet" />
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="tweet--favorite">
+                                <a href="#">                
+                                    <svg class="icon icon__svg">
+                                        <use xlink:href="#icon__heart" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        {{#if Display_Pagination}}<div class="twitter-swiper-pagination"></div>{{/if}}
+        {{#if Display_Arrows}}
+            <div class="twitter-swiper-button-next"></div>
+            <div class="twitter-swiper-button-prev"></div>
+        {{/if}}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var twitterSwiper = new Swiper('.rotator__{{ModuleTitle}} .swiper-container', {
+            slidesPerView: '{{Items_Per_Slide}}',
+            autoplayDisableOnInteraction: false,
+            loop: true,
+            {{#if Auto_Slide}}
+                autoplay: {
+                    delay: 2500,
+                },
+            {{/if}}
+            pagination: {
+                el: '.twitter-swiper-pagination',
+                clickable: true,
+                renderBullet: function (index, className) {
+                  return '<span class="' + className + '">' + (index + 1) + '</span>';
+                },
+            },
+            navigation: {
+                nextEl: '.twitter-swiper-button-next',
+                prevEl: '.twitter-swiper-button-prev',
+            },
+            breakpoints: {
+                    // when window width is <= 767px
+                    767: {
+                      slidesPerView: '{{Items_Per_Slide_Mobile}}',
+                    },
+                    // when window width is <= 1000px
+                    1000: {
+                      slidesPerView: '{{Items_Per_Slide_Tablet}}',
+                    }
+                },
+        });
+    });
+</script>

@@ -1,0 +1,31 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<object>
+@if (Model == null)
+{
+    <text>
+        @* ^ this is needed for javascript IntelliSense fix *@
+        <script type="text/javascript">
+            // SubmitResult.cshtml
+            (function () {
+                var settings = {
+                    noOp: true
+                };
+                settings.ModuleId = @(Dnn.ActiveModule.ModuleID);
+                events.onFinalActionResult(settings);
+            })();
+        </script>
+    </text>
+}
+else
+{
+    <text>
+        <script type="text/javascript">
+            // SubmitResult.cshtml
+            (function () {
+                var settings = @HtmlSafeJson(Model);
+                settings.ModuleId = @(Dnn.ActiveModule.ModuleID);
+
+                events.onFinalActionResult(settings);
+            })();
+        </script>
+    </text>
+}

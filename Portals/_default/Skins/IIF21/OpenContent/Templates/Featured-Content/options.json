@@ -1,0 +1,101 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Featured": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Featured_Title": {
+            "type": "text"
+          },
+          "Content_Background": {
+            "type": "text",
+            "helper": "Enter a Hex Code value (example: #f3f3f3) or rgb/a value (example: rgba(243,243,243,1))"
+          },
+          "Featured_Content": {
+            "type": "ckeditor",
+            "configset":"full",
+            "ckeditor": {
+              "extraAllowedContent": "*(*);*{*}"
+            }
+          },
+          "Featured_Media": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Image",
+              "Video"
+            ]
+          },
+          "Featured_Image": {
+            "type": "image",
+            "uploadfolder": "Featured-Images",
+            "typeahead": {
+              "Folder": "Featured-Images"
+            },
+            "dependencies": {
+              "Featured_Media": [
+                "Image",
+                " Video"
+              ]
+            }
+          },
+          "Featured_Image_Alt": {
+            "type": "text",
+            "dependencies": {
+              "Featured_Media": [
+                "Image",
+                " Video"
+              ]
+            }
+          },
+          "Featured_Video": {
+            "type": "text",
+            "dependencies": {
+              "Featured_Media": [
+                "Video",
+                " Image"
+              ]
+            }
+          },
+          "Media_Caption": {
+            "type": "ckeditor",
+            "configset": "full",
+            "ckeditor": {
+              "extraAllowedContent": "*(*);*{*}"
+            }
+          },
+          "Media_Size": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "50 / 50",
+              "60 / 40",
+              "70 / 30"
+            ]
+          },
+          "Add_Link": {
+            "type": "checkbox"
+          },
+          "Featured_Link": {
+            "type": "text",
+            "dependencies": {
+              "Add_Link": [
+                "true",
+                " false"
+              ]
+            }
+          },
+          "Media_Left": {
+            "type": "checkbox"
+          },
+          "Media_Right": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}

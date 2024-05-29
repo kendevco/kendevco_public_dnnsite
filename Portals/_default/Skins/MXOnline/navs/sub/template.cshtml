@@ -1,0 +1,27 @@
+@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{
+if (nodes.Count > 0)
+{
+        <div class="nav-secondary-container">
+            <div class="container mt-0">
+                <ul class="nav nav-pills ml-0" role="tablist">
+                    @foreach (var node in nodes)
+                    {
+                        <a class="nav-secondary@(node.Breadcrumb ? " active" : "") text-center" href="@(node.Enabled ? node.Url : "#")" target="@node.Target">
+                            <li>
+                                <i class="fas fa-lg icon icon-@node.Url.Substring(node.Url.LastIndexOf('/') + 1).Replace("-", "").ToLower() d-block"></i>
+                                <small class="text-uppercase mt-2 d-none d-md-block">@node.Text</small>
+                            </li>
+                        </a>
+                    }
+                </ul>
+            </div>
+        </div>
+}
+}
+@RenderNodes(root.Children)

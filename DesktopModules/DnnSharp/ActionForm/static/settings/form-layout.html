@@ -1,0 +1,61 @@
+<div class="layout">
+    <p class="text-muted">
+        Drag entire rows using handles on the left or individual fiels by grabbing their title.<br />
+        Resize fields using the left and right resize arrows to.<br />
+        It's a 12 grid layout. The size and position will snap to the grid.<br />
+        <span data-ng-if="sharedData.form.LabelAlign.Value < 4">
+            <strong>Important: </strong>Labels take up space from controls, so make sure all controls are wider than
+            {{sharedData.form.LabelWidth.Value}}.
+        </span>
+    </p>
+
+    <p class="alert alert-warning" data-ng-show="sharedData.form.HasCustomLayout.Value">
+        <strong>Warning!</strong> Layout defined here will be ignore as long as the manual layout template is used above in Form Settings, except for the size.
+    </p>
+
+    <div class="sortable-list accordion"
+         data-ui-sortable="{placeholder: 'alert alert-warning alert-field', handle: '.handle', stop: rowOrderChanged}"
+         data-ng-model="grid">
+
+        <div class="row" data-ng-repeat="row in grid">
+            <div class="pull-left" style="margin-top: 10px;">
+                <i class="handle glyphicon glyphicon-align-justify" title="Move the whole row..."></i>
+            </div>
+            <div class="col-sm-11" style="margin-left: 0;">
+                <div data-ng-repeat="col in row" class="col col-sm-{{col.span}}"
+                     data-ng-class="{deleted: col.field.IsDeleted, empty: !col.field.InputTypeStr}"
+                     data-ng-model="col"
+                     data-drop="!col.field.InputTypeStr"
+                     data-jqyoui-options="{ hoverClass: 'can-drop'}"
+                     jqyoui-droppable="{ hoverClass: 'can-drop', onDrop: 'fieldDroped'}" style="height: 38px;">
+
+                    <div class="field alert alert-info" data-ng-show="col.field.InputTypeStr" data-drag="true"
+                         data-jqyoui-options="{revert: 'invalid', revertDuration: 100}"
+                         data-ng-model="col"
+                         jqyoui-draggable="{animate:false}"
+                         data-ui-span-resize="{ onResize: fieldResized }"
+                         data-ng-mouseenter="col.hovered=true"
+                         data-ng-mouseleave="col.hovered=false"
+                         title="{{col.field.Title}} (size {{col.field.ColSpan}}/12)">
+                        <a class="btn btn-inverse btn-xs pull-right" 
+                           data-ng-click="moveOnNewRow(col)" 
+                           title="Move on new row" 
+                           style="margin: 7px; cursor: pointer;" 
+                           data-ng-show="col.hovered && col.span != 12 && siblingFields(col).length">
+                            <i class="glyphicon glyphicon-chevron-down"></i>
+                        </a>
+                        <a class="btn btn-inverse btn-xs pull-right"
+                           data-ng-click="makeFullWidth(col)"
+                           title="Go full width" 
+                           style="margin: 7px; cursor: pointer;"
+                           data-ng-show="col.hovered && col.span != 12 && !siblingFields(col).length">
+                            <i class="glyphicon glyphicon-resize-horizontal"></i>
+                        </a>
+                        <div style="height: 24px; overflow: hidden;">{{col.field.BoundName}} <small>(size {{col.field.ColSpan}}/12)</small></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

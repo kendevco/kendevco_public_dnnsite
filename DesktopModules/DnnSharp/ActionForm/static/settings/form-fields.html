@@ -1,0 +1,118 @@
+<div style="" data-ng-if="!formLoaded">
+    <img src="{{dnnsf.appUrl}}/static/images/loading.gif" style="height: 16px;" />
+</div>
+
+<div data-ng-if="formLoaded">
+
+    <div data-ng-show="sharedData.form && !sharedData.form.IsInitialized.Value" class="alert alert-warning">
+        The form has been initialized with default settings.
+        Make sure to add fields and buttons with actions.
+    </div>
+
+    <div class="field-list sortable-list panel-group form-horizontal flex-form">
+
+        <div class="subtitle-with-number-and-def">
+            <div class="subtitle-section-with-number">
+                <div class="number">1</div>
+                <h2 class="subtitle">Fields</h2>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="panel panel-default field-root"
+                 data-ng-repeat="item in sharedData.form.Fields | filter:{ InputTypeStr: '!button'}"
+                 data-ng-class="{'panel-open': item.$_isOpen}"
+                 data-ng-include="'static/settings/field-settings.html?v=' + sharedData.resourceVersion">
+            </div>
+
+            <div class="section-buttons">
+
+                <div class="btn-group">
+                    <button class="btn btn-info dropdown-toggle " data-toggle="dropdown" ng-click="focusSearchFields(); dropdownOpened($event)">
+                        Add Field <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="lstFields">
+                        <li class="dropdown-submenu">
+                            <input class="action-search input-search-fields form-control"
+                                   type="text"
+                                   ng-model="afFieldSearch.fieldSearchTerms"
+                                   ng-model-options="{debounce: 300}"
+                                   style="color: black; padding-left: 20px;"
+                                   placeholder="Search..."
+                                   ng-click="preventDropdownEvents($event)" />
+                            <span class="glyphicon glyphicon-search"
+                                  tabindex="0"
+                                  ng-click="preventDropdownEvents($event)"
+                                  ng-show="!afFieldSearch.fieldSearchTerms"
+                                  aria-label="Search magnifying glass"
+                                  style="position: absolute; right: 5px; top: 10px; font-size: 14px; color: #ccc; }"></span>
+                            <span class="glyphicon glyphicon-remove search-icon"
+                                  tabindex="0"
+                                  style="cursor: pointer; position: absolute; right: 5px; top: 10px; font-size: 14px; color: #ccc;"
+                                  ng-click="preventDropdownEvents($event); afFieldSearch.fieldSearchTerms = ''"
+                                  ng-show="afFieldSearch.fieldSearchTerms"
+                                  aria-label="Clear search field"></span>
+                        </li>
+                        <li ng-show="!afFieldSearch.fieldSearchTerms" data-ng-repeat="(key, def) in fieldDefGroups | toArray | orderBy:'$key'" class="dropdown-submenu">
+                            <a class="field-category" href="#" onclick="return false;">{{def.$key}}</a>
+                            <ul class="dropdown-menu">
+                                <li data-ng-repeat="fieldDef in def | orderBy:'Title'"><a class="field-category-item" data-ng-click="addField(fieldDef);">{{fieldDef.Title}}</a></li>
+                            </ul>
+                        </li>
+                        <li ng-show="afFieldSearch.fieldSearchTerms" data-ng-repeat="(key, def) in fieldDefGroups track by $index">
+                            <a class="field-search-item" data-ng-repeat="fieldDef in def | orderBy:'Title' | searchFormFields: afFieldSearch.fieldSearchTerms" data-ng-click="addField(fieldDef); afFieldSearch.fieldSearchTerms = ''">{{fieldDef.Title}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="btnAddCommonField">
+                        Common Fields <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="lstCommonFields">
+                        <li data-ng-repeat="fieldDef in commonFields | orderBy:'Title'">
+                            <a data-ng-click="addField(fieldDef);" data-def="{{fieldDef.Name}}">{{fieldDef.Title}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-info dropdown-toggle"
+                            id="predefined-field"
+                            data-toggle="dropdown">
+                        Add Predefined Field <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="(key, def) in predefFields | toArray | orderBy:'$key'"><a data-ng-click="cloneField(def, true);">{{def.Title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div ng-if="sharedData.form.HasCustomLayout.Value" class="alert alert-warning section-warning">
+                The manual layout is activated. Make sure to add the newly added fields in the layout template as well.
+            </div>
+        </div>
+
+        <div class="subtitle-with-number-and-def">
+            <div class="subtitle-section-with-number">
+                <div class="number">2</div>
+                <h2 class="subtitle">Buttons</h2>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div data-ng-if="hasButtons()">
+                <div class="panel panel-default field-root"
+                     data-ng-repeat="item in sharedData.form.Fields | filter:{ InputTypeStr: 'button'}"
+                     data-ng-class="{'panel-open': item.$_isOpen}"
+                     data-ng-include="'static/settings/field-settings.html?v=' + sharedData.resourceVersion">
+                </div>
+            </div>
+            <div class="section-buttons">
+                <button type="button" class="btn btn-info" ng-click="addButton()">
+                    Add Button
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Event_Listing": {
+      "type": "array",
+      "title": "Events",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Event_Title": {
+            "type": "string",
+            "title": "Event Title",
+            "required": true
+          },
+          "Event_Type": {
+            "type": "string",
+            "title": "Event Type"
+          },
+          "Event_Start_Date": {
+            "title": "Event Start Date"
+          },
+          "Event_End_Date": {
+            "title": "Event End Date"
+          },
+          "Event_Image": {
+            "type": "string",
+            "title": "Event Image"
+          },
+          "Link_To_Details": {
+            "type": "string",
+            "title": "Link to Details Page"
+          }
+        }
+      }
+    },
+    "All_Events_Link": {
+      "type": "string",
+      "title": "Link to All Events"
+    },
+    "All_Events_Text": {
+      "type": "string",
+      "title": "All Events Link Text"
+    }
+  }
+}

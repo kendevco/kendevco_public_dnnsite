@@ -1,0 +1,19 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.FieldVM>
+@using avt.ActionForm
+
+@{
+
+    AddCommonAttributes(true, true, true, touchEvent: "keyup");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddPlaceholderAttributes();
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("field", "settings.Fields['" + Model.Name + "']");
+}
+
+<div load-on-demand="'ngGoogleplaces'">
+    <ng-googleplaces update-field="updateField(field, val)"
+                     data-register-control="registerControl(control)"
+                     @ElementAttributes() />
+    @*Loads on demand the dep module. (Fix done for tkt 3774)*@
+    <span load-on-demand="'ngMapPlaces'"></span>
+</div>

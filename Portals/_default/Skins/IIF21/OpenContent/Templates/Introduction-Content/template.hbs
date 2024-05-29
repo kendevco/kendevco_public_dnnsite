@@ -1,0 +1,23 @@
+<div class="intro-content">
+    <div class="intro-content--item{{#if Media_Right}} item__right-align{{/if}}" data-size='{{Media_Size}}' {{#if Content_Background}} style="background-color: {{Content_Background}};"{{/if}}>
+        <div class="item--inner">
+            <div class="intro-content--media">
+                {{#if Featured_Image}}
+                    <figure class="responsive-media responsive-media__img-branded">
+                        <img src="{{Featured_Image}}" alt="{{Featured_Image_Alt}}" width="300" height="300" />
+                    </figure>
+                    {{else}}
+                    {{#if Featured_Video}}
+                        <figure class="responsive-media responsive-media__video-branded">
+                            {{Featured_Video}}
+                        </figure>
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="intro-content--text">
+                <h1 class="intro-content--heading">{{Featured_Title}}</h1>
+                <div>{{Featured_Content}}</div>
+            </div>
+        </div>
+    </div>
+</div>

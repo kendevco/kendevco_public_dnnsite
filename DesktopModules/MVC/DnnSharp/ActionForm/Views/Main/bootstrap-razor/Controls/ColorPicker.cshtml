@@ -1,0 +1,22 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.ColorPickerFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "form-control colorpickertext", "keyup");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddPlaceholderAttributes();
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("readonly", "readonly", Model.Readonly);
+}
+
+<div load-on-demand="'colorpicker'">
+    <input type="text"
+           colorpicker=""
+           color-picker-position="bottom"
+           data-inputmask-alias="colorpicker"
+           id="@Model.ElementId"
+           color-picker-model="form.fields.@(Model.Name).value"
+           update-field="updateField(field, val)"
+           @ElementAttributes() />
+</div>

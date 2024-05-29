@@ -1,0 +1,77 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<ButtonFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey(Constants.renderGroup) && !ViewData.ContainsKey(Constants.renderSingle))
+{
+    var addClasses = "btn-form btnc btnc-" + Model.ButtonAlign;
+
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { FullSpan = true, AddClasses = addClasses },
+        new ViewDataDictionary(ViewData) { { Constants.renderSingle, "true" } }
+    )
+}
+else
+{
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+
+    if (Model.ButtonExecutingActionMessage == "custom")
+    {
+        AddAttribute("data-loading-text", Model.ButtonWaitingMessage);
+    }
+    else
+    {
+        AddAttribute("data-loading-text", LocalizeString("button.pleaseWait"));
+    }
+
+    AddAttribute("data-name", Model.Name);
+    AppendClasses("btn submit form-button af-btn-loading");
+    AppendClasses(Model.ButtonSize);
+    if (!string.IsNullOrWhiteSpace(Model.ButtonType))
+    {
+        AppendClasses(Model.ButtonType);
+    }
+    else
+    {
+        AppendClasses("btn-default");
+    }
+
+    if (Model.Settings.RenderContext == eRenderContext.Form)
+    {
+        if (Model.ButtonAlign == "block")
+        {
+            AppendClasses("w-100");
+        }
+    }
+    AppendClasses(Model.CssClass);
+
+    AppendRawStyles(Model.CssStyles, !string.IsNullOrWhiteSpace(Model.CssStyles));
+
+
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized));
+
+
+    // TODO: Review if we can use AddCommonAttributes instead.
+    AddAttribute("ng-disabled", "!(" + Model.BindEnableCompiled + ")", !string.IsNullOrWhiteSpace(Model.BindEnableCompiled));
+    AddAttribute("ng-click", "form.fields." + Model.Name + ".onChange(form);", !string.IsNullOrWhiteSpace(Model.BindOnChange));
+
+    AddAttribute("data-validation", "on", Model.CausesValidation);
+    AddAttribute("data-default-button", "on", Model.IsDefaultButton);
+
+    // TODO: Remove the GetAjaxQuery() from the data-submiturl and combine it on frontend.
+    AddAttribute("data-submiturl", Model.GetMvcAjaxUrl("Submit"));
+    AddAttribute("data-submitquery", Model.GetAjaxQuery());
+
+    <button id="@Model.ElementId" type="button" @ElementAttributes()>
+
+        @Model.TitleTokenized
+
+        @if (!string.IsNullOrWhiteSpace(Model.ButtonIcon))
+        {
+            <i class="fa fa-action-form @Model.ButtonIcon"></i>
+        }
+
+    </button>
+}

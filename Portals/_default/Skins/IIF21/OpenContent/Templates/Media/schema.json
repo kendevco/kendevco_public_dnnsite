@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Media_Title": {
+      "type": "string",
+      "title": "Media Title"
+    },
+    "Media_Type": {
+      "type": "string",
+      "title": "Choose Media Type",
+      "enum": [
+        "Image",
+        "Video"
+      ],
+      "default": "Image",
+      "required": true
+    },
+    "Media_Image": {
+      "type": "string",
+      "title": "Image",
+      "dependencies": [
+        "Media_Type"
+      ]
+    },
+    "Media_Image_Alt": {
+      "type": "string",
+      "title": "Image Alt Tag",
+      "dependencies": [
+        "Media_Type"
+      ]
+    },
+    "Media_Video": {
+      "type": "string",
+      "title": "Video Embed Code",
+      "dependencies": [
+        "Media_Type"
+      ]
+    },
+    "Media_Caption": {
+      "type": "string",
+      "title": "Media Caption"
+    }
+  }
+}

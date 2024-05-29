@@ -1,0 +1,45 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<FileUploadVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner")) {
+    var containerAttributes = NewAttributes();
+    containerAttributes["id"] = Model.ElementId;
+
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "fileupload-root", Attributes = containerAttributes },
+        new ViewDataDictionary(ViewData) { { "renderInner", "true" } }
+    )
+} else {
+    AddAttribute("ng-model", "form.fields." + Model.Name + ".value");
+    AddAttribute("data-field", "form.fields." + Model.Name);
+
+    AddAttribute("data-selection", "form.fields." + Model.Name + ".value");
+
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition) {
+        AddAttribute("is-required", "true");
+    }
+
+    if (!Model.IsConditionallyEnabled && string.IsNullOrWhiteSpace(Model.BindEnableCompiled)) {
+        AddAttribute("is-enabled", "false");
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled)) {
+        AddAttribute("is-enabled", Model.BindEnableCompiled);
+    }
+
+    if (string.IsNullOrWhiteSpace(Model.BindEnableCompiled) && Model.IsConditionallyEnabled) {
+        AddAttribute("is-enabled", "true");
+    }
+
+    <div data-af-multi-upload
+     singlefileupload
+     data-settings="settings"
+     data-register-control="registerControl(control)"
+     data-register-to-event="registerToEvent(eventName, fn)"
+     update-field="updateField(field, val)"
+     @ElementAttributes()>
+    </div>
+}

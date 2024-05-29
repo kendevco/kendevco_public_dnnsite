@@ -1,0 +1,15 @@
+<div class="content-breakdown">
+    {{#each Content}}
+        <div class="content-breakdown--content">
+        	<div class="content--number">
+        		{{Content_Number}}
+        	</div>
+        	<div class="content--text">
+        		{{Content_Text}}
+        	</div>
+        	<div class="content--icon">
+        		<img src="{{Content_Icon}}" alt="{{#if Content_Icon_Alt}}{{Content_Icon_Alt}}{{else}}Content Icon{{/if}}" />
+        	</div>
+        </div>
+    {{/each}}
+</div>

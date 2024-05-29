@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Banner_Image": {
+      "type": "string",
+      "title": "Banner Image"
+    },
+    "Banner_Content": {
+      "type": "object",
+      "title": "Banner Content",
+      "properties": {
+        "Content_Heading": {
+          "type": "string",
+          "title": "Heading"
+        },
+        "Content_Text": {
+          "type": "string",
+          "title": "Content"
+        }
+      }
+    }
+  }
+}

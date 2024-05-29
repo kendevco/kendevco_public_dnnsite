@@ -1,0 +1,89 @@
+@using DotNetNuke.Web.DDRMenu;
+
+@using System.Dynamic;
+
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{ if (nodes.Count > 0)
+    {
+
+    <div class="ui secondary menu megamenu-item">
+
+        @foreach (var node in nodes)
+        {
+            var cssClasses = new List<string>();
+            cssClasses.Add("ui item top-level");
+
+            if (node.HasChildren())
+            { cssClasses.Add("mega-dropdown"); }
+
+            // node.Breadcrumb will be true if the page or
+            // one of its children is active
+            if (node.Breadcrumb)
+            { cssClasses.Add("active"); }
+
+            var classString = new HtmlString((cssClasses.Count == 0)
+               ? ""
+               : (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+
+
+            var menuData = node.Keywords.Split('|');
+            // menuData = [image, title, description, readMoreLink]
+
+            <div @classString>
+                @if (node.Enabled)
+                {
+                  <a href="@node.Url" target="@node.Target">@node.Text</a>
+                }
+
+                @if (node.HasChildren())
+                {
+                  <div class="megamenu">
+                    <div class="ui grid">
+                        <div class="ui link list six wide column">
+                            @RenderNodes(node.Children)
+                        </div>
+                            
+                        @if (menuData.Length >= 3)
+                        {
+                            <div class="ten wide column category-highlight">
+                                <div class="ui two column grid center">
+                                    <div class="column menu-image">
+                                        <img src="/@menuData[0]" style="width: 150px; height: 150px"
+                                             class="ui circular image" />
+                                    </div>
+                                    
+                                    <div class="description column">
+                                        <h2 class="megamenu-title">
+                                            @Html.Raw(menuData[1])
+                                        </h2>
+                                        
+                                        <p class="megamenu-text">
+                                            @Html.Raw(menuData[2])
+                                        </p>
+
+                                        @if (menuData.Length == 4)
+                                        {
+                                            <a href="@menuData[3]" class="ui secondary button read-more">
+                                                Read Now
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                  </div>
+                }
+           
+            </div>
+        }
+    </div>
+}
+
+}
+
+@RenderNodes(root.Children)

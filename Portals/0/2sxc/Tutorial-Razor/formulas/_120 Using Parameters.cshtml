@@ -1,0 +1,109 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var tbHlp = CreateInstance("Helpers.cs");
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+
+    var formulasToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon());
+    var formulasPrefillToolbar = Kit.Toolbar.Empty().New("FormulasEphemeral", ui: tbHlp.Icon(), prefill:"VarShowAdvanced=true");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas using parameters</h2>
+    <p>We'll show you how to use page parameters with formulas</p>
+    <p>In this tutorial you'll learn how to:</p>
+    <ul>
+      <li>
+        Use emphemeral fields
+      </li>
+      <li>
+        Use <code>data.parameters</code> in your formulas <em>new in v14</em>
+      </li>
+    </ul>
+    <br>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+
+<h3>Ephemeral fields explained</h3>
+<p>Sometimes you need fields which controle the Form UI without being real data. Some examples:</p>
+<ul>
+  <li>Toggles which show/hide other fields or field groups</li>
+  <li>Hidden calculations which will consolidate other field values to determine if something else is required</li>
+</ul>
+
+<p>We don't want to save these fields as the data is not relevant, and often the value should be calculated upon opening
+  the form - so it's important that they are reset.</p>
+
+<h3>Create an Ephemeral field</h3>
+<p>An Ephemeral field is just a normal field with an additional configuration.</p>
+<h4>Configure an Epemeral field</h4>
+<p>To configure a field to not save and be temporary / ephemeral, use this setting:</p>
+@fancybox.PreviewWithLightbox(App.Path + "/formulas/images/ephemeral.jpg", 300, 200)
+<p>Learn more about Ephemeral fields <a href="https://docs.2sxc.org/basics/data/fields/ephemeral.html">here</a>.</p>
+
+
+<h3>Ephemeral field 
+  <snippet id="formulas-ephemeral">
+    @formulasToolbar.AsTag()
+    @formulasPrefillToolbar.AsTag()
+  </snippet>
+</h3>
+<p>
+  <code>VarShowAdvanced</code> is an ephemeral field and thus not saved in the database. 
+  This formula determines the visibility of the Advanced Settings group. 
+  The group becomes visible, when the VarShowAdvanced toggle is active.
+  <br>
+  <em>Click on the (Σ) button above to see the edit-UI with the formula. </em>
+</p>
+
+<code id="formulas-ephemeral-label"></code>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-ephemeral", Size = 80 })
+
+  @Html.Partial("_PartFormulas.cshtml", new {
+  ContentType = "FormulasEphemeral",
+  FieldName = "AdvancedGroup",
+  })
+
+
+  <h2>Configure edit form UI using parameters</h2>
+  <p>In 2sxc v14 we added <code>data.parameters.*</code> which contains all parameters given in the prefill.</p>
+  <p>By passing parameters directly, edit forms can be configured without the need of additional Ephemeral fields. This
+    enables a editing experience matching the page context.</p>
+  <br>
+
+  <h3>Configuration with parameters</h3>
+  <span>
+<snippet id="formulas-showAdvanced">
+  <code>prefill:showAdvanced=true</code>:
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=true").AsTag()
+  <br>
+  <code>prefill:showAdvanced=false</code>:
+  @Kit.Toolbar.Empty().New("FormulasParameters", ui: tbHlp.Icon(), prefill: "showAdvanced=false").AsTag()
+</snippet>
+  </span>
+  <p>
+    <code>showAdvanced</code> is a parameter, thas was passed with the toolbar prefill. This formula determines the visibility of
+    the Advanced Settings group. The group becomes visible, when the passed <code>showAdvanced</code> parameter is true.
+    <br>
+    <em>Click on the (Σ) button above to see the edit-UI with the formula based on the passed prefill parameter. </em>
+  </p>
+
+  <code id="formulas-showAdvanced-label"></code>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "formulas-showAdvanced", Size = 120 })
+
+    @Html.Partial("_PartFormulas.cshtml", new {
+    ContentType = "FormulasParameters",
+    FieldName = "AdvancedGroup",
+    More = "prefill:showAdvanced=true"
+    })

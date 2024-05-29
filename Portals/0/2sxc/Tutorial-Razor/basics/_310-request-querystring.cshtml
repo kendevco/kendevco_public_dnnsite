@@ -1,0 +1,81 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Working with URL Parameters using Page Parameters</h2>
+    <p>
+      The following code will use a value from the url querystring. There are various ways to pick it up, but we recommend the cross-platform API which works in Dnn and Oqtane.
+    </p>
+    <ol>
+      <li>
+        Cross-Platform (Dnn and Oqtane): <code>@@CmsContext.Page.Parameters["id"]</code>
+      </li>
+      <li>
+        This would <em>only</em> work in Dnn: <code>@@Request.QueryString["id"]</code>
+      </li>
+    </ol>
+    <p>
+      Usually you would have <code>somepagename?id=27</code> in the url, and then using <code>@@CmsContext.Page.Parameters["id"]</code> you would pick it up. <br>
+      But with DNN, there is an additional processing that happens, as DNN tries to create nice URLs resulting in <code>somepagename/id/27</code>. But on the server, this is still treated as the <code>?id=27</code>, so you still use the same method to access it. 
+    </p>
+    <h2>Test changing this page URL</h2>
+    <p>
+      Below you'll find some links which change the url, so you can see how the output changes:
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+
+<snippet id="basic-params">
+<ul>
+  <li><a href='@Link.To(parameters: "?basics310=page")'>This page without additional url-parameter</a></li>
+  <li><a href='@Link.To(parameters: "?basics310=page&sort=ascending")'>This page with additional <code>sort=ascending</code></a></li>
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-params", Size = 100 }) 
+</hide-silent>
+<hr>
+<h3>Basics: just show a text-value of <code>sort</code> from the Query-String</h3>
+<snippet id="basic-query-string">
+<ul>
+  <li>URL contains <code>sort</code> using null-check: 
+    @(CmsContext.Page.Parameters["sort"] != null)
+  </li>
+  <li>URL contains <code>sort</code> using <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a> (this will also return false, if sort is empty):
+    @Text.Has(CmsContext.Page.Parameters["sort"])
+  </li>
+  <li>Sort value from URL:
+    @CmsContext.Page.Parameters["sort"]
+  </li>
+  <li>
+    Put <code>sort</code> in a variable for further use:
+    @{
+      var sort = CmsContext.Page.Parameters["sort"];
+    }
+    @sort
+  </li>
+  <li>
+    Get sort from url, or if it doesn't exist, use a default value <code>descending</code> (uses <a href="https://github.com/DNN-Connect/razor-blade" target="_blank">Razor.Blade</a>):
+    @{
+      sort = Text.First(CmsContext.Page.Parameters["sort"], "descending");
+    }
+    @sort
+  </li>
+</ul>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-query-string", Size = 500 }) 
+</hide-silent>
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1300 }) 
+</hide>

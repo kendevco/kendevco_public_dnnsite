@@ -1,0 +1,45 @@
+{{registerstylesheet "css/template.css"}}
+{{registerscript "js/template.min.js"}}
+
+<div class="tabbed-content-container">
+	<div class="tabbed-content" data-module='tabbedContent'>
+		<div class="tabbed-content--header">
+			{{#each Tabs}}
+				{{#if @first}}
+					<div class="tabbed-content--tab tabbed-content--tab__active" data-parent='tabbedContent' data-toggle='{{Tab_ID}}'>
+						{{#if Add_Icon}}
+							<i class="tab--icon {{Tab_Icon}}">&nbsp;</i>
+						{{/if}}
+						{{Tab_Text}}
+					</div>
+				{{else}}
+					<div class="tabbed-content--tab" data-parent='tabbedContent' data-toggle='{{Tab_ID}}'>
+						{{#if Add_Icon}}
+							<i class="tab--icon {{Tab_Icon}}">&nbsp;</i>
+						{{/if}}
+						{{Tab_Text}}
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+		<div class="tabbed-content--body">
+			{{#each Tabs}}
+				<div class="tabbed-content--inner" data-columns='{{Panel_Columns}}'>
+					{{#if @first}}
+						{{#each Panel}}
+							<div class="tabbed-content--panel tabbed-content--panel__active" data-panel='{{Panel_ID}}'>
+								{{Content}}
+							</div>
+						{{/each}}
+					{{else}}
+						{{#each Panel}}
+							<div class="tabbed-content--panel" data-panel='{{Panel_ID}}' data-columns='{{Panel_Columns}}'>
+								{{Content}}
+							</div>
+						{{/each}}
+					{{/if}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.DynamicContainerFieldVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    AddAttribute("af-bindvalue", Model.BindValueCompiled, !string.IsNullOrWhiteSpace(Model.BindValueCompiled));
+}
+
+<input type="hidden" id="@Model.ElementId" name="@Model.ElementId"
+       data-fieldid="@Model.Id"
+       data-af-field="@Model.Name"
+       value="@Model.Value"
+       ng-model="form.fields.@(Model.Name).value"
+       @ElementAttributes() />
+
+<div class="dynamic-fields-container">
+    @foreach (var field in Model.Fields)
+    {
+        <div class="dynamic-field">
+            @TemplatePartial("_FieldRender", new FieldRendererVM(field))
+        </div>
+    }
+</div>

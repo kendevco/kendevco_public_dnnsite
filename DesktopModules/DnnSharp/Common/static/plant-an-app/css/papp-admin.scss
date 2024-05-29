@@ -1,0 +1,265 @@
+﻿@import "variables";
+@import "typography";
+@import "admin-header";
+@import "dropdown";
+@import "filepicker";
+@import "form";
+@import "section";
+@import "panel";
+@import "parameters";
+@import "glyphicons-list";
+
+.bstrap3-material .papp-admin {
+
+    @import "./_papp-helper.scss";
+    font-family: "Mulish", sans-serif !important;
+    // -- header -----------------------------------------
+    // reset
+    h2 {
+        background: none;
+        padding: 0;
+        margin: 0;
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    section {
+        padding: 0;
+        margin: 0;
+    }
+    //modals
+    .modal-dialog {
+        width: 80%;
+        height: 70%;
+    }
+
+    .textarea-modal {
+        textarea {
+            height: 40vh;
+        }
+    }
+
+    .bold-info {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        color: #222726;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+    // tab menu
+    .papp-menu-tab {
+        .nav-with-number {
+            display: flex;
+            align-items: center;
+            height: 50px;
+
+            .a-with-number {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 60px;
+                white-space: nowrap;
+
+                .number {
+                    display: flex;
+                    align-items: center;
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid $primary-color;
+                    font-weight: bold;
+                    background: $primary-color;
+                    color: white;
+                    border-radius: 50%;
+                    justify-content: center;
+                    margin-left: 4px;
+                    font-size: 10px;
+                }
+
+                .paa-logo {
+                    background: url(../img/icon.png);
+                    background-size: contain;
+                    width: 28px;
+                    height: 28px;
+                    margin-right: 8px; 
+                }
+            }
+        }
+    }
+
+    .glyphicon-ml-8 {
+        margin-left: 8px;
+    }
+    // no item in list screen
+    .no-items-section {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        user-select: none;
+
+        .no-items-text {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22.59px;
+        }
+
+        .no-items-icon {
+            font-size: 200px;
+            color: #CBD2D1;
+            pointer-events: none;
+        }
+
+        .no-items-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+
+            .mt-20 {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .expandable-section {
+        margin: 0;
+    }
+    //actions
+    .action-list {
+        margin-bottom: 4px;
+    }
+
+    .bg-secondary {
+        background: #F9FAFA;
+    }
+
+    .color-primary {
+        color: $primary-color;
+    }
+    // nav
+    .nav-tabs, .navbar-nav {
+        background: #F9FAFA;
+        color: #222726;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 0 16px;
+        margin-bottom: 16px;
+
+
+        li {
+            background: #F9FAFA;
+            box-shadow: none;
+
+            &.active {
+                a {
+                    border-bottom: 2px solid $primary-color;
+                }
+            }
+
+            a {
+                box-shadow: none;
+                color: #222726;
+                border-bottom: 2px solid transparent;
+
+                &:hover, &:active, &:focus, &:focus:hover {
+                    color: #222726;
+                    border-bottom: 2px solid $primary-color;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .w-icon-and-btn {
+        width: 100%;
+        justify-content: space-between;
+
+        .r-button {
+            display: flex;
+            width: 100%;
+            justify-content: end;
+            margin-right: 16px;
+        }
+    }
+
+    .ctl-actions, #Triggers {
+        .alert {
+            margin-top: 16px;
+            margin-bottom: 32px;
+            padding: 0;
+        }
+
+        .btn-info:hover, .btn-secondary:hover,
+        .btn-info:focus, .btn-secondary:focus,
+        .btn-info:active, .btn-secondary:active {
+            background-color: $primary-color;
+            color: #F9FAFA;
+            background-image: none;
+            /*color: #222726;*/
+        }
+    }
+
+    &.reports-wraper {
+        .select-status {
+            display: flex;
+            justify-content: start;
+            padding-left: 16px;
+
+            select {
+                padding: 8px 16px;
+                background: #F9FAFA;
+                border: 1px solid #CBD2D1;
+                box-sizing: border-box;
+                border-radius: 4px;
+                box-shadow: none;
+                height: 35px;
+                color: #222726;
+                text-transform: inherit;
+                font-weight: 400;
+                line-height: 18px;
+                font-size: 14px;
+                text-transform: uppercase;
+                cursor: pointer;
+                text-align: center;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .papp-code {
+        font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .label-info {
+        background-color: $primary-color;
+        color: #f9fafa;
+    }
+
+    //popover
+    .popover {
+        min-width: 100px;
+    }
+    // a tag
+    a {
+        color: #00695c;
+    }
+
+    .validator-list {
+        margin-bottom: 16px;
+    }
+}

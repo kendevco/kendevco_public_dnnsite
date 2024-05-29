@@ -1,0 +1,7 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<div id="mvcContainer-@Dnn.ActiveModule.ModuleID">
+    @RenderBody()
+
+    @RenderSection("scripts", false)
+</div>

@@ -1,0 +1,61 @@
+<h2>Get content-items list with REST from outside 2sxc</h2>
+<p>
+    This demo retrieves the list, but assumes you're not inside a 2sxc-module. There are a few differences:
+    <ol>
+        <li>no $2sxc used </li>
+        <li>the app-name is not "auto" but "Tut-JS-REST", as it can't auto-detect the app</li>
+        <li>note that this requires the settings to allow anonymous access</li>
+    </ol>
+
+    <input type="button" value="Press to run" onclick="getAllFeedbackCategoriesPublic()">
+
+</p>
+
+<h2>These is where the categories will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+
+
+
+<script>
+
+// This will process the resulting data
+function handleResult(data) {
+    // use the data to show a message
+    $('#message').html("Success, the $.ajax(...) worked! I found " + data.length + " categories, the first one is '" + data[0].Title + "'");
+
+    // use the data to show a list of items
+    var items = [];
+    $.each(data, function(idx, category) {
+        items.push( "<li>" + category.Title + "</li>" );
+    });
+    $(items.join("")).appendTo($('#categories'));
+
+}
+
+function getAllFeedbackCategoriesPublic() {
+    // this is the manual setup using $.ajax
+    $.ajax({
+        url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/content/Category',
+        success: handleResult,
+        error: alertAboutError
+    });
+};
+
+
+
+// This call will execute the main function when the document is ready
+$(function() { 
+    // just a demo, so commented out
+    // getAllFeedbackCategoriesPublic() 
+});
+</script>
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>
+
+@RenderPage("_helper endpoint.cshtml")

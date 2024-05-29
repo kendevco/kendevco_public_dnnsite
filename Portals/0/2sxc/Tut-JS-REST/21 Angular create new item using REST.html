@@ -1,0 +1,31 @@
+<h2>Add an item with AngularJS and REST</h2>
+<p>
+    The following demo shows how to use create a new item using REST. It will really add data to the database. 
+</p>
+<p>
+    This uses AngularJS and will use $http to do the ajax and will add the returned items to the ol-tags. <br>
+    Note that we recommend using the content service, but this is to demonstrate absolute basics
+</p>
+<p>
+    Note that it works for admins by default - to make it work for visitors you have to allow create-permissions for anonymous users (or users with view permissions). This is configured on the content-types - for more infos read <a href="http://2sxc.org/help?tag=permissions">Permissions Help</a>. 
+</p>
+
+
+<h2>These is where the new feedback item will be created</h2>
+
+<div sxc-app="AngularRestDemos" id="app-[Module:ModuleId]" ng-controller="CreateFeedback as vm">
+    <div>{{ vm.message }}</div>
+    <a ng-click="vm.add()">click here to create another item</a>
+</div>
+
+
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="[App:Path]/assets/tutorial-helpers.js"></script>
+
+<script src="/DesktopModules/ToSIC_SexyContent/Js/AngularJS/angular.min.js" data-enableoptimizations="101"></script>
+<script src="/DesktopModules/ToSIC_SexyContent/Js/AngularJS/2sxc4ng.min.js" data-enableoptimizations="110"></script>
+<script src="[App:Path]/assets/AngularRestDemosController_21-25.js" data-enableoptimizations="120"></script>

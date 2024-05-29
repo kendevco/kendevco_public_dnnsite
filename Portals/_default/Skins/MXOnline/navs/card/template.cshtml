@@ -1,0 +1,33 @@
+@using DotNetNuke.Web.DDRMenu;
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{
+if (nodes.Count > 0)
+{
+        <div class="row">
+            @foreach (var node in nodes)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="card border-0">
+                        <div class="card-body">
+                            <p class="card-text text-center">
+                                <a href="@(node.Enabled ? node.Url : "#")" target="@node.Target">
+                                    <i class="fas fa-3x icon icon-@node.Url.Substring(node.Url.LastIndexOf('/') + 1).Replace("-", "").ToLower()"></i>
+                                    <span class="d-block text-uppercase mt-3">@node.Text</span>
+                                </a>
+                            </p>
+                            @if (node.Description.Length > 0) { <hr> }
+                            <p class="card-text">
+                                @node.Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+}
+}
+@RenderNodes(root.Children)

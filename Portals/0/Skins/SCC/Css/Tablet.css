@@ -1,0 +1,108 @@
+﻿@media (max-width: 1024px) {
+    /*Inquicker widget*/
+    .right-caret {
+        position: relative;
+        left: 62%;
+        bottom: 26px;
+        height: 0px;
+    }
+
+    .speech-bubble {
+        top: 8%;
+        left: 25%;
+        width: 52%;
+    }
+
+    .speech-bubble:after {
+        margin-left: -100px;
+        margin-top: -10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+.h_bottomleftpane_content {
+        top: 0;
+        left: 100%;
+        height: 290px;
+        background: none;
+    }
+    .h_bottomleftpane_content img {
+        width: 100%;
+    }
+    .container {
+        width: 100% !important;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* row 1 */
+    .row1 .container, .logoRow .container, .vidRow .container, .adRow .container, .row6 .container, .row7 .container, .row8 .container, .row9 .container, .row10 .container, .row11 .container, .row12 .container, .row13 .container {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* row 1 */
+    .mHeaderM {
+        width: 380px;
+    }
+
+    /* Row 2*/
+    .logoRow .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row2right .input-group {
+        width: 58%;
+    }
+
+    .contactWrap a {
+        padding: 0 6px 0 8px;
+    }
+
+    /* Footer */
+    /*Footer row 1*/
+    .footerRow1 {
+    }
+
+        .footerRow1 .col-md-6 {
+            padding: 30px 0 30px 0;
+            border: none;
+        }
+
+
+    /* Phone Number Row */
+    .genInfoNum {
+        float: right;
+        width: 200px;
+    }
+
+    /*Footer row 2*/
+    .footerWrap .box {
+        display: none;
+    }
+
+    .footerWrap {
+        margin: 0 0 20px 0;
+        border: 1px solid #00458e;
+    }
+
+    .footerRow2 .footerGroup {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footerWrap .boxcontent {
+        border-top: 1px solid #00458e;
+    }
+
+        .footerWrap .boxcontent ul {
+            margin: 0 0 0 10px;
+        }
+}
+
+

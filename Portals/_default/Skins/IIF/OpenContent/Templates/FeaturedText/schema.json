@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Featured_Content": {
+      "type": "array",
+      "title": "Featured Content",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "Icon_Alt": {
+            "type": "string",
+            "title": "Icon Image Alt Text (for accessibility)"
+          },
+          "Button_Link": {
+            "type": "string",
+            "title": "Button Link"
+          },
+          "Button_Text": {
+            "type": "string",
+            "title": "Button Text"
+          },
+          "Button_Link_Title": {
+            "type": "string",
+            "title": "Link Title (for accessibility)"
+          }
+        }
+      }
+    }
+  }
+}

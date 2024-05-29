@@ -1,0 +1,137 @@
+<h2>Get content-items list of Feedback-items with REST</h2>
+<p>
+    The following demo shows how to use simple JavaScript to retrieve all Feedback items in this app. It will also offer a delete-button to delete again. Important:
+    <ol>
+        <li>The demo shows both in-page mode with short snippets using the $2sxc(...) syntax which is simpler and better for most scenarios</li>
+        <li>it also shows the public calls which are more code, but the right choice if you want to access list, use create/delete from other places (like actions from the skin, from other modules or from other sites)</li>
+        <li>to help you see which action does it which way, the links are marked - those with (i) are internal/simple, those with (x) are external</li>
+    </ol>
+</p>
+<input type="button" onclick="getAllFeedback(this)" value="click to start (i)">
+<input type="button" onclick="getAllFeedbackPublic()" value="click to start (x)">
+<h2>These is where the feedback items with delete will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+<div>
+    <a href="javascript:createFeedback(@Dnn.Module.ModuleID);">create the new item (i)</a>
+    <a href="javascript:createFeedbackPublic();">...or here to create with external (x)</a>
+</div>
+
+<script>
+    // this script block has some code blocks which are shared for both demos
+    // the demos being 
+    // 1. in-page api
+    // 2. external api
+
+    // this shows the list of items once they are returned from the server
+    function showUpdatedList(data) {
+        // use the data to show a message
+        $('#message').html("Success, the $.ajax(...) worked! I found " + data.length + " feedback items, the first one is '" + data[0].Title + "'");
+
+        // use the data to show a list of items
+        var items = [];
+        $.each(data, function(idx, category) {
+            items.push( "<li>" 
+                + category.Title 
+                + " - <a onclick='deleteFeedback(this, " + category.Id + ")'>delete (i)</a>" 
+                + " - <a onclick='deleteFeedbackPub(" + category.Id + ")'>delete (x)</a>" 
+                + "</li>" );
+        });
+        $('#categories').empty();
+        $(items.join("")).appendTo($('#categories'));
+    }
+
+    // this creates a demo-item for creating new data
+    function createDemoItem() {
+        return {
+            Subject: "New feedback from " + (new Date()).toISOString(),
+            Message: "I love REST"
+        }
+    }
+
+    function showSuccess (data) {
+        // use the data to show a message
+        $('#message').html("I just created a new item in the content-database. I'm not showing it here to keep the code very simple - this could be a thank-you message after a contact form.");
+    }
+</script>
+
+<!-- this script block shows the simple way to use the API -->
+<script>
+    // this is the simple, in-page / in-template code
+    function getAllFeedback(mod) {
+        $2sxc(mod).webApi.get('app/auto/content/Feedback')
+            .then(showUpdatedList);
+    };
+
+    function deleteFeedback(mod, feedbackId) {
+        if(!confirm('are you sure?'))
+            return;
+
+        $2sxc(mod).webApi.delete('app/auto/content/Feedback/' + feedbackId)
+            .then(function(data) {
+                // use the data to show a message
+                getAllFeedback(mod);
+            });
+    }
+
+    function createFeedback(moduleId) {
+        // new object to create - with date/time stamp
+        var newItem = createDemoItem();
+
+        // this is the "normal" mode demo - where we're working on the current module
+        $2sxc(moduleId).webApi.post('app/auto/content/Feedback', {}, newItem)
+            .then(function(data){
+                showSuccess(data);
+                getAllFeedback(moduleId);
+            });
+    };
+</script>
+
+<!-- this is the same stuff, using the public endpoints and not using dnn / 2sxc js objects -->
+<script>
+    // this is the public, manual setup using $.ajax
+    function getAllFeedbackPublic() {
+        $.ajax({
+            url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/content/Feedback',
+            success: showUpdatedList,
+            error: alertAboutError
+        });
+    };
+
+    // public delete call - requires all permissions to be set
+    function deleteFeedbackPub(feedbackId) {
+        if(!confirm('are you sure?'))
+            return;
+
+        $.ajax({
+            url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/content/Feedback/' + feedbackId,
+            type: "DELETE",
+            success: getAllFeedbackPublic,
+            error: alertAboutError
+        });
+    }
+
+    function createFeedbackPublic() {
+        // new object to create - with date/time stamp
+        var newItem = createDemoItem();
+
+        $.ajax({
+            url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/content/Feedback',
+            type: "POST",
+            contentType: "application/json",
+            data : JSON.stringify(newItem),
+            success: getAllFeedbackPublic,
+            error: alertAboutError
+        });
+    };
+</script>
+
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>
+
+@RenderPage("_helper endpoint.cshtml")

@@ -1,0 +1,55 @@
+<div class="simple-section">
+    <div class="subtitle-with-number-and-def" style="background: none;">
+        <div class="subtitle-section-with-number">
+            <h2 class="subtitle">
+                <img height="56" src="{{dnnsf.commonUrl}}/static/plant-an-app/img/logo.png" />
+                Need more than forms?
+            </h2>
+        </div>
+    </div>
+
+    <div class="section-content" style="max-width: 800px;">
+        <p class="content">
+            Data collection through forms is the first step in building robust and automated digital systems.
+        </p>
+        <p class="content">
+            Unlock new features such as data listing, dashboards, data modelling, APIs, workflows, automation, content tokens, and a lot more with Plant an App.
+        </p>
+        <ul class="content">
+            <li class="tag-decorator">It installs on top of DNN and Action Form</li>
+            <li class="tag-decorator">A low-code development environment to easily build complex capabilities</li>
+            <li class="tag-decorator">One click install &amp; upgrade</li>
+            <li class="tag-decorator">Easily integrate with other internal or 3rd party systems</li>
+            <li class="tag-decorator">Allows extreme personalisation of processes to empower business success</li>
+        </ul>
+
+        <div class="section-buttons">
+            <a href="https://www.dnnsharp.com/platform/app-builder?utm_source=licensing-screen&utm_campaign=dnnsharp" class="btn btn-primary" target="_blank">
+                Try for free
+            </a>
+            <a href="https://www.plantanapp.com?utm_source=licensing-screen&utm_campaign=dnnsharp" class="btn btn-info" target="_blank">
+                Learn more
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="subtitle-with-number-and-def">
+    <div class="subtitle-section-with-number">
+        <div class="number">L</div>
+        <h2 class="subtitle">Form Licensing</h2>
+    </div>
+</div>
+
+<div class="section-content">
+    <h5 class="text" data-ng-class="{ 'text-danger': licenseStatus.Type != 0, 'text-success': licenseStatus.Type == 0 }">
+        {{ licenseStatus.Message || "Licensing Ok." }}<br />
+        <a data-ng-show="licenseStatus.Type == 1" href="{{licenseStatus.ActivationUrl}}">Activate</a>
+    </h5>
+
+    <div style="margin: 30px 0px;">
+        <a href="{{licenseStatus.ActivationUrl}}" class="btn btn-info" data-ng-click="scrollToItem();">Activate</a>
+    </div>
+</div>
+
+<div class="clearfix"></div>

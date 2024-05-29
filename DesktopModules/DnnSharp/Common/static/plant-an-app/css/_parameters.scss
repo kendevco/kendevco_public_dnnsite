@@ -1,0 +1,12 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+    .grid-field .hide-in-grid {
+        display: none;
+    }
+
+    .list-parameter .list-item {
+        display: flex;
+        align-items: center;
+    }
+}

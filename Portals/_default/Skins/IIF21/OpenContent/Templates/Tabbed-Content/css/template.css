@@ -1,0 +1,175 @@
+.tabbed-content-container {
+	position: relative;
+	overflow: hidden;
+}
+.tabbed-content {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+	font-size: 16px;
+}
+.tabbed-content .tabbed-content--header {
+	display: block;
+	position: relative;
+	z-index: 2;
+	margin: 0 0 -1px 0;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 100%;
+	flex: 1 1 100%;
+}
+.tabbed-content .tabbed-content--header .tabbed-content--tab {
+	display: block;
+	width: 100%;
+	padding: 1em 1.5em;
+	background-color: transparent;
+	color: var(--theme-link, #005696);
+	font-size: 1.125em;
+	margin: 1px 0;
+}
+.tabbed-content .tabbed-content--header .tabbed-content--tab:hover {
+	cursor: pointer;
+	background-color: #fff;
+	color: var(--theme-link-hover, #005696);
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.tabbed-content
+	.tabbed-content--header
+	.tabbed-content--tab.tabbed-content--tab__active {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 1 auto;
+	flex: 0 1 auto;
+	background-color: #fff;
+	color: var(--theme-link, #005696);
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+.tabbed-content .tabbed-content--header .tabbed-content--tab .tab--icon {
+	pointer-events: none;
+	font-size: 1.1em;
+}
+.tabbed-content .tabbed-content--body {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 100%;
+	flex: 1 1 100%;
+	position: relative;
+	z-index: 1;
+	padding: 2em 0;
+	-webkit-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	background: #fff;
+}
+.tabbed-content .tabbed-content--body .tabbed-content--inner {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+.tabbed-content .tabbed-content--body .tabbed-content--panel {
+	width: 0;
+	height: 0;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	overflow: hidden;
+	padding: 0 2em;
+}
+.tabbed-content--inner[data-columns='100'] .tabbed-content--panel,
+.tabbed-content--inner[data-columns='60-40'] .tabbed-content--panel,
+.tabbed-content--inner[data-columns='50-50'] .tabbed-content--panel,
+.tabbed-content--inner[data-columns='60-40'] .tabbed-content--panel {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 100%;
+	flex: 1 1 100%;
+}
+
+.tabbed-content
+	.tabbed-content--body
+	.tabbed-content--panel.tabbed-content--panel__active {
+	width: auto;
+	height: auto;
+	opacity: 1;
+}
+
+.content-container .tabbed-content {
+	padding: 5em 0;
+}
+
+@media screen and (min-width: 900px) {
+	.tabbed-content {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+	.tabbed-content .tabbed-content--header {
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		margin: 0 0 -1px 0;
+	}
+	.tabbed-content .tabbed-content--header .tabbed-content--tab {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 1 auto;
+		flex: 0 1 auto;
+		width: auto;
+		padding: 1em 2em;
+		margin: 0;
+	}
+	.tabbed-content .tabbed-content--header .tabbed-content--tab:first-child {
+		margin-left: 2em;
+	}
+	.tabbed-content
+		.tabbed-content--header
+		.tabbed-content--tab.tabbed-content--tab__active {
+		-webkit-box-flex: 0;
+		-ms-flex: 0 1 auto;
+		flex: 0 1 auto;
+		width: auto;
+	}
+
+	.tabbed-content--inner[data-columns='40-60']
+		.tabbed-content--panel:nth-child(even) {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 60%;
+		flex: 1 1 60%;
+	}
+	.tabbed-content--inner[data-columns='40-60']
+		.tabbed-content--panel:nth-child(odd) {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 40%;
+		flex: 1 1 40%;
+	}
+
+	.tabbed-content--inner[data-columns='50-50'] .tabbed-content--panel {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 50%;
+		flex: 1 1 50%;
+	}
+
+	.tabbed-content--inner[data-columns='60-40']
+		.tabbed-content--panel:nth-child(even) {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 40%;
+		flex: 1 1 40%;
+	}
+	.tabbed-content--inner[data-columns='60-40']
+		.tabbed-content--panel:nth-child(odd) {
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 60%;
+		flex: 1 1 60%;
+	}
+}

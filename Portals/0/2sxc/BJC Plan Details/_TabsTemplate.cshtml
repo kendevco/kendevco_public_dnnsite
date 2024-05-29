@@ -1,0 +1,92 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  // Basics / Preparation
+  
+ 		var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
+		@* page.Activate("FontAwesome5"); *@
+		var i = 0;
+}
+
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-LRlmVvLKVApDVGuspQFnRQJjkv0P7/YFrw84YYQtmYG4nK8c+M+NlmYDCv0rKWpG" crossorigin="anonymous" />
+
+<style>
+    
+	.cta {
+		background: #FFFFFF;
+		text-align: center;
+		padding: 40px 20px;
+		margin-bottom: 20px;
+		-webkit-box-shadow: 0px 3px 15px rgba(0, 32, 61, 0.16) !important;
+	    box-shadow: 0px 3px 15px rgba(0, 32, 61, 0.16) !important;
+
+		img {
+			margin-bottom: 40px;
+		}
+
+		h3 {
+			font-weight: $semi-bold;
+			color: $dark-blue;
+			font-size: 23px;
+			margin-bottom: 25px;
+		}
+
+		p {
+			margin-bottom: 0px;
+		}
+
+	} /* cta */
+
+	.cta.last {
+		margin-bottom: 70px;
+	}
+
+} /* cta-container */
+
+@@media screen and (min-width: 992px) {
+
+	.cta-container {
+		max-height: 1100px;
+
+		.cta {
+			margin-bottom: 35px;
+		}
+
+		.cta.last {
+			margin-bottom: 115px;
+		}
+	}
+}
+</style>
+
+	<div class="cta-container" @Edit.TagToolbar(toolbar: new [] {"toolbar=empty", "contentitems?contentType=Tab", "settings&hover=left"})>
+        
+		@{var tabs = AsList(App.Data["Tab"]);}
+		
+		<ul class="nav nav-tabs">
+          	@foreach (var tab in tabs) {
+				<li class='nav-item @(tab.IsSelected  ? "active" : "")' @Edit.TagToolbar(tab, settings: new { hover = "right" })>
+					<a class='nav-link @(tab.IsSelected ? "active" : "")' data-toggle="tab" href='#@tab.Key'>@tab.Name </a>
+				</li>
+			
+			}
+		</ul>
+
+		<div class="tab-content">
+
+			@foreach (var tab in tabs) {
+				<div class='tab-pane fade @(tab.IsSelected ? "active show" : "")' id='@tab.Key'>
+					<div class="cta">				
+						
+						<h3>@tab.Description  </h3>
+						@Html.Partial("_DetailItems.cshtml", new { data = tab.DetailItems })
+
+					</div>
+					
+				</div>
+			}
+		
+		</div>
+	
+      </div>

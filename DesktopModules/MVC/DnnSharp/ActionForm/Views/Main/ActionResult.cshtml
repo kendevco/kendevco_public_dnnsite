@@ -1,0 +1,16 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<IActionResultVM>
+@using System.Web.Mvc
+@using avt.ActionForm.Core.ViewModels.Main
+
+<script type="text/javascript">
+    (function () {
+        var settings = {
+            Settings: @Raw(Model.SettingsJson),
+            Data: @Json(Model.Data),
+            ResultType: "ActionResult",
+            ActionResult: @Partial(Model.ActionResultViewName, Model.ActionResultModel, new ViewDataDictionary(ViewData) { { Constants.renderActionResult, "true" } }),
+            Localization: @Raw(Model.Localization),
+        };
+        events.onLoadComplete(settings);
+    })();
+</script>

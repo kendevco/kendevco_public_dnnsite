@@ -1,0 +1,47 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Reuse functions</h2>
+      <p>
+        When you need a function in many places, it's best to put it into an own <code>cshtml</code> file and access it using <code>CreateInstance</code>. 
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<hr>
+<h2>Using shared library of functions</h2>
+<trim>
+<p>The example takes a cshtml file with a <code>QrPath</code> function returning the url to a qr-code. It then accesses it using <code>CreateInstance(...)</code>.</p>
+</trim>
+<snippet id="reuse-createinstance">
+@{
+  var lib = CreateInstance("SharedFunctions.cs");
+}
+<div>Hello from lib: @lib.SayHello()</div>
+<div>
+  <img loading="lazy" src='@lib.QrPath("https://2sxc.org")' width="75px">
+</div>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-createinstance", Size = 200 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  File = "SharedFunctions.cs",
+  Size = 400
+}) 
+</hide>

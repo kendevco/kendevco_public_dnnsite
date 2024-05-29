@@ -1,0 +1,87 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+    code {
+        font-family: "IBM Plex Mono", monospace;
+        padding-right: 60px; // leave room for the Copy button that is floated right
+    }
+
+    .code-link {
+        color: #C9FFFA;
+        word-break: break-word;
+    }
+
+    .text-muted {
+        color: $gray500;
+    }
+
+    .obsolete-feature {
+        display: inline-flex;
+        align-items: center;
+
+        .obsolete-label {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+
+        .obsolete-icon {
+            margin-left: 8px;
+            color: $danger-color;
+            font-size: 18px;
+            text-decoration: none;
+        }
+    }
+
+    label.obsolete-feature {
+        justify-content: right;
+    }
+
+    /*Use for text content*/
+    p.content {
+        font-size: 16px;
+        color: $gray900;
+    }
+
+    ul.content {
+        font-size: 16px;
+        color: $gray900;
+
+        li {
+            list-style: none;
+        }
+    }
+
+    .tag-decorator {
+        &:before {
+            content: "< ";
+            padding-right: 4px;
+            color: $primary-color;
+            font-weight: 900;
+            font-size: 85%;
+        }
+
+        &:after {
+            content: " />";
+            padding-left: 4px;
+            color: $primary-color;
+            font-weight: 900;
+            font-size: 85%;
+        }
+    }
+
+    a.more {
+        display: inline-flex;
+        align-items: center;
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+            opacity: 0.75;
+        }
+
+        .material-icons {
+            font-size: 140%;
+        }
+    }
+}

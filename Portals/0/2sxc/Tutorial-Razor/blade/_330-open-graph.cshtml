@@ -1,0 +1,39 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  // 2sxclint:disable:no-razorblade-htmlpage
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> add Open-Graph Headers</h2>
+      @Html.Partial("_MessageDnnOnlyUseIPageService.cshtml")
+
+      @Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Scrub", Service = "IScrub" })
+
+      <div>
+        This page sets various open-graph headers. 
+
+        Look at the resulting output-source to see the effect. 
+      </div>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+@if(CmsContext.Platform.Name == "Oqtane") {
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+} else {
+  // note: 'og:' is auto-prefixed if not given in the key
+  Kit.Page.AddOpenGraph("title", "Demo of OpenGraph headers");
+  Kit.Page.AddOpenGraph("type", "website");
+}
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400, isExpanded = true }) 
+</hide>

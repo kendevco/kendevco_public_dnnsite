@@ -1,0 +1,46 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.IndexVM>
+
+@{
+    var attributes = NewAttributes();
+    AppendStyles(attributes, "color", Model.ContentPanelColor);
+    AppendClasses(attributes, Model.ContentPanelClasses);
+}
+
+<div id="pnlContent@(Dnn.ActiveModule.ModuleID)" @ElementAttributes(attributes)>
+    @if (Model.IsError)
+    {
+        <span>@Model.ErrorText</span>
+    }
+    else if (!Model.IsActivated)
+    {
+        <div>
+            @Raw(LocalizeString("MVC.Index.NotLicensedMessage", Model.ActivationUrl))
+        </div>
+
+        if (Model.ShowLoginFallbackHint)
+        {
+            <div>
+                @Raw(LocalizeString("MVC.Index.LoginFallbackHint", Model.LoginFallbackUrl))
+            </div>
+        }
+    }
+    else if (!Model.IsInitialized)
+    {
+        <div>
+            @Raw(LocalizeString("MVC.Index.ModuleNotConfiguredMessage", Model.EditUrl))
+        </div>
+    }
+    else if (Model.ShowLoading)
+    {
+        <div id="loadingContainer" class="common-loading-container" style="background-color: @Model.Loading.ContainerBackgroundColor; ">
+            <div id="loadingBars" class="common-data-loading af-loading" style="color: @Model.Loading.BarsColor; background: @Model.Loading.BarsBackground;"></div>
+            <div id="loadingText" class="common-loading-text">@Model.Loading.Text</div>
+        </div>
+    }
+</div>
+@if (Model.IsEditor && Model.ParentTabCacheEnabled)
+{
+    <div class="alert alert-danger" role="alert">
+        @Raw(LocalizeString("Warning.PageCache"))
+    </div>
+}

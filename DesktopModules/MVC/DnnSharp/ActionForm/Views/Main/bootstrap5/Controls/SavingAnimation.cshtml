@@ -1,0 +1,13 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.SavingAnimationFieldVM>
+@using avt.ActionForm
+
+@{
+    AppendClasses("submit-progress");
+    AppendClasses("stretch", Model.Strech);
+    AppendClasses(Model.CssClass, !string.IsNullOrWhiteSpace(Model.CssClass));
+
+    AddAttribute("style", Model.CssStyles, !string.IsNullOrWhiteSpace(Model.CssStyles));
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+}
+
+<img src="@Model.Image" alt="@Model.Name" @ElementAttributes() />

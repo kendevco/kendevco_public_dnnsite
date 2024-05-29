@@ -1,0 +1,50 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var imgUrl = App.Path + "/settings/demo.png";
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Merge image settings</h2>
+    <p>
+      The following examples merge custom settings with predefined <code>Settings</code> which are defined in 2sxc, and can be re-configured in any site and app.
+      We'll use <code>Settings.Images.Content</code> which has the following configuration:
+    </p>
+    <ol>
+      <li>Width: @Settings.Images.Content.Width</li>
+      <li>Height: @Settings.Images.Content.Height</li>
+      <li>AspectRatio: @Settings.Images.Content.AspectRatio</li>
+      <li>Quality: @Settings.Images.Content.Quality</li>
+    </ol>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+
+<h3>Image with merged settings</h3>
+<p>This example uses the configuration as is, to create an image according to specs in <code>customImageSettings</code></p>
+<snippet id="merge-settings-1">
+@{
+  var customImageSettings = AsDynamic(new {
+    Height = 100,
+    ResizeMode = "Stretch",
+    Quality = 50
+  });
+  // Merged settings, first one has highes priority
+  var mergedSettings = AsDynamic(customImageSettings, Settings.Images.Content);
+}
+
+<img loading="lazy" src='@Link.Image(imgUrl, mergedSettings)'>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "merge-settings-1", Size = 220 }) 
+</hide-silent>
+
+<hide>
+  @Html.Partial("../shared/_PreCodeFooter.cshtml")
+</hide>

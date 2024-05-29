@@ -1,0 +1,4 @@
+[*>NODE]
+[>NODE]
+<a href="[?ENABLED][=URL][?ELSE]#[/?]" target="[=TARGET]" class="d-block text-light small mb-1">[=TEXT]</a>
+[/>]

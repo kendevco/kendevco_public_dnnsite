@@ -1,0 +1,60 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.HtmlResultVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    var labelAlign = Model.Settings.FloatingLabels ? "floating" : Model.Settings.LabelAlign.ToString().ToLower();
+
+    var contentContainerAttributes = NewAttributes();
+
+    AppendClasses(contentContainerAttributes, "c-form container " + Model.Settings.FieldSpacing.ToString().ToLower() + " label-align-" + labelAlign + " col-12");
+
+    if (Model.Settings.HasCustomLayout.Value)
+    {
+        AppendClasses(contentContainerAttributes, "manual-layout");
+    }
+}
+
+<div class="row">
+
+    <div @ElementAttributes(contentContainerAttributes)>
+        @if (Model.Settings.HasCustomLayout.Value)
+        {
+            @Partial("_CustomLayoutResult", Model.CustomLayout)
+        }
+        else
+        {
+            foreach (var rowFields in Model.Fields.GroupBy(f => f.RowIndex))
+            {
+                var colIndexOffset = 1;
+                foreach (var field in rowFields)
+                {
+                    colIndexOffset += field.ColOffset;
+                    var widthScale = 12 / field.ColSpan;
+                    var fieldParentAttributes = NewAttributes();
+
+                    if (!field.BindPreserveLayout)
+                    {
+                        AddAttribute(fieldParentAttributes, "ng-show", field.BindShowCompiled, !string.IsNullOrWhiteSpace(field.BindShowCompiled));
+                    }
+                    else
+                    {
+                        fieldParentAttributes["ng-style"] = "{ visibility:" + field.BindShowCompiled + " ? 'visible' : 'hidden' }";
+                    }
+
+                    <div class="form-group"
+             style="grid-row: @(field.RowIndex + 1); grid-column: @colIndexOffset / @(colIndexOffset + field.ColSpan); --width-scale: @widthScale;"
+             @ElementAttributes(fieldParentAttributes)>
+                        @TemplatePartial("_FieldRender", new FieldRendererVM(field))
+                    </div>
+
+                    colIndexOffset += field.ColSpan;
+                }
+            }
+        }
+    </div>
+
+    <div class="alert alert-danger server-error" style="display: none;"></div>
+    <div class="alert alert-info submit-confirm" style="display: none; text-align: center;"></div>
+
+</div>

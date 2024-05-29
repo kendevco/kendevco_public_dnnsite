@@ -1,0 +1,117 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Template_Settings": {
+      "type": "object",
+      "fields": {
+        "Template_Columns": {
+          "type": "select",
+          "sort": false,
+          "optionLabels": [
+            "2 Column Layout",
+            "3 Column Layout",
+            "4 Column Layout"
+          ]
+        }
+      }
+    },
+    "Columns": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "2 Columns",
+        "3 Columns",
+        "4 Columns"
+      ],
+      "dependencies": {
+        "Module_Layout": [
+          "vertical",
+          " horizontal"
+        ]
+      }
+    },
+    "Cards": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Card_Heading": {
+            "type": "text"
+          },
+          "Icon_Type": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "Font Awesome Version 4",
+              "Font Awesome Version 5",
+              "Custom Image / Icon"
+            ]
+          },
+          "Card_Icon_V4": {
+            "type": "icon",
+            "glyphicons": false,
+            "bootstrap": false,
+            "fontawesome": true,
+            "dependencies": {
+              "Icon_Type": [
+                "fontawesome-four",
+                " fontawesome-five",
+                " custom"
+              ]
+            }
+          },
+          "Card_Icon_V5": {
+            "type": "text",
+            "helper": "Copy and paste font awesome icon code from https://fontawesome.com",
+            "dependencies": {
+              "Icon_Type": [
+                "fontawesome-five",
+                " fontawesome-four",
+                " custom"
+              ]
+            }
+          },
+          "Custom_Card_Icon": {
+            "type": "image",
+            "uploadfolder": "Icons",
+            "typeahead": {
+              "Folder": "Icons"
+            },
+            "dependencies": {
+              "Icon_Type": [
+                "custom",
+                " fontawesome-five",
+                " fontawesome-four"
+              ]
+            }
+          },
+          "Card_Content": {
+            "type": "ckeditor"
+          },
+          "Add_Link": {
+            "type": "checkbox"
+          },
+          "Card_Link": {
+            "type": "text",
+            "dependencies": {
+              "Add_Link": [
+                "true",
+                " false"
+              ]
+            }
+          },
+          "Card_Link_Text": {
+            "type": "text",
+            "dependencies": {
+              "Add_Link": [
+                "true",
+                " false"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

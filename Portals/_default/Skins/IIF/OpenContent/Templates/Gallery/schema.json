@@ -1,0 +1,168 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Template_Settings": {
+      "type": "object",
+      "title": "Template Settings",
+      "properties": {
+        "Template_Columns": {
+          "type": "string",
+          "title": "Template Columns",
+          "enum": [
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "2",
+          "required": true
+        },
+        "Template_Heading": {
+          "type": "string",
+          "title": "Heading (Optional)"
+        },
+        "Template_Intro": {
+          "type": "string",
+          "title": "Intro (Optional)"
+        }
+      }
+    },
+    "Category_List": {
+      "type": "array",
+      "title": "Categories",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Filter_Category": {
+            "type": "string",
+            "title": "Category Title"
+          }
+        }
+      }
+    },
+    "Category_Settings": {
+      "type": "object",
+      "title": "Category Settings",
+      "properties": {
+        "Disable_View_All": {
+          "type": "boolean",
+          "title": "Disable View All Link"
+        }
+      }
+    },
+    "Listing": {
+      "type": "array",
+      "title": "Gallery",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Image_Or_Video": {
+            "type": "string",
+            "title": "Upload image or video?",
+            "enum": [
+              "Image",
+              "Video"
+            ],
+            "default": "Image",
+            "required": true
+          },
+          "Image": {
+            "type": "string",
+            "title": "Image",
+            "required": true,
+            "dependencies": [
+              "Image_Or_Video"
+            ]
+          },
+          "Image_Alt": {
+            "type": "string",
+            "title": "Image Alt Text",
+            "required": true,
+            "dependencies": [
+              "Image_Or_Video"
+            ]
+          },
+          "Video_Type": {
+            "type": "string",
+            "title": "Video Type",
+            "enum": [
+              "Embed",
+              "Upload"
+            ],
+            "dependencies": [
+              "Image_Or_Video"
+            ]
+          },
+          "Video_Upload": {
+            "type": "string",
+            "title": "Video",
+            "dependencies": [
+              "Video_Type"
+            ]
+          },
+          "Video_Upload_Title": {
+            "type": "string",
+            "title": "Video Title",
+            "dependencies": [
+              "Video_Type"
+            ]
+          },
+          "Video_Embed": {
+            "type": "string",
+            "title": "Video Embed Code",
+            "dependencies": [
+              "Video_Type"
+            ]
+          },
+          "Video_Embed_Link": {
+            "type": "string",
+            "title": "Video Link",
+            "dependencies": [
+              "Video_Type"
+            ]
+          },
+          "Video_Embed_Title": {
+            "type": "string",
+            "title": "Video Title",
+            "dependencies": [
+              "Video_Type"
+            ]
+          },
+          "Media_Title": {
+            "type": "string",
+            "title": "Media Title"
+          },
+          "Media_Caption": {
+            "type": "string",
+            "title": "Media Caption"
+          },
+          "Include_Caption": {
+            "type": "boolean",
+            "title": "Add title and caption to page"
+          },
+          "Include_Caption_Lightbox": {
+            "type": "boolean",
+            "title": "Add title and caption to lightbox"
+          },
+          "Category_Select": {
+            "type": "array",
+            "title": "Category",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Category": {
+                  "type": "string",
+                  "title": "Category Name:"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

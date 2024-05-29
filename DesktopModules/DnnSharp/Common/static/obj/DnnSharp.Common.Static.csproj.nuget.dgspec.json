@@ -1,0 +1,46 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Autobuild\\default\\release\\1.24\\DesktopModules\\DnnSharp\\Common\\static\\DnnSharp.Common.Static.csproj": {}
+  },
+  "projects": {
+    "D:\\Autobuild\\default\\release\\1.24\\DesktopModules\\DnnSharp\\Common\\static\\DnnSharp.Common.Static.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Autobuild\\default\\release\\1.24\\DesktopModules\\DnnSharp\\Common\\static\\DnnSharp.Common.Static.csproj",
+        "projectName": "DnnSharp.Common.Static",
+        "projectPath": "D:\\Autobuild\\default\\release\\1.24\\DesktopModules\\DnnSharp\\Common\\static\\DnnSharp.Common.Static.csproj",
+        "packagesPath": "C:\\Users\\Administrator.DNNSHARP\\.nuget\\packages\\",
+        "outputPath": "D:\\Autobuild\\default\\release\\1.24\\DesktopModules\\DnnSharp\\Common\\static\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "D:\\Autobuild\\default\\release\\1.24\\.nuget\\NuGet.Config",
+          "C:\\Users\\Administrator.DNNSHARP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

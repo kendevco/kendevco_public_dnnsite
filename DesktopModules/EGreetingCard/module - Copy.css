@@ -1,0 +1,737 @@
+/******** View *******/
+.row {
+    margin: 0 !important;
+}
+
+.ecard-module {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+    .ecard-module * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        .ecard-module *:before,
+        .ecard-module *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+/*Category*/
+a.cat-link {
+    text-decoration: none !important;
+}
+
+.cat-item-wrapper {
+    padding: 10px;
+    border: 1px solid #A0A0A0;
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    -moz-box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    width: 300px;
+}
+
+    .cat-item-wrapper .cat-img-wrapper {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .cat-item-wrapper img {
+        width: 100%;
+        height: auto;
+        transition: 1s ease;
+    }
+
+    .cat-item-wrapper .cat-item-title {
+        margin-top: 10px;
+        text-align: center;
+        text-decoration: none !important;
+    }
+/*
+    .cat-item-wrapper:hover img {
+        opacity: 0.6;
+        transition: 1s ease;
+    }*/
+
+/*end category*/
+
+/* Ecard */
+.cardView {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.backToCat a.btn {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+    .backToCat a.btn:hover {
+        color: #FFFFFF;
+    }
+
+.filterByCat {
+    text-align: right;
+}
+
+.ecard-module .categoryTitle {
+    font-size: 22px;
+    text-align: left;
+    padding: 30px 0 20px 10px;
+}
+
+
+ul.ecardList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none !important;
+    list-style: none !important;
+    text-align: center;
+}
+
+.ecardList a {
+    text-decoration: none !important;
+    color: #666666 !important;
+    font-weight: bold;
+}
+
+ul.ecardList li {
+    list-style-type: none !important;
+    list-style: none !important;
+    margin-top: 20px;
+    text-align: center !important;
+}
+
+    ul.ecardList li:before {
+        content: "" !important;
+    }
+
+
+.ecardList .item-wrapper {
+    width: 320px;
+    /*height: 208px;*/
+    height: 220px;
+    padding: 5px;
+    border: 1px solid #A0A0A0;
+    /*-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;*/
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    -moz-box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    box-shadow: 2px 2px 2px 2px rgba(199,199,199,0.29);
+    display: inline-block;
+}
+
+
+.ecardList li p {
+    text-align: center;
+}
+
+.ecardList .item-wrapper .ecard-img {
+    width: 100%;
+    height: 100%;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+ul.ecardList li .cat-item-title {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    color: #666666;
+}
+
+.view-nav {
+    padding-top: 10px !important;
+}
+
+/***** Edit *****/
+.categoryHeader {
+    font-size: 24px;
+    color: #666666;
+    padding: 10px 0;
+}
+
+.ecardGrid th {
+    padding: 5px;
+}
+
+.ecardGrid td {
+    padding: 5px;
+}
+
+
+
+
+.ecardNav {
+    padding: 20px 0;
+    text-align: center;
+}
+
+    .ecardNav .navImg {
+        margin: 0 5px;
+        border: none;
+        vertical-align: middle;
+    }
+
+    .ecardNav .navLink {
+        font-size: 14px;
+        text-decoration: underline;
+        color: #3E81B5;
+    }
+
+    .ecardNav .separator {
+        margin: 0 5px 0 5px;
+    }
+
+.ecardGrid {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.imageUpload {
+    padding-bottom: 20px;
+}
+/* add new */
+.addnewContainer {
+    padding-left: 30px;
+}
+
+
+/*Send*/
+.cardlabel.required:after {
+    content: " *";
+    color: red;
+}
+
+.group-title {
+    text-align: left;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.topLabel {
+    width: 814px;
+    padding-top: 30px;
+}
+
+.outerTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main {
+    background-color: #FFFFFF;
+    background-image: url("images/bkg.gif");
+    background-position: left top;
+    background-repeat: no-repeat;
+    height: 515px;
+    width: 805px;
+}
+
+.action-button {
+    text-align: center;
+}
+
+/*Send Ecards*/
+.send-ecard-wrapper {
+    width: 100%;
+    /*padding: 10px;*/
+}
+
+
+
+
+.ecard-content-wrapper {
+    /*padding: 4px;
+    margin: 0 auto;
+    border: 1px solid #E1E1E1;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.36);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.36);
+    box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.36);*/
+}
+
+.send-ecard {
+    width: 100%;
+    /*padding: 25px 20px;
+    -moz-box-shadow: inset 0 0 30px rgba(170,170,170,0.5);
+    -webkit-box-shadow: inset 0 0 30px rgba(170,170,170,0.5);
+    box-shadow: inset 0 0 30px rgba(170,170,170,0.5);*/
+}
+
+    /*.send-ecard > .row {
+        background: url('images/separator.jpg') repeat-y center center transparent;
+    }*/
+
+    .send-ecard .left-col {
+        padding-left: 0;
+        /*padding-right: 20px;*/
+        height: 493px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+        .send-ecard .left-col .ecard-info {
+            width: 230px;
+            /*height: 80px;*/
+            overflow: hidden;
+            background-color: #FFF;
+            position: absolute;
+            bottom: 105px;
+            left: 20px;
+            padding: 10px 10px;
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+
+            /*.send-ecard .left-col .ecard-info {
+                width: 100%;
+            }*/
+
+                .send-ecard .left-col .ecard-info .fLabel {
+                    text-align: left;
+                    /*width: 60px;*/
+                }
+
+                .send-ecard .left-col .ecard-info .fValue {
+                    text-align: left;
+                }
+
+        .send-ecard .left-col .ecard-message {
+            width: 320px;
+            height: 155px;
+            overflow: hidden;
+            background-color: #FFF;
+            position: absolute;
+            bottom: 25px;
+            right: 30px;
+            text-align: left;
+            font-size: 12px;
+            padding: 20px;
+            word-wrap: break-word;
+        }
+
+    .send-ecard .col {
+        text-align: center;
+    }
+
+    .send-ecard .left-col .small-logo {
+        margin-top: 10px;
+        position: absolute;
+        left: 60px;
+        bottom: 25px;
+    }
+
+        .send-ecard .left-col .small-logo img {
+            width: 160px;
+        }
+
+    .send-ecard .left-col .detail-image {
+        max-width: 100%;
+        /*max-height: 350px;*/
+        /*height: 100%;*/
+    }
+
+    .send-ecard .right-col {
+        padding-bottom: 40px;
+    }
+
+        .send-ecard .right-col .stamp {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+
+        .send-ecard .right-col .cardlabel {
+            color: #565654;
+            font-size: 11px;
+            padding: 5px 0 20px 0;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .send-ecard .right-col .cardControl {
+            background: none repeat scroll 0 0 #ffffff;
+            border: 1px solid #c9c9c9;
+            border-radius: 3px;
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8), 0 1px 2px 0 rgba(0, 0, 0, 0.1) inset;
+            color: #333;
+            font-size: 12px;
+            margin-bottom: 18px;
+            padding: 4px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .send-ecard .right-col .dnnFormMessage {
+            text-align: left;
+            padding: 5px;
+        }
+
+        .send-ecard .right-col .button {
+            margin-top: 10px;
+        }
+
+            .send-ecard .right-col .button a {
+                width: 80px;
+                font-size: 14px;
+                padding: 10px 0;
+                margin: 0 10px;
+                text-align: center;
+                color: #fff !important;
+                text-decoration: none !important;
+                display: inline-block;
+                background-color: #00529B;
+            }
+
+                .send-ecard .right-col .button a:hover {
+                    background-color: #1A6CB5;
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+                }
+
+        .send-ecard .right-col .register-enews {
+            text-align: left;
+            padding-left: 5px;
+            margin-bottom: 10px;
+            display: table;
+            width: 100%;
+        }
+
+            .send-ecard .right-col .register-enews > input {
+                display: table-cell;
+                line-height: 11px;
+                width: 15px;
+            }
+
+            .send-ecard .right-col .register-enews .reg-label {
+                padding-left: 10px;
+                font-size: 11px;
+                color: #565654;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: left;
+                word-wrap: break-word;
+            }
+
+    .send-ecard #character-count,.send-ecard #firstName-count,.send-ecard #lastName-count   {
+        font-size: 10px;
+        line-height: 12px;
+        text-align: left;
+    }
+
+.red {
+    color: #B80000 !important;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.green {
+    color: Green;
+}
+
+.cancelBtn {
+    margin-left: 30px;
+}
+
+
+
+/*Export */
+.export-form .label-col {
+    padding-right: 20px;
+}
+
+.export-form .control-col {
+    padding-right: 40px;
+}
+
+.export-form .export-form {
+    padding-top: 40px;
+}
+
+.export-form .title {
+    margin-bottom: 20px;
+}
+
+.export-form .dnnPrimaryAction {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+    .export-form .dnnPrimaryAction:hover {
+        color: #FFFFFF;
+    }
+
+a.btn-warning {
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+    a.btn-warning:hover {
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+.topSendGrid {
+    margin-top: 30px;
+}
+
+.padding10 {
+    padding: 10px;
+}
+
+.logo-success {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+
+/* Paging */
+.pagerWrapper {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagerContainer {
+    float: none;
+    display: inline-block;
+}
+
+    .pagerContainer .item-count {
+        float: right;
+    }
+
+    .pagerContainer a.page-btn, .pagerContainer a.page-number, .pagerContainer span.active {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background-color: #FFFFFF;
+        border-color: #DDDDDD;
+        border-image: none;
+        border-style: solid;
+        border-width: 1px 1px 1px 0;
+        float: left;
+        line-height: 20px;
+        padding: 4px 12px;
+        text-decoration: none !important;
+    }
+
+    .pagerContainer > span {
+        border: none;
+    }
+
+    .pagerContainer a.page-btn:first-child {
+        /*border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;*/
+        border-left-width: 1px;
+    }
+
+    /*a.page-btn:last-child {
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}*/
+
+    .pagerContainer a:hover {
+        background-color: #F5F5F5;
+        text-decoration: none;
+    }
+
+.pagesize {
+    float: right;
+    margin-top: 30px;
+}
+
+    .pagesize .pagesize-item {
+        margin: 0 3px;
+        text-decoration: none;
+    }
+
+        .pagesize .pagesize-item:hover {
+            text-decoration: underline;
+        }
+
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+}
+
+.ecard-module.send-view {
+    padding-top: 0;
+}
+
+.pb0
+{
+    padding-bottom: 0 !important;
+}
+
+@media (min-width: 992px) {
+    .group-title.first {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .send-ecard-wrapper {
+        width: 680px;
+        margin: 0 auto;
+    }
+
+    .cat-item-wrapper {
+        width: 100%;
+    }
+    /*Send Ecards*/
+
+    .ecard-content-wrapper {
+        width: 100%;
+    }
+
+    .send-ecard .left-col {
+        background-position: top center;
+    }
+
+    p.description {
+        padding: 0 10px;
+    }
+
+    h1.pageTitle {
+        padding: 0 10px;
+        padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .send-ecard img
+    {
+        padding: 0 10px;
+    }
+    .send-ecard .left-col
+    {
+        display: none;
+    }
+
+    p.description {
+        padding: 0 10px;
+    }
+
+    h1.pageTitle {
+        padding: 0 10px;
+        padding-bottom: 15px;
+    }
+
+    .send-ecard-wrapper {
+        padding: 0;
+    }
+
+
+
+    .ecard-content-wrapper {
+        width: 100%;
+    }
+
+    .send-ecard > .row {
+        background: none;
+    }
+
+    .send-ecard .left-col {
+        background-position: top center;
+        padding-right: 0;
+    }
+
+    .send-ecard .right-col {
+        margin-top: 20px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+        .send-ecard .right-col .cardlabel {
+            padding-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .send-ecard .right-col .register-enews .reg-label {
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+
+    .pagerContainer {
+        float: none;
+        /*width: 100%;*/
+        margin-left: 10px;
+        margin-top: 5px;
+        display: inline-block;
+    }
+
+    .pagerWrapper .pagesize {
+        float: left;
+        margin-top: 15px;
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    .pagesize {
+        float: left;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 640px) {
+
+
+
+    .send-ecard .left-col .ecard-info {
+        width: 60%;
+        left: 50%;
+        margin-left: -30%;
+        bottom: 200px;
+    }
+
+    .send-ecard .left-col .ecard-message {
+        width: 60%;
+        left: 50%;
+        margin-left: -30%;
+    }
+
+    .send-ecard .left-col .small-logo {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .send-ecard .left-col .ecard-info {
+        width: 80%;
+        left: 50%;
+        margin-left: -40%;
+        bottom: 200px;
+    }
+
+    .send-ecard .left-col .ecard-message {
+        width: 80%;
+        left: 50%;
+        margin-left: -40%;
+    }
+
+    .send-ecard .left-col .small-logo {
+        display: none;
+    }
+}

@@ -1,0 +1,39 @@
+{{registerstylesheet "css/template.css"}}
+
+<div class="featured-content">
+    {{#each Featured}}
+        <div class="featured-content--item{{#if Media_Right}} item__right-align{{/if}}" data-size='{{Media_Size}}' {{#if Content_Background}} style="background-color: {{Content_Background}};"{{/if}}>
+            <div class="item--inner">
+                <div class="featured-content--image">
+                    {{#if Add_Link}}
+                        <a href="{{Featured_Link}}">
+                    {{/if}}
+                    {{#if Featured_Image}}
+                        <figure>
+                            <img src="{{Featured_Image}}" alt="{{Featured_Image_Alt}}" width="300" height="300" />
+                            <figcaption>
+                                {{Media_Caption}}
+                            </figcaption>
+                        </figure>
+                        {{else}}
+                        {{#if Featured_Video}}
+                            <figure class="responsive-media">
+                                {{Featured_Video}}
+                                <figcaption>
+                                    {{Media_Caption}}
+                                </figcaption>
+                            </figure>
+                        {{/if}}
+                    {{/if}}
+                    {{#if Add_Link}}
+                        </a>
+                    {{/if}}
+                </div>
+                <div class="featured-content--text">
+                    <h2>{{Featured_Title}}</h2>
+                    <div>{{Featured_Content}}</div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

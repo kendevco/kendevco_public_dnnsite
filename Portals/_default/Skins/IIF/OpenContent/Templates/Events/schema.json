@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Title"
+    },
+    "View_Calendar": {
+      "type": "boolean",
+      "title": "Add View Full Calendar Option"
+    },
+    "View_Calendar_Link": {
+      "type": "string",
+      "title": "View Full Calendar Link"
+    },
+    "Events_Feed": {
+      "type": "array",
+      "title": "Events Feed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Event_Title": {
+            "type": "string",
+            "title": "Event Title"
+          },
+          "Event_Image": {
+            "type": "string",
+            "title": "Event Image"
+          },
+          "Event_Image_Alt": {
+            "type": "string",
+            "title": "Image Alt Text (for accessibility)"
+          },
+          "Event_Date": {
+            "title": "Event Date"
+          },
+          "Event_Date_Range": {
+            "type": "boolean",
+            "title": "Is Date Range"
+          },
+          "Event_Start_Date": {
+            "title": "Event Start Date"
+          },
+          "Event_End_Date": {
+            "title": "Event End Date"
+          },
+          "Event_Location": {
+            "type": "string",
+            "title": "Event Location"
+          },
+          "Event_Link": {
+            "type": "string",
+            "title": "Event Link"
+          },
+          "Event_Link_Title": {
+            "type": "string",
+            "title": "Link Title (for accessibility)"
+          }
+        }
+      }
+    }
+  }
+}

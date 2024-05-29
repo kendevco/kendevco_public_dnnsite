@@ -1,0 +1,43 @@
+﻿[
+  {
+    "outputFile": "angular15/trumbowyg/trumbowyg.min.js",
+    "inputFile": "angular15/trumbowyg/trumbowyg.js"
+  },
+  {
+    "outputFile": "angular15/trumbowyg/ui/trumbowyg.min.css",
+    "inputFile": "angular15/trumbowyg/ui/trumbowyg.less"
+  },
+  {
+    "outputFile": "codemirror/codemirror.min.css",
+    "inputFile": "codemirror/codemirror.less"
+  },
+  {
+    "outputFile": "common.css",
+    "inputFile": "common.less"
+  },
+  {
+    "outputFile": "dnnsf/css/tpl-common.css",
+    "inputFile": "dnnsf/css/tpl-common.less"
+  },
+  {
+    "outputFile": "plant-an-app/css/papp-admin.css",
+    "inputFile": "plant-an-app/css/papp-admin.scss",
+    "options": {
+      "sourceMap": true
+    }
+  },
+  {
+    "outputFile": "credential-store/admin.css",
+    "inputFile": "credential-store/admin.scss",
+    "options": {
+      "sourceMap": true
+    }
+  },
+  {
+    "outputFile": "bootstrap5/css/bootstrap.css",
+    "inputFile": "bootstrap5/bootstrap-wrapper.scss",
+    "options": {
+      "sourceMap": true
+    }
+  }
+]

@@ -1,0 +1,14 @@
+<div class="featured-event">
+    <div class="featured-event--container" style="background-image: url('{{Event_Image}}')">
+        <div class="featured-event--content">
+            {{#if Event_Title}}<div><h1>{{Event_Title}}</h1></div>{{/if}}
+            <div>{{Event_Date}}</div>
+            <div>{{Event_Location}}</div>
+        </div>
+        {{#each Event_CTA}}
+            <div class="featured-event--cta">
+                <a href="{{Event_Link}}">{{Event_Link_Text}}</a>
+            </div>
+        {{/each}}
+    </div>
+</div>

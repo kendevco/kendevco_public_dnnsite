@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  Kit.Page.Activate("2sxc.JsCore"); 
+}
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-md-7">
+      <h2>Use the sxc data API to get backend data</h2>
+      <p>This page uses the sxc data API to get data from the backend and display it in a table with JavaScript.</p>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Create a <code>$2sxc</code> object using the current Module Id
+        </li>
+        <li>
+          Use the correct data source using <code>.data()</code>
+        </li>
+        <li>
+          Read data using the <code>.getOne(id)</code> query method
+        </li>
+        <li>
+          Read data using the <code>.getAll()</code> query method
+        </li>
+      </ul>
+      <br>
+      Look at the content below to see the effect. 
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<table id="example-content" class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Poems</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+@* This tutorial uses turnOn, see https://app-dev.2sxc.org/tutorial-razor/en-bs4/Home/turn-on/home *@
+@{
+  // Use the PageService to activate turnOn
+  Kit.Page.Activate("turnOn");
+}
+<turnOn turn-on='{ "run": "window.sxcDataTutorial200.init()", "data": { "moduleId": "@CmsContext.Module.Id" } }'></turnOn>
+
+<script src="@App.Path/js/_200-get data.js"></script>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 550 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 1000,
+  File = "_200-get data.js"
+}) 
+</hide>

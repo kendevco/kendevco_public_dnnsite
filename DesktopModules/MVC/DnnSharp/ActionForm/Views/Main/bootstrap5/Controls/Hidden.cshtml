@@ -1,0 +1,18 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<HiddenFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+    {
+        Attributes["af-bindvalue"] = Model.BindValueCompiled;
+    }
+}
+
+<input type="hidden"
+       id="@Model.ElementId" name="@Model.ElementId"
+       data-fieldid="@Model.Id" data-af-field="@Model.Name" value="@Model.Value"
+       ng-model="form.fields.@(Model.Name).value"
+       data-val="{{form.fields.@(Model.Name).value}}"
+       @ElementAttributes() />

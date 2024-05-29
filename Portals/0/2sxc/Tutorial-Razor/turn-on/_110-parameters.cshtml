@@ -1,0 +1,59 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Pass function parameters with turnOn</h2>
+      <p>In this page turnOn passes parameters to a JavaScript function. The passed parameters then get deconstructed and used for DOM manipulation.</p>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Pass parameters to JavaScript functions using turnOn.
+        </li>
+        <li>
+          Deconstruct passed parameters 
+        </li>
+      </ul>
+      Look at the text below to see the effect. 
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+<hide>
+  <hr>
+</hide>
+
+<div id="turn-on-example">
+  turnOn Example 1 hasn't started yet.
+</div>
+<div id="turn-on-example-deconstruct">
+  turnOn Example 2 hasn't started yet.
+</div>
+
+@{
+  // Use the PageService to activate turnOn
+  Kit.Page.Activate("turnOn");
+}
+
+@* Passes the parameters Hello for greeting and World for name in a JSON format and executes the window.turnOnTutorial110.init function *@
+<turnOn turn-on='{ "run": "window.turnOnTutorial110.init()", "data": { "greeting": "Hello", "name": "World" } }'></turnOn>
+<turnOn turn-on='{ "run": "window.turnOnTutorial110.demoDeconstruct()", "data": { "greeting": "Hello", "name": "World" } }'></turnOn>
+
+<script src="@App.Path/turn-on/_110-parameters.js"></script>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 520, }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 500,
+  File = "_110-parameters.js"
+}) 
+</hide>

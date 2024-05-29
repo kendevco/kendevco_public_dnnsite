@@ -1,0 +1,44 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Event_Listing": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Event_Title": {
+            "type": "text"
+          },
+          "Event_Type": {
+            "type": "text"
+          },
+          "Event_Start_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Event_End_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Event_Image": {
+            "type": "image",
+            "uploadfolder": "event-listing-images",
+            "typeahead": {
+              "Folder": "event-listing-images"
+            }
+          },
+          "Link_To_Details": {
+            "type": "url"
+          }
+        }
+      }
+    },
+    "All_Events_Link": {
+      "type": "url"
+    },
+    "All_Events_Text": {
+      "type": "text"
+    }
+  }
+}

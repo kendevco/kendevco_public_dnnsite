@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "Anchor": {
+      "type": "text",
+      "helper": "Do no use spaces, numbers, or special characters. Must be a unique identifier."
+    },
+    "Accordion": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Panel_Heading": {
+            "type": "text"
+          },
+          "Panel_Content": {
+            "type": "ckeditor"
+          }
+        }
+      }
+    }
+  }
+}

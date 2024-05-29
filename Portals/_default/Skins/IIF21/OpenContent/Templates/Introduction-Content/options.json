@@ -1,0 +1,61 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Featured_Title": {
+      "type": "text"
+    },
+    "Featured_Content": {
+      "type": "ckeditor"
+    },
+    "Featured_Media": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "Image",
+        "Video"
+      ]
+    },
+    "Featured_Image": {
+      "type": "image",
+      "uploadfolder": "/Portals/0/Featured-Images",
+      "typeahead": {
+        "Folder": "/Portals/0/Featured-Images"
+      },
+      "dependencies": {
+        "Featured_Media": [
+          "Image",
+          " Video"
+        ]
+      }
+    },
+    "Featured_Image_Alt": {
+      "type": "text",
+      "dependencies": {
+        "Featured_Media": [
+          "Image",
+          " Video"
+        ]
+      }
+    },
+    "Featured_Video": {
+      "type": "text"
+    },
+    "Media_Size": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "50 / 50",
+        "60 / 40",
+        "70 / 30"
+      ]
+    },
+    "Media_Left": {
+      "type": "checkbox"
+    },
+    "Media_Right": {
+      "type": "checkbox"
+    }
+  }
+}

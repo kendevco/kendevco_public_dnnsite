@@ -1,0 +1,45 @@
+<h2>Simple get content-items out of a <em>WebAPI</em> with REST</h2>
+<p>
+    The following demo how to call a 2sxc-WebApi call.
+</p>
+<p>
+    <input type="button" onclick="checkIsOkSimple(this)" value="click to check if ok">
+    <br>
+    <input type="button" onclick="$('#message').html('cleared')" value="clear message">
+    <br>
+    <input type="button" onclick="checkIsOkExternal(this)" value="click to check if ok - when calling outside of the module">
+    </p>
+<h2>These is where the categories will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+
+<script>
+
+function checkIsOkSimple(mod) {
+    $2sxc(mod).webApi.get("app/auto/api/Example/IsOk").then(showOkInPage);
+}
+
+function checkIsOkExternal() {
+    // this is the manual setup using $.ajax
+    $.ajax({
+        url: $('#apiEndPointRoot').val() + 'app/Tut-JS-REST/api/Example/IsOk',
+        success: showOkInPage,
+        error: alertAboutError
+    });
+}
+
+function showOkInPage(data) {
+    $('#message').html("server said ok = " + data);
+}
+
+
+</script>
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>
+
+@RenderPage("_helper endpoint.cshtml")

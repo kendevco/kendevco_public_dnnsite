@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+<h2>This is a demo how to template / use fonts from a CDN</h2>
+<ol>
+@foreach(var item in AsDynamic(Data["Default"]))
+{
+    <li class="sc-element"><i class="fa @item.Icon"></i>@item.Title (showing @item.icon) @item.Toolbar</li>    
+}
+
+
+</ol>

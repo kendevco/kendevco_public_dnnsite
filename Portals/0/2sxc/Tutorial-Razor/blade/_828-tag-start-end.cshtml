@@ -1,0 +1,34 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Fluent Tag API <code>TagStart</code>/<code>TagEnd</code> <em>v3</em></h2>
+      <div>
+        A <code>Tag</code> object also has a <code>.TagStart</code> and <code>.TagEnd</code> property, which just contains that part of the tag, allowing you to place these tags around your work.
+      </div>
+      <hr>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+
+<h3>The result</h3>
+@{
+  var successBox = Tag.Div().Class("alert alert-success");
+}
+@successBox.TagStart
+  This tag was written using both <code>.TagStart</code> and <code>.TagEnd</code> 
+  because it may be easier for you that way.
+@successBox.TagEnd
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 300, isExpanded=true }) 
+</hide>

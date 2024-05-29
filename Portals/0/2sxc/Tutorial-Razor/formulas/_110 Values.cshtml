@@ -1,0 +1,67 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+    var sharedExamples = CreateInstance("SharedExamples.cs");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas affecting Values</h2>
+    <p>We'll show you examples where formulas can be applied to set the Value in many ways. </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+
+@* Fill If Empty *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Set the Value if it's empty",
+  Instructions = "This formula sets the value of a field if it's empty. As long as it's not empty, the user can type anything he/she wants. ",
+  ContentType = "FormulasIfEmpty",
+  FieldName = "Title"
+})
+
+@* Combine Values of Fields *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Generate a Field Combining Others",
+  Instructions = "This formula combines the values of 3 fields into a URL Slug. ",
+  ContentType = "FormulasCombineValues",
+  FieldName = "UrlKey"
+})
+
+<hr>
+<h2>Get Data for a Field from a Web API</h2>
+
+@* Get Value from WebApi *@
+@Html.Partial("_PartFormulas.cshtml", sharedExamples.ValueFromWebApi())
+
+
+
+
+
+<hr>
+<h2>Date Examples</h2>
+
+@* Date Examples #1 *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Date - Prefill but leave editable",
+  Instructions = "This formula sets the initial value to the current date (if the field is empty). You can try it by deleting the value, once you leave the field it's updated again. ",
+  ContentType = "FormulasDates",
+  FieldName = "RightNow"
+})
+
+@* Date Examples #2 *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Date - Calculate value",
+  Instructions = "This formula sets the third field to the current date/time + an offset the user can choose in a dropdown. "
+    + "Note that since we do some calculations, we must make sure the result is time-zone cleaned. ",
+  ContentType = "FormulasDates",
+  FieldName = "PublishWhen"
+})

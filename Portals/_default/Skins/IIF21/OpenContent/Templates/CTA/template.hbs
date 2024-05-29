@@ -1,0 +1,14 @@
+{{registerstylesheet "css/template.css"}}
+
+<div class="iif-cta" {{#if CTA_Image}} style="background-image: url({{CTA_Image}})"{{/if}}>
+    <div class="iif-cta--content">
+		<div class="iif-cta--label">{{CTA_Label}}</div>
+    	<div class="iif-cta--text">
+    		<div class="iif-cta--heading">{{CTA_Heading}}</div>
+    		<div>{{CTA_Content}}</div>
+    	</div>
+    	<div class="iif-cta--action">
+    		<a href="{{CTA_Button_Link}}" class="button button__primary">{{CTA_Button_Text}}</a>
+    	</div>
+    </div>
+</div>

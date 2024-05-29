@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Nav_Item": {
+      "type": "array",
+      "title": "Navigation Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "Link_Target": {
+            "type": "boolean",
+            "title": "Open link in new window?"
+          },
+          "Link_Title": {
+            "type": "string",
+            "title": "Link Title (used for accessibility)"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "Icon_Alt": {
+            "type": "string",
+            "title": "Icon Image alt tag (used for accessibility)"
+          }
+        }
+      }
+    },
+    "Remove_Limit": {
+      "type": "boolean",
+      "title": "Remove Item Number Limit"
+    }
+  }
+}

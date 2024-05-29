@@ -1,0 +1,26 @@
+<div class="article-staff-container">
+    <ul>
+    {{#each Items}}
+        <h2 class="article-staff--header">{{StaffGroup}}</h2>
+        {{#each Staff}}
+        <li>
+            <div class="article-staff">
+                <div class="article-staff--photo">
+                    <a href="/people/uid/{{UserID}}/{{FirstName}}{{LastName}}">
+                        {{#if Photo}}
+                            <img src="{{Photo}}" width="168" height="200" />
+                        {{else}}
+                            <img src="/portals/0/images/nophoto.jpg" width="168" height="200" />
+                        {{/if}}
+                        </a>
+                    </div>
+                <div class="article-staff--name"><a href="/people/uid{{UserID}}/{{FirstName}}{{LastName}}" class="group-full-name">{{DisplayName}}</a></div>
+                {{#if JobTitle}}
+                    <div class="article-staff--jobtitle">{{JobTitle}}</div>
+                {{/if}}
+            </div>
+        </li>
+        {{/each}}
+    {{/each}}
+    </ul>
+</div>

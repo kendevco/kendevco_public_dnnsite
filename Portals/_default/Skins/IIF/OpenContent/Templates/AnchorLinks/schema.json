@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Anchor": {
+      "type": "array",
+      "title": "Anchor Links",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          }
+        }
+      }
+    }
+  }
+}

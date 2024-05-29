@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "CTA": {
+      "type": "array",
+      "title": "Content",
+      "items": {
+        "type": "object",
+        "properties": {
+          "CTA_Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "CTA_Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Centered_Text": {
+            "type": "boolean",
+            "title": "Center Align Text"
+          },
+          "CTA_Image": {
+            "type": "string",
+            "title": "Image"
+          },
+          "CTA_Link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "CTA_Link_Text": {
+            "type": "string",
+            "title": "Link Text"
+          },
+          "CTA_Alt": {
+            "type": "boolean",
+            "title": "Put link inside box (instead of below)"
+          }
+        }
+      }
+    }
+  }
+}

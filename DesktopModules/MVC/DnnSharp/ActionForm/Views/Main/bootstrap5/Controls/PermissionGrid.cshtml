@@ -1,0 +1,40 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.FieldVM>
+@using avt.ActionForm
+
+@{
+    AppendClasses(Model.CssClass);
+    AppendRawStyles(Model.CssStyles);
+
+    var inputAttrs = NewAttributes();
+    AddAttribute(inputAttrs, "disabled", "disabled", !Model.IsConditionallyEnabled);
+}
+
+<div @ElementAttributes()>
+    <table class="table table-hover text-center table-borderless table-inline">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="text-center" ng-repeat="filterName in form.fields.@(Model.Name).optionsByName | limitTo: filterName.length"
+                    ng-bind="filterName[$index].settings.PermissionName">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="opts in form.fields.@(Model.Name).optionsByName">
+                <td data-ng-bind="opts[0].text" style="text-align: left;">
+                </td>
+
+                <td ng-repeat="po in opts">
+                    <input type="checkbox" class="form-check-input normalCheckBox ignore-submit-hidden-fields"
+                           name="@(Model.ElementId)-{{$index}}"
+                           id="@(Model.ElementId){{$index}}"
+                           ng-model="po.selected"
+                           ng-truevalue="po.value"
+                           value="{{po.value}}"
+                           ng-change="concatValues(form.fields.@(Model.Name))"
+                           @ElementAttributes(inputAttrs) />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

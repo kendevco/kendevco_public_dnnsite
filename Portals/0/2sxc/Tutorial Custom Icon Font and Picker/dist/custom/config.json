@@ -1,0 +1,112 @@
+{
+  "name": "xyz-icons",
+  "css_prefix_text": "icon-xyz-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "d73eceadda1f594cec0536087539afbf",
+      "css": "heart",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f3dc2d6d8fe9cf9ebff84dc260888cdf",
+      "css": "heart-empty",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "474656633f79ea2f1dad59ff63f6bf07",
+      "css": "star",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d17030afaecc1e1c22349b99f3c4992a",
+      "css": "star-empty",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "8f8278fbe5a2a0ea836be3c408b005d2",
+      "css": "star-half",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "84cf1fcc3fec556e7eaeb19679ca2dc9",
+      "css": "star-half-alt",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "87cf185e0420ff98e04406c0fbb873eb",
+      "css": "snow-inv",
+      "code": 59398,
+      "src": "meteocons"
+    },
+    {
+      "uid": "f1315f7ea135cbea7966cce0e7c10ce0",
+      "css": "snow-heavy-inv",
+      "code": 59399,
+      "src": "meteocons"
+    },
+    {
+      "uid": "ab5c31256cdd1f6b2d6de7202936f5a1",
+      "css": "hail-inv",
+      "code": 59400,
+      "src": "meteocons"
+    },
+    {
+      "uid": "b69ac48f8ad98e786047ff3d33101045",
+      "css": "windy-rain-inv",
+      "code": 59401,
+      "src": "meteocons"
+    },
+    {
+      "uid": "8f1bbb4667a8372dc4bb7de767f22f11",
+      "css": "clouds-inv",
+      "code": 59402,
+      "src": "meteocons"
+    },
+    {
+      "uid": "b2b73369982f91cddf8ec5f2a692e5ea",
+      "css": "clouds-flash-inv",
+      "code": 59403,
+      "src": "meteocons"
+    },
+    {
+      "uid": "8669af50382b53c48b9b803692828dd0",
+      "css": "github-circled-alt2",
+      "code": 59404,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "9ea28ba01d59a4410fa3db9c02cce157",
+      "css": "github",
+      "code": 59405,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "5f89d009e91c94c7c9be2f8711d7a2eb",
+      "css": "theatre",
+      "code": 59406,
+      "src": "maki"
+    },
+    {
+      "uid": "e7f91449144fb058ad8125e2d35b2363",
+      "css": "reddit",
+      "code": 59407,
+      "src": "elusive"
+    },
+    {
+      "uid": "5fb90c2cd2cc4ceb3fb6e787aae73fd3",
+      "css": "odnoklassniki-rect",
+      "code": 59408,
+      "src": "websymbols"
+    }
+  ]
+}

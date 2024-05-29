@@ -1,0 +1,9 @@
+﻿#ControlBar_CustomMenuItems > li > a, #ControlActionMenu > li > a {
+    height: 55px !important;
+}
+#ControlNav > li > a {
+    height: 53px !important;
+}
+#ControlEditPageMenu > li > a {
+     height: 55px !important;
+}

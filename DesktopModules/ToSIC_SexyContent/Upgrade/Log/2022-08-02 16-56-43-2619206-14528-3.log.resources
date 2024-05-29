@@ -1,0 +1,18 @@
+2022-08-02T16:56:43 14.07.04 - UpgradeModule starting
+2022-08-02T16:56:43 14.07.04 - IsUgradeComplete checking - Check on Start UpgradeModule
+2022-08-02T16:56:43 14.07.04 - IsUgradeComplete: False
+2022-08-02T16:56:43 14.07.04 - version / upgrade-complete test passed
+2022-08-02T16:56:43 14.07.04 - is-upgrade-running test passed
+2022-08-02T16:56:43  - set upgrade running - True
+2022-08-02T16:56:43  - set upgrade running - True - done
+2022-08-02T16:56:43 14.07.04 - ----- Upgrade to 14.07.04 started -----
+2022-08-02T16:56:43 14.07.04 - version-list check / switch done
+2022-08-02T16:56:43 14.07.04 - ClientResourceManager- seems to be last item in version-list, will clear
+2022-08-02T16:56:43 14.07.04 - ClientResourceManager- done clearing
+2022-08-02T16:56:43 08.11.00 - IsUgradeComplete checking - static check
+2022-08-02T16:56:43 08.11.00 - IsUgradeComplete: True
+2022-08-02T16:56:43 14.07.04 - updated upgrade-complete status
+2022-08-02T16:56:43 14.07.04 - ----- Upgrade to 14.07.04 completed -----
+2022-08-02T16:56:43  - set upgrade running - False
+2022-08-02T16:56:43  - set upgrade running - False - done
+2022-08-02T16:56:43 14.07.04 - UpgradeModule done / returning

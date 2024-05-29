@@ -1,0 +1,49 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<CountryFieldVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    AddCommonAttributes(true, true, false, "form-control", touchEvent: "click");
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+    {
+        AppendClasses("required");
+    }
+
+    if (!Model.IsConditionallyEnabled)
+    {
+        Attributes["disabled"] = "disabled";
+    }
+
+    var ngChange = "loadRegions('" + Model.Name + "'); form.fields." + Model.Name + ".value = form.fields." + Model.Name + ".selected.value;" +
+                    "form.fields." + Model.Name + ".ddValue = form.fields." + Model.Name + ".selected.value;";
+
+    if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+    {
+        ngChange += " form.fields." + Model.Name + ".onChange(form);";
+    }
+    Attributes["ng-change"] = ngChange;
+
+    if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+    {
+        Attributes["af-bindvalue"] = Model.BindValueCompiled;
+        Attributes["af-bindfrom"] = "form.fields." + Model.Name + ".options";
+    }
+}
+
+<select ng-init="initCountry = true; loadRegions('@(Model.Name)');"
+        ng-options="o as o.text for o in form.fields.@(Model.Name).options"
+        data-val={{form.fields.@(Model.Name).value}}
+        ng-model="form.fields.@(Model.Name).selected"
+        @ElementAttributes()>
+
+    <option value="">
+        @if (Model.Settings.LabelAlign == eLabelAlign.Inside)
+        {
+            @Model.TitleTokenized
+        }
+        else
+        {
+            @Model.Empty
+        }
+    </option>
+</select>

@@ -1,0 +1,26 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Icon_Panel": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Heading": {
+            "type": "text"
+          },
+          "Icon": {
+            "type": "image"
+          },
+          "Text": {
+            "type": "textarea"
+          },
+          "Link": {
+            "type": "url"
+          }
+        }
+      }
+    }
+  }
+}

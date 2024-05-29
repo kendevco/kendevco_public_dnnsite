@@ -1,0 +1,23 @@
+@inherits Custom.Hybrid.Razor12
+@{
+  /* This Template is used in ca. 3 Views which only show the title and the text */
+
+  var cols = Settings.ColsElement1;
+  var padding = Settings.ColsPaddingLeft;
+  var styling = Settings.TextAlignment == "c" ? "text-center" : "";
+}
+
+<div class="co-container-outer">
+  <div class="co-container-inner">
+    <div class="row">
+      <div class="clearfix co-content @styling col-md-@cols col-md-push-@padding" @Edit.TagToolbar(Content)>
+        @* call sub-template to show the title with the correct H1-H6 tag *@
+        @Html.Partial("../shared/_Header tag.cshtml")
+        @Html.Raw(Content.Text)
+      </div>
+    </div>
+  </div>
+</div>
+
+@* This adds all link/script tags *@
+@Html.Partial("../shared/_Assets.cshtml", new { parts = "styles,scripts"})

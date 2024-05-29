@@ -1,0 +1,12 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<Exception>
+
+<div class="af-alert alert alert-danger">
+    @if (CanEdit() && Model != null) {
+        <div>
+            @LocalizeString("MVC.ErrorResultDetailMessage")
+            @Model.ToString()
+        </div>
+    } else if (Model != null) {
+        @LocalizeString("MVC.ErrorResultMessage")
+    }
+</div>

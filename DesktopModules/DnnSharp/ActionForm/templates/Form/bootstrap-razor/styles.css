@@ -1,0 +1,772 @@
+﻿@charset "UTF-8";
+/* in popup view, the DNN table does not stretch 100% */
+.bstrap30 table#Table1 {
+  width: 100%;
+}
+::-ms-clear {
+  /*remove clear field button from all inputs in IE and Edge browsers*/
+  display: none;
+}
+/*start common loading animation for grid, form and tabspro*/
+.common-loading-container {
+  background-color: #fff;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  min-height: 100px;
+  width: 100%;
+  z-index: 999;
+  top: 0;
+  left: 0;
+}
+div.angrid .common-loading-container {
+  min-height: 350px;
+}
+div.tab-content .common-loading-container {
+  margin: 50px auto 0 auto;
+}
+.modal .common-loading-container {
+  position: fixed;
+}
+.common-data-loading,
+.common-data-loading:before,
+.common-data-loading:after {
+  animation: line-wave 1s infinite ease-in-out;
+  background: #00c0ef;
+  height: 3em;
+  width: 1em;
+}
+.common-data-loading.af-loading,
+.common-data-loading.af-loading:before,
+.common-data-loading.af-loading:after {
+  background: inherit;
+}
+.common-data-loading {
+  animation-delay: -0.16s;
+  color: #00c0ef;
+  font-size: 10px;
+  left: 50%;
+  margin: 0 auto;
+  position: absolute;
+  transform: translateZ(0);
+  top: 50%;
+  text-indent: -9999em;
+}
+.common-loading-text {
+  left: 47%;
+  margin: 0 auto;
+  position: absolute;
+  transform: translateZ(0);
+  top: 50%;
+}
+.common-data-loading:before,
+.common-data-loading:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.common-data-loading:before {
+  animation-delay: -0.32s;
+  left: -1.5em;
+}
+.common-data-loading:after {
+  left: 1.5em;
+}
+@keyframes line-wave {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 3em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 4em;
+  }
+}
+/*end common loading animation for grid, form and tabspro*/
+.bstrap30 .dropdown-menu li {
+  list-style-type: none !important;
+}
+.dropdown-absolute {
+  position: absolute;
+  z-index: 1030;
+}
+.dnnsf-disabled-checkboxes {
+  pointer-events: none;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+.dropdown-panel {
+  display: table;
+  white-space: nowrap;
+  padding: 12px;
+  max-height: 250px;
+  overflow-x: hidden;
+  opacity: 0;
+}
+.angucomplete-holder {
+  position: relative;
+}
+button > i.fa-action-form.pull-left {
+  margin-top: 3px;
+  margin-left: 0;
+}
+button > i.fa-action-form {
+  margin-left: 4px;
+}
+.bstrap .static {
+  line-height: 20px;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-left: 6px;
+  color: #444;
+}
+.modal-content > .modal-body .form-group {
+  margin: 0;
+}
+@media only screen and (max-width: 992px) {
+  .modal-content {
+    width: calc(100vw - 20px);
+  }
+}
+.table-striped .preview img {
+  min-width: 80px;
+}
+html body.in-iframe .bstrap30 .dropdown-absolute {
+  position: relative;
+}
+/*
+ * jQuery File Upload UI Plugin CSS 8.1
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  filter: alpha(opacity=0) !important;
+  transform: translate(-300px, 0) scale(4) !important;
+  font-size: 23px !important;
+  direction: ltr !important;
+  cursor: pointer !important;
+  height: 30px !important;
+  border-width: 0 !important;
+}
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+.progress-animated .bar {
+  background: url(../bootstrap/img/progressbar.gif) !important;
+  filter: none;
+}
+.fileupload-loading {
+  float: right;
+  width: 32px;
+  height: 32px;
+  background: url(../bootstrap/img/loading.gif) center no-repeat;
+  background-size: contain;
+  display: none;
+}
+.fileupload-processing .fileupload-loading {
+  display: block;
+}
+.files audio,
+.files video {
+  max-width: 300px;
+}
+@media (max-width: 767px) {
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+}
+/*fix DNN 7 file styles*/
+.fileinput-button .dnnInputFileWrapper {
+  overflow: visible !important;
+  position: static !important;
+}
+.fileinput-button .dnnInputFileWrapper .dnnSecondaryAction {
+  display: none !important;
+}
+.inline-error p {
+  margin: 0;
+  padding: 0;
+}
+.alert p {
+  margin: 10px 0 16px 0;
+  padding: 0;
+}
+.files p {
+  margin: 0;
+  padding: 0;
+}
+/* this breaks DNN dialogs */
+.ui-dialog .ui-dialog-titlebar-close {
+  position: static !important;
+}
+/* This fixes relative DNN Divs getting on top of our popup */
+.modal-open .DnnModule,
+.modal-open #DNN6,
+.modal-open #Content {
+  position: static !important;
+}
+.dnnsf-dnn-editmode .modal-backdrop {
+  /*display: none;*/
+}
+@media (min-width: 992px) {
+  .modal .modal-dialog.modal-lg {
+    width: 900px;
+  }
+}
+/* move datepicker on top */
+.ui-datepicker {
+  z-index: 9999 !important;
+}
+.popover {
+  z-index: 9999 !important;
+}
+/* CSS 3 animations */
+.af-fade.ng-hide-add,
+.af-fade.ng-hide-remove {
+  -webkit-transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  /*display: block!important;*/
+}
+.af-fade.ng-hide-remove {
+  opacity: 0;
+}
+.af-fade.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+}
+.af-fade.ng-hide-add {
+  opacity: 1;
+}
+.af-fade.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+}
+/* this is used by angular to get duration and delay */
+.af-slide.ng-hide-add,
+.af-slide.ng-hide-remove {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  display: block !important;
+}
+/* this is added before the element is displayed */
+.af-slide.ng-hide-remove,
+.af-slide.ng-hide-add.ng-hide-add-active {
+  /*-webkit-transform: scaleY(0);
+        -moz-transform: scaleY(0);
+        -ms-transform: scaleY(0);
+        -o-transform: scaleY(0);
+        transform: scaleY(0);*/
+  height: 0;
+  opacity: 0;
+}
+/* this is added to an element right before is hidden  */
+.af-slide.ng-hide-add,
+.af-slide.ng-hide-remove.ng-hide-remove-active {
+  /*-webkit-transform: scaleY(1);
+            -moz-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            -o-transform: scaleY(1);
+            transform: scaleY(1);*/
+  height: 100%;
+  opacity: 1;
+}
+.autocomplete-wrapper {
+  margin: 44px auto 44px;
+  max-width: 600px;
+}
+.autocomplete-wrapper label {
+  display: block;
+  margin-bottom: 0.75em;
+  color: #3f4e5e;
+  font-size: 1.25em;
+}
+.autocomplete-wrapper .text-field {
+  padding: 0 15px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #CBD3DD;
+  font-size: 1.125em;
+}
+.autocomplete-wrapper ::-webkit-input-placeholder {
+  color: #CBD3DD;
+  font-style: italic;
+  font-size: 18px;
+}
+.autocomplete-wrapper :-moz-placeholder {
+  color: #CBD3DD;
+  font-style: italic;
+  font-size: 18px;
+}
+.autocomplete-wrapper ::-moz-placeholder {
+  color: #CBD3DD;
+  font-style: italic;
+  font-size: 18px;
+}
+.autocomplete-wrapper :-ms-input-placeholder {
+  color: #CBD3DD;
+  font-style: italic;
+  font-size: 18px;
+}
+.autocomplete-suggestions {
+  overflow: auto;
+  border: 1px solid #CBD3DD;
+  background: #FFF;
+}
+.autocomplete-suggestion {
+  overflow: hidden;
+  padding: 5px 15px;
+  white-space: nowrap;
+}
+.autocomplete-selected {
+  background: #F0F0F0;
+}
+.autocomplete-suggestions strong {
+  color: #1fadd7;
+  font-weight: normal;
+}
+/*Overrides the css from bootstrap*/
+label.control-label {
+  font-weight: bold !important;
+}
+.ContentWrapDark label.ng-binding {
+  /*fix for evoque*/
+  color: initial;
+}
+/*align modals to top on mobile*/
+@media only screen and (max-width: 768px) {
+  .af-modal-module .modal-dialog {
+    transform: translate(0, 0) !important;
+    -ms-transform: translate(0, 0) !important;
+    -webkit-transform: translate(0, 0) !important;
+  }
+}
+.bstrap30 {
+  /* And this is to fix incompatibilities with bootstrap 2 */
+  /* DNN font size is by default smaller */
+  /* undo required text from DNN */
+  /* table extensions */
+  /* Tags control */
+}
+.bstrap30 .row {
+  min-width: 0;
+  /* this fixes an issue with The 1140px Grid DotNetNuke Skin by dnnideas.com */
+}
+.bstrap30 .field-container {
+  margin-bottom: 15px;
+}
+.bstrap30 .loose .field-container {
+  margin-bottom: 27px;
+}
+.bstrap30 .compact .field-container {
+  margin-bottom: 4px;
+}
+.bstrap30 label {
+  font-weight: normal;
+}
+.bstrap30 .form-horizontal .top .control-label {
+  text-align: left;
+  margin: 0 0 3px 3px;
+  padding: 0;
+  float: none;
+  width: auto;
+}
+.bstrap30 .form-horizontal .control-label.radio-inline {
+  width: auto;
+}
+@media (min-width: 768px) {
+  .bstrap30 .form-horizontal .label-left {
+    text-align: left;
+  }
+  .bstrap30 .form-horizontal .label-right {
+    text-align: right;
+  }
+  .bstrap30 .form-horizontal .label-center {
+    text-align: center;
+  }
+}
+.bstrap30 .wysiwyg {
+  overflow: hidden;
+}
+.bstrap30 label.required {
+  font-weight: bold;
+}
+.bstrap30 .form-horizontal .control-label,
+.bstrap30 .form-horizontal .radio,
+.bstrap30 .form-horizontal .checkbox,
+.bstrap30 .form-horizontal .radio-inline,
+.bstrap30 .form-horizontal .checkbox-inline {
+  padding-top: 10px;
+}
+.bstrap30 .radio-inline,
+.bstrap30 .checkbox-inline {
+  margin-left: 10px;
+}
+.bstrap30 .form-horizontal .control-label.radio {
+  text-align: left;
+}
+.bstrap30 .action-buttons {
+  text-align: center;
+  padding-top: 17px;
+}
+.bstrap30 label.placeholder {
+  background: none !important;
+  line-height: 27px !important;
+}
+.bstrap30 .submit-progress {
+  /*position: relative;
+    bottom: 52px;
+    right: 40px;*/
+  visibility: hidden;
+}
+.bstrap30 .submit-progress img {
+  width: auto;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+  border-color: transparent;
+}
+.bstrap30 .submit-progress.stretch img {
+  width: 100%;
+}
+.bstrap30 .section-title {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.bstrap30 .section-title.underlined {
+  border-bottom: 1px solid #ccc;
+}
+.bstrap30 .modal {
+  overflow-y: auto !important;
+  width: auto;
+  background: transparent;
+  margin: 0;
+  top: 0 !important;
+  z-index: 9050 !important;
+}
+.bstrap30 .modal-body {
+  max-height: none;
+}
+.bstrap30 .modal-backdrop,
+.bstrap30 .modal-backdrop.fade.in {
+  position: fixed;
+  opacity: 0.8 !important;
+  filter: alpha(opacity=80);
+  z-index: 9040 !important;
+}
+.bstrap30 .form-actions {
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.bstrap30 .form-horizontal .control-label {
+  width: auto;
+  float: none;
+}
+.bstrap30 .c-form .form-group {
+  margin-bottom: 0;
+}
+.bstrap30 input[type="radio"],
+.bstrap30 input[type="checkbox"] {
+  margin-top: 1px;
+}
+.bstrap30 .static {
+  margin: 8px 0 0 0;
+}
+.bstrap30 textarea.form-control {
+  height: auto;
+}
+.bstrap30 .label-align-top .radio,
+.bstrap30 .label-align-top .checkbox {
+  margin-left: 20px;
+}
+.bstrap30 .centered {
+  text-align: center;
+}
+.bstrap30 .label-align-top .btn-form {
+  margin-top: 17px;
+}
+.bstrap30 .required label:after,
+.bstrap30 legend.required:after {
+  content: none;
+}
+.bstrap30 .btnc-left,
+.bstrap30 .form-horizontal .control-label.btnc-left {
+  text-align: left;
+}
+.bstrap30 .btnc-right,
+.bstrap30 .form-horizontal .control-label.btnc-right {
+  text-align: right;
+}
+.bstrap30 .btnc-center,
+.bstrap30 .form-horizontal .control-label.btnc-center {
+  text-align: center;
+}
+.bstrap30 .form-button {
+  height: auto;
+}
+.bstrap30 .table-borderless td,
+.bstrap30 .table-borderless th {
+  border: none !important;
+}
+.bstrap30 .table-inline {
+  width: auto !important;
+}
+.bstrap30 .table-inline td,
+.bstrap30 .table-inline th {
+  padding-left: 30px !important;
+}
+.bstrap30 .bootstrap-tagsinput {
+  width: 100%;
+}
+.bstrap30 .tt-dropdown-menu {
+  min-width: 160px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.bstrap30 .tt-hint {
+  color: #ccc;
+}
+.bstrap30 .tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+.bstrap30 .tag {
+  font-size: 85% !important;
+}
+.bstrap30 .tt-suggestion.tt-is-under-cursor {
+  color: #fff;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+.bstrap30 .tt-suggestion.tt-is-under-cursor a {
+  color: #fff;
+}
+.bstrap30 .tt-suggestion p {
+  margin: 0;
+  padding: 0;
+}
+.bstrap30 .twitter-typeahead input {
+  font-family: Arial !important;
+  /* looks like tags input is only working with some fonts */
+}
+.bstrap30 .modal-body {
+  width: 100%;
+}
+.bstrap30 fieldset.checkboxlist-fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+.bstrap30 .form-group .form-control-inline-block {
+  display: inline-block;
+}
+.datetime-picker-dropdown {
+  z-index: 9051;
+}
+.custom-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: not-allowed;
+}
+.files span.glyphicon {
+  cursor: pointer;
+  font-size: 20px;
+}
+/*===== LOADER =====*/
+.loader-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999999999999;
+  top: 0;
+  text-align: center;
+  opacity: 0.7;
+}
+.loader,
+.loader:before,
+.loader:after {
+  background: #ffffff;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader {
+  text-indent: -9999em;
+  margin: 88px auto;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0 #ffffff;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em #ffffff;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0 #ffffff;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em #ffffff;
+    height: 5em;
+  }
+}
+/*===== END LOADER =====*/
+/* sortable*/
+.af-handler {
+  padding: 10px;
+  margin: -10px;
+}
+.bstrap30 div.af-slider {
+  margin-bottom: 30px;
+  margin-top: 8px;
+}
+@media only screen and (max-width: 768px) {
+  .field-container .af-sortable {
+    font-size: 16px;
+  }
+}
+.field-container[disabled="disabled"] .af-slider {
+  pointer-events: none;
+}
+.field-container[disabled] .af-slider .slider-handle {
+  background-image: linear-gradient(to bottom, grey, grey);
+}
+/*radio inputs as buttons*/
+.form-root .form-horizontal .field-container .radio.radio-as-buttons {
+  display: inline-flex;
+  margin-left: 0;
+  padding-left: 0;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons input[type="radio"].normalCheckBox {
+  opacity: 0;
+  position: absolute;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons label input[type="radio"]:checked + span.btn {
+  background-color: #e6e6e6;
+  color: #333333;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons label > .radio-boxes-buttons {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  white-space: normal;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons label.radio-boxes-labels {
+  padding-left: 0;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons .radio-btn-text {
+  display: inline-flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.form-root .form-horizontal .field-container .radio.radio-as-buttons {
+  padding-left: 0;
+}
+.bstrap30 .label-align-top .agreement-links {
+  margin-left: 20px;
+}
+@media (min-width: 768px) {
+  .bstrap30 .form-horizontal .control-label {
+    text-align: left;
+    margin-bottom: 0;
+    padding-top: 7px;
+  }
+}
+.dnnsf-text-editor {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.touch-signature-canvas {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: default;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlcy5sZXNzIiwiQzovUHJvamVjdHMvRG5uLlBsYXRmb3JtL1dlYnNpdGUvRGVza3RvcE1vZHVsZXMvRG5uU2hhcnAvQ29tbW9uL3N0YXRpYy9jb21tb24ubGVzcyIsImNvbW1vbi5sZXNzIiwicm9vdC1jbGFzcy1jb21tb24ubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxTQUFTOztBQ0NULFNBQVUsTUFBSztFQUNkLFdBQUE7O0FBR0Q7O0VBQ0ksYUFBQTs7O0FBSUo7RUFDSSxzQkFBQTtFQUNBLFlBQUE7RUFDQSxjQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxNQUFBO0VBQ0EsT0FBQTs7QUFHSixHQUFHLE9BQVE7RUFDUCxpQkFBQTs7QUFHSixHQUFHLFlBQWE7RUFDWix3QkFBQTs7QUFHSixNQUFPO0VBQ0gsZUFBQTs7QUFHSjtBQUNBLG9CQUFvQjtBQUNwQixvQkFBb0I7RUFDaEIsNENBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxVQUFBOztBQUdKLG9CQUFvQjtBQUNwQixvQkFBb0IsV0FBVztBQUMvQixvQkFBb0IsV0FBVztFQUMzQixtQkFBQTs7QUFHSjtFQUNJLHVCQUFBO0VBQ0EsY0FBQTtFQUNBLGVBQUE7RUFDQSxTQUFBO0VBQ0EsY0FBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBVyxhQUFYO0VBQ0EsUUFBQTtFQUNBLG9CQUFBOztBQUdKO0VBQ0ksU0FBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtFQUNBLFdBQVcsYUFBWDtFQUNBLFFBQUE7O0FBR0osb0JBQW9CO0FBQ3BCLG9CQUFvQjtFQUNoQixTQUFTLEVBQVQ7RUFDQSxrQkFBQTtFQUNBLE1BQUE7O0FBR0osb0JBQW9CO0VBQ2hCLHVCQUFBO0VBQ0EsWUFBQTs7QUFHSixvQkFBb0I7RUFDaEIsV0FBQTs7QUFHSjtFQUNJO0VBQUk7RUFBSztJQUNMLGVBQUE7SUFDQSxXQUFBOztFQUdKO0lBQ0ks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 */

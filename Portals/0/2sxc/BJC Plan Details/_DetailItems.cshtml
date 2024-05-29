@@ -1,0 +1,18 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+
+@{
+  // This is a partial template which is re-used in many other templates, so it's shared here
+  // its shows the detailitem data like name, position, contact data and description
+  var detailitems = DynamicModel.data;
+}
+
+          <div class="cta-container">
+            <div class="row">
+            @foreach (var detailitem in detailitems) {
+              <div class="cta col-sm-4 mb-4" @Edit.TagToolbar(detailitem)>
+              @Html.Partial("_DetailItem.cshtml", new { data = detailitem })
+              </div>
+            }
+            </div>
+          </div>

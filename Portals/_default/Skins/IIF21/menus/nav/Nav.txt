@@ -1,0 +1,22 @@
+<ul class="main-nav">
+    [*>NODE-TOP]
+</ul>
+
+[>NODE-TOP]
+    <li class="[?NODE]dropdown [/?][?SELECTED]active[/?]">
+
+    [?NODE]
+        <a href="#" class="nav-link nav-link__dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">[=TEXT]</a>
+        <ul class="dropdown-menu subLevel">
+        [*>NODE]
+        </ul>
+    [?ELSE]
+        <a href="[=URL]" class="nav-link">[=TEXT]</a>
+    [/?]
+    </li>
+[/>]
+[>NODE]
+    <li class="[?NODE]dropdown [/?][?SELECTED]active[/?]">
+        <a href="[=URL]" class="nav-link">[=TEXT]</a>
+    </li>
+[/>]

@@ -1,0 +1,54 @@
+@using DotNetNuke.Web.DDRMenu;
+
+@using System.Dynamic;
+
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
+
+@{ var root = Model.Source.root; }
+
+@helper RenderNodes(IList<MenuNode> nodes)
+{ if (nodes.Count > 0)
+    {
+
+    <div class="ui secondary right menu">
+
+        @foreach (var node in nodes)
+        {
+            var cssClasses = new List<string>();
+            cssClasses.Add("ui item");
+
+            //if (node.HasChildren())
+            //{ cssClasses.Add(""); }
+
+            // node.Breadcrumb will be true if the page or
+            // one of its children is active
+            if (node.Breadcrumb)
+            { cssClasses.Add("active"); }
+
+            var classString = new HtmlString((cssClasses.Count == 0)
+               ? ""
+               : (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+
+            <div @classString>
+                @if (node.Enabled)
+                {
+                    <a href="@node.Url" target="@node.Target">@node.Text</a>
+                }
+
+                @if (node.HasChildren())
+                {
+                  <div class="single-column-dropdown">
+                    <div class="">
+                        @RenderNodes(node.Children)
+                    </div>
+                  </div>
+                }
+           
+            </div>
+        }
+    </div>
+}
+
+}
+
+@RenderNodes(root.Children)

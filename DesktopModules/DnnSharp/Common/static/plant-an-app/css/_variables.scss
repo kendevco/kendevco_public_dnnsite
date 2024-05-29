@@ -1,0 +1,42 @@
+﻿// Spacing
+$base-spacing: 4px;
+$spacing2x: $base-spacing * 2;
+$spacing3x: $base-spacing * 3;
+$spacing4x: $base-spacing * 4;
+$spacing-small: $spacing4x;
+$spacing5x: $base-spacing * 5;
+$spacing6x: $base-spacing * 6;
+$spacing7x: $base-spacing * 7;
+$spacing8x: $base-spacing * 8;
+$spacing-medium: $spacing8x;
+$spacing9x: $base-spacing * 9;
+$spacing10x: $base-spacing * 10;
+$spacing11x: $base-spacing * 11;
+$spacing12x: $base-spacing * 12;
+$spacing-large: $spacing12x;
+$spacing13x: $base-spacing * 13;
+$spacing14x: $base-spacing * 14;
+$spacing15x: $base-spacing * 15;
+$spacing16x: $base-spacing * 16;
+$spacing-xlarge: $spacing16x;
+
+// Grays
+$gray50: #F9FAFA;
+$gray100: #EEF0F0;
+$gray200: #DCE1E0;
+$gray300: #CBD2D1;
+$gray400: #B9C2C1;
+$gray500: #8B9A98;
+$gray600: #667573;
+$gray700: #444E4D;
+$gray800: #222726;
+$gray900: #111413;
+
+// primary color
+$primary-color: #009688;
+
+// warning
+$warn-color: #fbebb7f7;
+
+// danger
+$danger-color: #d14963;

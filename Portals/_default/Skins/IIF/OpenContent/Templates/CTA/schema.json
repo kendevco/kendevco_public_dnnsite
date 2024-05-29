@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Banner_Image": {
+      "type": "string",
+      "title": "Banner Image"
+    },
+    "Filtered": {
+      "type": "boolean",
+      "title": "Add Filter"
+    },
+    "Banner_Icon": {
+      "type": "string",
+      "title": "Banner Icon"
+    },
+    "Banner_Text": {
+      "type": "string",
+      "title": "Banner Content"
+    },
+    "Banner_CTA_Text": {
+      "type": "string",
+      "title": "Banner Button Text"
+    },
+    "Banner_CTA_Link": {
+      "type": "string",
+      "title": "Banner Button Link"
+    }
+  }
+}

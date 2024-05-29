@@ -1,0 +1,71 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.FieldLabelVM>
+@using avt.ActionForm
+
+@{
+    var labelAttributes = NewAttributes();
+    if (Model.Settings.LabelAlign != eLabelAlign.Inside && Model.Settings.LabelAlign != eLabelAlign.Top)
+    {
+        var labelAlign = Model.Settings.LabelAlign.Value.ToString().ToLower();
+        switch (labelAlign)
+        {
+            case "left":
+                labelAlign = "start";
+                break;
+            case "right":
+                labelAlign = "end";
+                break;
+        }
+
+        AppendClasses(labelAttributes, "text-" + Model.Settings.LabelAlign.Value.ToString().ToLower());
+        if (Model.Settings.LabelWidth > 0)
+        {
+            AppendClasses(labelAttributes, "form-col-" + Model.Settings.LabelWidth);
+        }
+    }
+
+    AppendRawStyles(labelAttributes, Model.Field.LabelCssStyles);
+    AppendClasses(labelAttributes, "form-label control-label af-slide");
+    AppendClasses(labelAttributes, Model.Field.LabelCssClass);
+
+    if (Model.Field.IsRequired && !Model.Field.HasValidationCondition)
+    {
+        AppendClasses(labelAttributes, "required");
+    }
+
+    if (Model.Settings.HasCustomLayout.Value)
+    {
+        if (!Model.Field.BindPreserveLayout)
+        {
+            AddAttribute(labelAttributes, "ng-show", Model.Field.BindShowCompiled, !string.IsNullOrWhiteSpace(Model.Field.BindShowCompiled));
+        }
+        else
+        {
+            labelAttributes["ng-style"] = "{ visibility:" + Model.Field.BindShowCompiled + " ? 'visible' : 'hidden' }";
+        }
+    }
+
+    var origTitle = "";
+    if (Model.Settings.ShowTooltipTitle)
+    {
+        origTitle = Model.Field.TitleTokenized;
+    }
+}
+
+<label for="@(Model.LabelElementFor)"
+       @ElementAttributes(labelAttributes)>
+
+    @Raw(Model.Field.TitleTokenized)
+
+    @if (!string.IsNullOrWhiteSpace(Model.Field.ShortDescTokenized) && Model.Settings.ShowTooltips)
+    {
+
+        <span class="popupOnHover"
+          data-bs-toggle="popover"
+          data-bs-html="true"
+          data-bs-content="@Model.Field.ShortDescTokenized"
+          title=@origTitle>
+            <i class="fa fa-info-circle"></i>
+        </span>
+    }
+
+</label>

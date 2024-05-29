@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "News Section Title"
+    },
+    "Title_Icon": {
+      "type": "string",
+      "title": "News Section Icon"
+    },
+    "News_Feed": {
+      "type": "array",
+      "title": "News Feed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Article_Title": {
+            "type": "string",
+            "title": "Article Title"
+          },
+          "Article_Date": {
+            "title": "Article Date"
+          },
+          "Article_Content": {
+            "type": "string",
+            "title": "Article Content"
+          },
+          "Article_Link": {
+            "type": "string",
+            "title": "Article Link"
+          }
+        }
+      }
+    },
+    "View_All": {
+      "type": "boolean",
+      "title": "Add View All Option"
+    },
+    "View_All_Link": {
+      "type": "string",
+      "title": "View All Link",
+      "dependencies": [
+        "View_All"
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.FileManagerFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    @TemplatePartial(
+        "_FieldRender",
+        new FieldRendererVM(Model) { NoDefaultContainer = false, NoLabel = Model.DisplayInPopup },
+        new ViewDataDictionary(ViewData) { {"renderInner", "true"} }
+    )
+}
+else
+{
+    AddCommonAttributes(true, true, true);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    <div load-on-demand="'filemanager'">
+        <div data-settings="settings" submit-data="" filemanager="" data-register-control="registerControl(control)" update-field="updateField(field, val)"
+         id="@Model.ElementId"
+         name="@Model.ElementId"
+         data-field="settings.Fields['@(Model.Name)']"
+         data-fieldid="@Model.Id"
+         data-container-class="@Model.ContainerClass"
+         data-btn-in-upload="@Model.DisplayBtnInUpload.ToString()"
+         data-form-btn="@Model.UploadButton"
+         data-btn-in-browser="@Model.DisplayBtnInBrowser.ToString()"
+         data-display-in-popup="@Model.DisplayInPopup.ToString()"
+         data-restricted-file-name-characters="@Model.RestrictedFileNameCharacters"
+         data-restricted-error-message="@Model.RestrictedErrorMessage"
+         data-popup-width="@Model.PopupWidth"
+         data-popup-height="@Model.PopupHeight"
+         data-file-browser="@Model.EnableFileBrowser.ToString()"
+         data-default-browse-view="@Model.DefaultBrowseView"
+         data-file-size-limit="@Model.FileSizeLimit"
+         data-file-ext="@Model.FileExt"
+         data-upload-multiple="@Model.UploadMultiple.ToString()"
+         data-auto-upload="@Model.AutoUpload.ToString()"
+         data-display-total-progress-bar="@Model.DisplayTotalProgressBar.ToString()"
+         data-resize-width="@Model.ResizeWidth"
+         data-resize-height="@Model.ResizeHeight"
+         data-resize-method="@Model.ResizeMethod"
+         data-call-back="@Model.CallBack"
+         @ElementAttributes()>
+        </div>
+    </div>
+}

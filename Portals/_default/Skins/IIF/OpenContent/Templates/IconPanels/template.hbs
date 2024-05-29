@@ -1,0 +1,19 @@
+<div class="panel-container">
+    {{#each Icon_Panel}}
+        <div class="panel-container--icon-panel">
+            {{#if Icon}}
+                <div class="icon-panel--icon">
+                    {{#if Link}}
+                        <a href="{{Link}}"><img src="{{Icon}}" alt="panel icon" width="100" height="100" /></a>
+                        {{else}}
+                        <img src="{{Icon}}" alt="panel icon" width="100" height="100" />
+                    {{/if}}
+                </div>
+            {{/if}}
+            <div class="icon-panel--text">
+                {{#if Heading}}<h3>{{#if Link}}<a href="{{Link}}">{{Heading}}</a>{{/if}}</h3>{{/if}}
+                {{#if Text}}<p>{{Text}}</p>{{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

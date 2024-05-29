@@ -1,0 +1,88 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<HtmlResultVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    var attributes = NewAttributes();
+    AppendClasses(attributes, "container-fluid form-root");
+    AppendClasses(attributes, Model.RootClass);
+    AppendClasses(attributes, Model.Settings.RootClasses);
+
+    AppendStyles(attributes, "padding", Model.Settings.Padding.ToString(), "px");
+    AppendStyles(attributes, "color", Model.Settings.TextColor);
+
+    // TODO: See if this is needed anymore.
+    attributes["data-rootclass"] = Model.RootClass;
+
+    var hasActionResult = false;
+    var actionResult = "{}";
+    if (!string.IsNullOrWhiteSpace(Model.ActionResultViewName))
+    {
+        hasActionResult = true;
+        actionResult = Partial(Model.ActionResultViewName, Model.ActionResultModel, new ViewDataDictionary(ViewData) { { Constants.renderActionResult, "true" } }).ToString();
+    }
+}
+
+<div id="@Model.ControllerElementId"
+     ng-controller="ActionFormCtrl"
+     ng-init="load('@(Dnn.ActiveModule.ModuleID)')"
+     has-repeaters
+     @ElementAttributes(attributes)>
+
+    @if (Model.OpenMode == FormOpenMode.Popup)
+    {
+        try
+        {
+            @TemplatePartial("_FormModal")
+        }
+        catch (Exception ex)
+        {
+            <div class="alert alert-warning">
+                <p>
+                    Error: @ex.Message
+                    @if (Model.ShowDetailedErrors) {
+                        <pre>@ex.ToString();</pre>
+                    }
+                </p>
+            </div>
+        }
+    }
+    else
+    {
+        try
+        {
+            @TemplatePartial("_FormContent")
+        }
+        catch (Exception ex)
+        {
+            <div class="alert alert-warning">
+                <p>
+                    Error: @ex.Message
+                    @if (Model.ShowDetailedErrors) {
+                        <pre>@ex.ToString();</pre>
+                    }
+                </p>
+            </div>
+        }
+    }
+
+</div>
+
+<script type="text/javascript">
+    // HtmlResult.cshtml
+
+    (function () {
+        var loadResult = {
+            Settings: @Raw(Model.SettingsJson),
+            Data: @Json(Model.Data),
+            Localization: @Raw(Model.Localization),
+            ActionResult: @Raw(actionResult),
+            ResultType: "@(hasActionResult ? "ActionResult" : "HtmlResult")",
+            JsIncludes: @Raw(Model.JsIncludes),
+            CssIncludes: @Raw(Model.CssIncludes),
+        };
+
+        events.onLoadComplete(loadResult);
+    })();
+</script>

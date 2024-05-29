@@ -1,0 +1,71 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <h2>2sxc Custom Micro-WYSIWYG Input Field</h2>
+    <p>
+      Creating an own WYSIWYG would be super difficult. 
+      This is why we decided to create a simple API where you can use the existing WYSIWYG and just reconfigure it. 
+      For the configuration you will need to understand the TinyMCE API and the names of our callbacks, but then it's really easy. 
+    </p>
+    <p>You can learn how to:</p>
+    <ol>
+      <li>Use <code>connector.loadScript(...)</code> to load the builtin WYSIWYG</li>
+      <li>...and wait for the callback to ensure it's ready</li>
+      <li>Create a inner <code>field-string-wysiwyg</code></li>
+      <li>Set the mode to <code>edit</code> (instead of <code>preview</code>)</li>
+      <li>Attach the <code>connector</code> so the inner object has it as well</li>
+      <li>Attach the <code>reconfigure</code> object</li>
+      <li>Create your own <code>Reconfigurator</code> which can make changes</li>
+      <li>Use <code>configureOptions</code> to set a different toolbar</li>
+    </ol>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
+</div>
+<br>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+</hide>
+<div class="alert alert-success">
+  <h2>New syntax: String WYSIWYG Micro Custom Input Field</h2>
+  <p>
+    This example shows a reduced WYSIWYG with only 4 buttons. <br>
+    Hit this edit button to have a look: 
+  </p>
+  <snippet id="tb-wysiwyg-newsyn">
+  @Kit.Toolbar.Empty().New("UiStringWysiwygMicro").AsTag()
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwyg-newsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+<div class="alert alert-secondary">
+  <h2>Old syntax: String WYSIWYG Micro Custom Input Field</h2>
+  <p>
+    This example shows a reduced WYSIWYG with only 4 buttons. <br>
+    Hit this edit button to have a look: 
+  </p>
+  <snippet id="tb-wysiwyg-oldsyn">
+  @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringWysiwygMicro" })
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-wysiwyg-oldsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+
+
+<hide>
+@Html.Partial("_warning.cshtml")
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new {
+  Path,
+  File = "../system/field-string-wysiwyg-micro/index.js",
+  Size = 850,
+  Title = "Source of [App]/system/field-string-wysiwyg-micro/index.js"
+})
+</hide>

@@ -1,0 +1,40 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<DropdownWithAutocompleteFieldVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+
+    AddCommonAttributes(true, true, true);
+    AddPlaceholderAttributes();
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrEmpty(Model.ShortDescTokenized) && Model.Settings.LabelAlign.Value == eLabelAlign.Inside);
+    AddAttribute("data-input-mask", Model.Mask, !string.IsNullOrWhiteSpace(Model.Mask));
+
+    if (!Model.IsConditionallyEnabled)
+    {
+        AddAttribute("disable-input", "true");
+    }
+    else
+    {
+        var bindEnableCompiled = "!(" + Model.BindEnableCompiled + ")";
+        AddAttribute("disable-input", bindEnableCompiled, !string.IsNullOrWhiteSpace(Model.BindEnableCompiled));
+    }
+}
+
+<div load-on-demand="'angucomplete'">
+    <div angucomplete=""
+         input-class="form-control"
+         search-fields="text"
+         title-field="text"
+         match-class="highlight"
+         minlength="1"
+         update-field="updateField(field, val)"
+         text-no-results="@Model.NoResults"
+         local-data="form.fields.@(Model.Name).options"
+         data-limit="@(Model.Limit)"
+         init-value="'@(Model.Value)'"
+         display-number="'@(Model.DisplayNumber)'"
+         disable-dropdown-on-click="'@(Model.DisableDropdownOnClick)'"
+         @ElementAttributes()>
+    </div>
+</div>

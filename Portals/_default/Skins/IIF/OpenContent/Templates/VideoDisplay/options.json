@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Video": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Embed_Code": {
+            "type": "wysihtml"
+          }
+        }
+      }
+    }
+  }
+}

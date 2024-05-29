@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "Downloads": {
+      "type": "array",
+      "title": "Downloads",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Link_Text": {
+            "type": "string",
+            "title": "Text for Link",
+            "required": true
+          },
+          "Download_Link": {
+            "type": "string",
+            "title": "Download Link",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

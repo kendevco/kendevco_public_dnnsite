@@ -1,0 +1,56 @@
+<h2>Simple get content-items out of a query with REST</h2>
+<p>
+    The following demo shows how to use simple JavaScript to retrieve all Feedback Categories - sorted! thanks to a query.
+</p>
+<p>
+    This uses jQuery to do the ajax and will add the returned items to the ol-tags. <br>
+    Note that a query can return multiple lists, so the items are not directly in data[0...] but in data.<em>streamname</em>[...] so in this case it's data.Category or data.Feedback.
+</p>
+<p>
+    Note that it works for admins by default - to make it work for visitors you have to allow read-permissions for anonymous users (or users with view permissions). This is configured on the queries-types - for more infos read <a href="http://2sxc.org/help?tag=permissions">Permissions Help</a>. 
+</p>
+<p>
+    <input type="button" onclick="getSortedCategories(this)" value="run server side query">
+</p>
+<h2>These is where the categories will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+
+<script>
+
+function getSortedCategories(mod) {
+    // the following line gets a helper object for this module. Note that the placeholder Module:ModuleId will be turned into the module number on the server
+    $2sxc(mod).webApi.get('app/auto/query/EverythingSorted')
+        .then(handleResult);
+};
+
+function handleResult(data) {
+    // use the data to show a message
+    $('#message').html("Success, the $.ajax(...) worked! I found " + data.Category.length + " categories, the first one is '" + data.Category[0].Title + "' and found " + data.Feedback.length + " feedback items");
+
+    // use the data to show a list of items
+    var items = [];
+    $.each(data.Category, function(idx, itm) {
+        items.push( "<li>Cat: " + itm.Title + "</li>" );
+    });
+    $.each(data.Feedback, function(idx, itm) {
+        items.push( "<li>Feedback: " + itm.Title + "</li>" );
+    });
+    
+    $(items.join("")).appendTo($('#categories'));
+
+}
+
+// This call will execute the main function when the document is ready
+// Don't try to execute it before, because the security features won't work yet
+// $(function() { 
+//    getSortedCategories(@Dnn.Module.ModuleID) 
+// });
+</script>
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>

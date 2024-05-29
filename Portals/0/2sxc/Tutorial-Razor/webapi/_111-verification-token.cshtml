@@ -1,0 +1,52 @@
+@inherits Custom.Hybrid.Razor14
+@{
+  // Tell the page that we need the 2sxc Js APIs
+  Kit.Page.Activate("2sxc.JsCore"); 
+}
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>More secure Basic WebApi Example</h2>
+      <p>
+        In this example, we'll ensure that calls to your API only come from users who are visiting your website. This is to protect agains <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">CSRF</a> attacks, where another website gets your users to interact with your API. That could be dangerous, because maybe your API has things only a logged in user should see - and without the CSRF protection, the other website could get access to that because the user is logged in. 
+      </p>
+
+      <p>
+        Click to see the result of a WebApi call with the shared code:  
+      </p>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+<button type="button" class="btn btn-primary" onclick="apiWithVerification(this)">
+  Call WebApi
+</button> 
+
+<script>
+  function apiWithVerification(moduleContext) {
+    $2sxc(moduleContext).webApi.fetchJson('verified/hello')
+      .then(data => alert(data));
+  }
+</script>
+
+<hide>
+@* 2sxclint:disable:no-inline-script *@
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_KitBaseClassInfoBox.cshtml", new { ServiceName = "Page", Service = "IPageService" })
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+
+@Html.Partial("_MessageHybrid.cshtml")
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path = App.PhysicalPath + "/api/",
+  File = "VerifiedController.cs",
+  TitlePath = "/api/"
+}) 
+</hide>

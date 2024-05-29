@@ -1,0 +1,64 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.FieldLabelVM>
+@using avt.ActionForm
+
+@{
+    var containerAttributes = NewAttributes();
+    AppendClasses(containerAttributes, "label-" + Model.Settings.LabelAlign.Value.ToString().ToLower());
+
+    if (Model.Settings.LabelAlign != eLabelAlign.Inside && Model.Settings.LabelAlign != eLabelAlign.Top)
+    {
+        if (Model.Settings.LabelWidth > 0)
+        {
+            AppendClasses(containerAttributes, "col-sm-" + Model.Settings.LabelWidth);
+        }
+        if (Model.Field.ColOffset > 0)
+        {
+            AppendClasses(containerAttributes, "col-sm-offset-" + Model.Field.ColOffset);
+        }
+    }
+
+    var labelAttributes = NewAttributes();
+    AppendRawStyles(labelAttributes, Model.Field.LabelCssStyles);
+    AppendClasses(labelAttributes, "control-label af-slide");
+    AppendClasses(labelAttributes, Model.Field.LabelCssClass);
+
+    if (Model.Field.IsRequired && !Model.Field.HasValidationCondition)
+    {
+        AppendClasses(labelAttributes, "required");
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.Field.BindShowCompiled))
+    {
+        labelAttributes["data-ng-show"] = Model.Field.BindShowCompiled;
+
+        if (Model.Field.BindPreserveLayout)
+        {
+            labelAttributes["data-ng-style"] = "{ visibility:" + Model.Field.BindShowCompiled + " ? 'visible' : 'hidden' }";
+        }
+    }
+
+    var origTitle = "";
+    if (Model.Settings.ShowTooltipTitle)
+    {
+        origTitle = Model.Field.TitleTokenized;
+    }
+}
+
+<div @ElementAttributes(containerAttributes)>
+    <label for="@(Model.LabelElementFor)"
+           @ElementAttributes(labelAttributes)>
+
+        @Raw(Model.Field.TitleTokenized)
+
+        @if (!string.IsNullOrWhiteSpace(Model.Field.ShortDescTokenized) && Model.Settings.ShowTooltips)
+        {
+            <span class="glyphicon glyphicon-info-sign popupOnHover"
+              data-placement="top" data-original-title="@origTitle"
+              data-container="body" data-content="@Model.Field.ShortDescTokenized"
+              data-html="true">
+            </span>
+        }
+
+    </label>
+</div>
+

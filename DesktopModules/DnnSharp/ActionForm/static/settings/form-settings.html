@@ -1,0 +1,414 @@
+<!--UI Settings-->
+<div class="subtitle-with-number-and-def">
+    <div class="subtitle-section-with-number">
+        <div class="number">1</div>
+        <h2 class="subtitle">UI & Layout</h2>
+    </div>
+</div>
+
+<div class="section-content form-horizontal flex-form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Template</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <select class="form-control" data-ng-model="sharedData.form.FormTemplate.Value" 
+                    data-ng-options="k as o.DisplayName for (k,o) in templates">
+            </select>
+            <p class="text-muted">The template used to render the form. Custom templates can be build using XSL.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Text Color</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.TextColor.Value" placeholder="e.g. #333" />
+            <p class="text-muted">This setting is useful especially when changing the background color.</p>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Padding</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.Padding.Value" />
+            <p class="text-muted">The padding adds space between the form control and the surrounding element.</p>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Label Align</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <select class="form-control" data-ng-model="sharedData.form.LabelAlign.Value"
+                    data-ng-options="key as value for (key, value) in sharedData.labelAlign"
+                    convert-to-string>
+            </select>
+            <p class="text-muted">Determines the position and alignment of the label relative to the input controls.</p>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Label Width</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <select class="form-control" data-ng-model="sharedData.form.LabelWidth.Value" convert-to-string>
+                <option data-ng-repeat="val in [1,2,3,4,5,6,7,8,9,10,11,12]" value="{{val}}">{{val}}/12 columns</option>
+                <p class="text-muted">
+                    Total space reserved for labels specified relative to a 12 column grid. This ensures maximum responsiveness.<br />
+                    <span data-ng-if="sharedData.form.LabelAlign.Value < 4">
+                        <strong>Important: </strong>If label appears next to the control, it takes up from its reserved space.
+                    </span>
+                </p>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Floating Labels</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.FloatingLabels.Value" />
+            <span>Affected fields: Text Box, Number, Email, Password, Large Text</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Field Spacing</label>
+        <div class="col-sm-10">
+            <select class="form-control" data-ng-model="sharedData.form.FieldSpacing.Value"
+                    data-ng-options="key as value for (key, value) in sharedData.labelSpacing"
+                    convert-to-string>
+            </select>
+            <p class="text-muted">Determines the spacing between controls.</p>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Root CSS Classes</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.RootClasses.Value" />
+            <p class="text-muted">
+                Input CSS Classes separated by space. Supports Tokens.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Manual Layout</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.HasCustomLayout.Value" />
+
+            <p class="text-muted inline">If the drag&drop layout builder below is not enough, you can use an HTML template to achieve more complex scenarios.</p>
+            <p class="text-muted inline">
+                In the HTML layout below, form fields are represented with following tokens:
+                <span ng-repeat="field in tokens">{{field.token}}</span>
+                Start building your layout from scratch or
+                <a class="btn-link" href="javascript:void(0);" target="_top"
+                   data-ng-click="generateLayout()"
+                   data-ng-show="sharedData.form.HasCustomLayout.Value">
+                    Start with a Bootstrap layout.
+                </a>
+            </p>
+            <div data-ng-show="sharedData.form.HasCustomLayout.Value">
+                <div text-angular="col-sm-9 richtext text-angular" data-ng-model="sharedData.form.LayoutHtml.Value" data-ta-unsafe-sanitizer="true"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Advanced Settings-->
+<div class="subtitle-with-number-and-def">
+    <div class="subtitle-section-with-number">
+        <div class="number">2</div>
+        <h2 class="subtitle">Advanced Settings</h2>
+    </div>
+</div>
+
+<div class="section-content form-horizontal flex-form">
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Show loading animation</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.ShowLoading.Value" data-ng-click="sharedData.form.TabsProLoading.Value = false" />
+            <p class="text-muted inline">Shows or hides the CSS loading animation of Action Form.</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-show="sharedData.form.ShowLoading.Value">
+        <label class="col-sm-2 control-label">Loading Bars Color</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.LoadingBarsColor.Value" />
+            <p class="text-muted">
+                Input HEX, RGB or RGBA color CSS code (default is #00c0ef).
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-show="sharedData.form.ShowLoading.Value">
+        <label class="col-sm-2 control-label">Loading Background Color</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.LoadingBackgroundColor.Value" />
+            <p class="text-muted">
+                Input HEX, RGB or RGBA color CSS code (default is white).
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-show="sharedData.form.ShowLoading.Value">
+        <label class="col-sm-2 control-label">Loading Text</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.LoadingText.Value" />
+            <p class="text-muted">
+                The text to be shown under the loading bars.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Display Mode</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <select class="form-control" data-ng-model="sharedData.form.OpenFormMode.Value" convert-to-string>
+                <option value="3">Initially Visible</option>
+                <option value="2">In separate page</option>
+                <option value="0">In Popup</option>
+                <option value="1">In Text</option>
+                <option value="4">Manual</option>
+            </select>
+            <p class="text-muted">
+                Choose whether this form appears initially on the page or if it should be opened when user clicks on a link.
+                <span data-ng-show="sharedData.form.OpenFormMode.Value == 0 || sharedData.form.OpenFormMode.Value == 4">
+                    You can also open the popup by calling the <b><em>dnnsf.api.actionForm.openPopupById("{{dnnsf.moduleId}}")</em></b> or
+                    <b><em>dnnsf.api.actionForm.openPopupByName("popupName")</em></b> method from javascript.
+                    There are also other public APIs:
+                    <b><em>closePopupById("{{dnnsf.moduleId}}")</em></b> (to close the form modal),
+                    <b><em>initForm("{{dnnsf.moduleId}}")</em></b> (to manually initialize the form on the page),
+                    <b><em>showFormInline("{{dnnsf.moduleId}}")</em></b> (open form in text mode),
+                    <b><em>hideFormInline("{{dnnsf.moduleId}}")</em></b> (hide form in text mode)
+                </span>
+            </p>
+            <a href="" data-ng-show="sharedData.form.OpenFormMode.Value != 3" data-ng-click="$_editTemplate = true">Edit Template</a>
+            <div data-ng-show="$_editTemplate == true && sharedData.form.OpenFormMode.Value  != 3">
+                <div text-angular="col-sm-9 richtext text-angular" data-ng-model="sharedData.form.FrontEndTemplate.Value" data-ta-unsafe-sanitizer="true"></div>
+                <p class="text-muted">
+                    Make sure to create a link that points to [FormUrl] (if you do the html manually, set href="[FormUrl]").
+                    Action Form will replace this token with the actual URL that triggers the form to appear.
+                    Supports Tokens
+                    To remove, simply delete all contents (make sure to look at the HTML source as well so there's no funny things left).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-show="sharedData.form.OpenFormMode.Value == 0" class="row">
+        <div class="col-sm-offset-2">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Popup Width</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" data-ng-model="sharedData.form.PopupWidth.Value" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Width Coordinate</label>
+                <div class="col-sm-2">
+                    <select class="form-control" data-ng-model="sharedData.form.WidthCoordinate.Value">
+                        <option value="px">px</option>
+                        <option value="%">%</option>
+                        <option value="vw">vw</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-show="sharedData.form.OpenFormMode.Value == 0" class="row">
+        <div class="col-sm-offset-2">
+            <div class="form-group col-sm-22">
+                <label class="col-sm-2 control-label">Popup Name</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" data-ng-model="sharedData.form.PopupName.Value" />
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-offset-1">
+                    <p class="text-muted" style="margin-left: 15px;">
+                        The module name displayed as modal title. It can be used with <b><em>dnnsf.api.actionForm.openPopupByName()</em></b> method.
+                        Supports Tokens.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group checkbox-field">
+            <label class="col-sm-2 control-label">Embed</label>
+            <div class="col-sm-10">
+                <input type="checkbox" data-ng-disabled="!sharedData.form.IsEmbedAllowed || sharedData.form.OpenFormMode.Value != 3" data-ng-model="sharedData.form.EnableEmbed.Value" />
+                <p class="text-muted inline">
+                    Enable this option if you want to embed this Action Form in other websites or other pages.
+                    <br />
+                    <span class="text-warning" data-ng-show="!sharedData.form.IsEmbedAllowed">
+                        This option is only available for Enterprise or Plant an App / App Builder plans.
+                        <br />
+                    </span>
+                    <span class="text-warning" data-ng-show="sharedData.form.OpenFormMode.Value != 3">
+                        This option is only available when <b>Display Mode</b> is set to <b>Initially Visible</b>.
+                        <br />
+                    </span>
+                    <a target="_blank" href="https://learn.plantanapp.com/docs/modules/important-notes/embed-form-or-grid/">Learn more</a> about common issues and limitations like Mixed Active Content and X-Frame-Options.
+                    <br />
+                    <strong style="color: red">Warning!</strong> The popup functionality is not working in the embedded form (i.e.: open Action Form in popup, open fileManager in popup).
+                </p>
+
+                <p data-ng-show="sharedData.form.EnableEmbed.Value">Embed Code:</p>
+                <textarea readonly="readonly" onclick="$(this).select();" data-ng-show="sharedData.form.EnableEmbed.Value" rows="2" cols="95"><script src="{{dnnsf.protocol+'://'+dnnsf.rootAlias}}/DesktopModules/DnnSharp/Common/static/js/dnnsf-embed.js" embedUrl="{{sharedData.form.EmbedUrl}}" mid="{{dnnsf.moduleId}}"></script></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Show Form Condition</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <input type="text" class="form-control" data-ng-model="sharedData.form.ShowFormCondition.Value" placeholder="e.g. [HasRole:registeredUsers|true]" />
+            <p class="text-muted">
+                Provide a boolean server expression (C#) to dynamically determine either this form is visible.
+                The expression can contain Tokens
+                Note that the form is ALWAYS visible for portal administrators in Edit Mode.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Initialization scripts</label>
+        <div class="col-xs-12 col-sm-10 col-lg-6 col-md-10">
+            <textarea codemirror="javascript" class="form-control-codemirror" data-ng-model="sharedData.form.InitJs.Value" rows="7" style=""></textarea>
+            <p class="text-muted">
+                Include more scripts on the page along with this form.
+                Access the form fields by using syntax [FieldId] which maps to the js object form.fields.<em>FieldId</em>.value, so either form will work.
+                Supports Tokens
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Enable Client Side Validation</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.ClientSideValidation.Value" />
+            <p class="text-muted inline">Disable client side validation if you want to catch validation errors on the server and execute actions.</p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Required Field Allows Whitespace</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.RequiredFieldAllowsWhiteSpace.Value" />
+            <p class="text-muted inline">
+                Enable required fields to allow whitespaces as valid input.
+                By default required fields won't consider whitespace as a valid input.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Validate on "focusout"</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.OnFocusoutValidation.Value" />
+            <p class="text-muted inline">Change the validation from onkeyup to onfocusout.</p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Show Tooltips</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.ShowTooltips.Value" />
+            <p class="text-muted inline">Enable if you want to show Short Description content from Action Form Fields on screen, when hovering over Field's Title.</p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field" ng-if="sharedData.form.ShowTooltips.Value">
+        <label class="col-sm-2 control-label">Show Tooltip Title</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.ShowTooltipTitle.Value" />
+            <p class="text-muted inline">Enable if you want to show the field title in tooltip.</p>
+        </div>
+    </div>
+
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Debug Mode</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.IsDebug.Value" />
+            <p class="text-muted inline">In debug mode Action Form will show the XML used to compile the XSL template and also log debug information.</p>
+        </div>
+    </div>
+
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Enable Reports</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.EnableReports.Value" />
+            <p class="text-muted inline">
+                Saving reports on form submit is disabled by default. Because of this, some features will not work properly such as using the Action Form as a data source in Grid or Load State as it relies on reports (it will work if you specifically use the Save state action).<br>
+                Actions that save reports such as Save State or Save Report will work regardless of this setting.
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-show="sharedData.form.EnableReports.Value">
+        <label class="col-sm-2 control-label">Save to Report</label>
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-info" ng-click="checkAllSaveToReport()">Check all</button>
+            <button type="button" class="btn btn-info" ng-click="uncheckAllSaveToReport()">Uncheck all</button>
+            <p class="text-muted inline">Click to enable or disable the Save to Report option for all form fields.</p>
+            <div ng-show="allCheckboxesCheckedWarning" class="fadeMessage text-warning">You have enabled all non-password fields Save to Report checkboxes.</div>
+        </div>
+    </div>
+
+</div>
+
+<!--Compatibility Settings-->
+<div class="subtitle-with-number-and-def">
+    <div class="subtitle-section-with-number">
+        <div class="number">3</div>
+        <h2 class="subtitle">Compatibility Settings</h2>
+    </div>
+</div>
+
+<div class="section-content form-horizontal form-flex">
+    <div class="form-group checkbox-field obsolete-feature">
+        <label class="col-sm-2 control-label obsolete-label">
+            Include Bootstrap
+            <a href="javascript: void(0)" class="material-icons obsolete-icon"
+               data-trigger="focus"
+               data-toggle="tooltip"
+               data-placement="left"
+               title="This feature is obsolete and will be removed in 1.20. Including the correct version of Bootstrap becomes the page or the skin responsibility.">
+                warning_amber
+            </a>
+        </label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.IncludeBootstrap.Value" />
+            <p class="text-muted inline">Turn off this option if bootstrap 3 is already loaded on the page to avoid conflicts and bandwidth waste.</p>
+        </div>
+    </div>
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Include FontAwesome</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.IncludeFontAwesome.Value" />
+            <p class="text-muted inline">Turn off this option if you want to prevent FontAwesome from being loaded on the page.</p>
+        </div>
+    </div>
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Include AngularJS</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.AngularnoConflict.Value" />
+            <p class="text-muted inline">Turn off this option if Angular 1.3.0 or higher is already loaded on the page to avoid conflicts.</p>
+        </div>
+    </div>
+    <div class="form-group checkbox-field">
+        <label class="col-sm-2 control-label">Submit hidden fields</label>
+        <div class="col-sm-10">
+            <input type="checkbox" data-ng-model="sharedData.form.SubmitHiddenFields.Value" />
+            <p class="text-muted inline">Turn on this option to make the form submit all the fields, even if they are conditionally hidden.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.HtmlResultVM>
+
+@if (!string.IsNullOrWhiteSpace(Model.ActionResultViewName))
+{
+    @Partial("ActionResult", Model)
+}
+else
+{
+    <text>
+        <script type="text/javascript">
+            (function() {
+                var settings = {
+                    Settings: {},
+                    ResultType: "HtmlResult",
+                };
+                events.onLoadComplete(settings);
+            })();
+        </script>
+    </text>
+}

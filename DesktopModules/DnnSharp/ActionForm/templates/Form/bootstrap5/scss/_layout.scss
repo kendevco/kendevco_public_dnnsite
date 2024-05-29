@@ -1,0 +1,200 @@
+﻿@import "../../../../../Common/static/bootstrap5/variable-overrides";
+
+.manual-layout {
+    &.c-form{
+        display: block;
+    }
+}
+
+.c-form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+
+  &:not(.manual-layout) .field-container {
+    width: 100%;
+  }
+}
+
+/* When there are multiple field per row, we need to take it into account for labels 
+  which are defined as a col measure out of the total */
+
+.form-col-1 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 1);
+}
+
+.form-col-2 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 6);
+}
+
+.form-col-3 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 4);
+}
+
+.form-col-5 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 5);
+}
+
+.form-col-6 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 2);
+}
+
+.form-col-7 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 7);
+}
+
+.form-col-8 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 8);
+}
+
+.form-col-9 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 9);
+}
+
+.form-col-10 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 10);
+}
+
+.form-col-11 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100% / 12 * 11);
+}
+
+.form-col-12 {
+  flex: 0 0 auto;
+  width: calc(var(--width-scale) * 100%);
+}
+
+
+.form-offset-1 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 1);
+}
+
+.form-offset-2 {
+  margin-left: calc(var(--width-scale) * 100% / 6);
+}
+
+.form-offset-3 {
+  margin-left: calc(var(--width-scale) * 100% / 4);
+}
+
+.form-offset-5 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 5);
+}
+
+.form-offset-6 {
+  margin-left: calc(var(--width-scale) * 100% / 2);
+}
+
+.form-offset-7 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 7);
+}
+
+.form-offset-8 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 8);
+}
+
+.form-offset-9 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 9);
+}
+
+.form-offset-10 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 10);
+}
+
+.form-offset-11 {
+  margin-left: calc(var(--width-scale) * 100% / 12 * 11);
+}
+
+.form-offset-12 {
+  margin-left: calc(var(--width-scale) * 100%);
+}
+
+/*except on mobile, where label goes top anyways*/
+@media only screen and (max-width: 575px) {
+  .form-col-1, .form-col-2, .form-col-3, .form-col-4, .form-col-5, .form-col-6,
+  .form-col-7, .form-col-8, .form-col-9, .form-col-10, .form-col-11, .form-col-12 {
+    width: 100%;
+  }
+
+  .form-offset-1, .form-offset-2, .form-offset-3, .form-offset-4, .form-offset-5, .form-offset-6,
+  .form-offset-7, .form-offset-8, .form-offset-9, .form-offset-10, .form-offset-11, .form-offset-12 {
+    margin-left: 0;
+  }
+}
+
+
+/*Spacing*/
+.c-form {
+  &.normal {
+    .form-group {
+      margin-bottom: 12px;
+    }
+  }
+
+  &.loose {
+    .form-group {
+      margin-bottom: 20px;
+    }
+  }
+
+  &.compact {
+    .form-group {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+/*label alignment*/
+.label-align-right, .label-align-left, .label-align-center {
+  .form-group {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .text-left {
+    text-align: left;
+    margin-bottom: 0px;
+  }
+
+  .text-center {
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+  .text-right {
+    text-align: right;
+    margin-bottom: 0px;
+  }
+
+  .field-container {
+    padding-left: 16px;
+  }
+}
+
+.label-align-top {
+  .form-label {
+    margin-left: 4px;
+  }
+}
+
+.dynamic-fields-container {
+  flex-direction: column;
+  width: 100%;
+  align-self: baseline;
+
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
+}

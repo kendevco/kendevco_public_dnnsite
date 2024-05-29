@@ -1,0 +1,44 @@
+﻿<dotnetnuke type="ResourceFile" version="5.0">
+  <files>
+    <file>
+      <path />
+      <name>Callout Brand.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Callout Color.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>Callout.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H1 Title Brand.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H1 Title.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H2 Title Brand.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H2 Title.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H3 Title Brand.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>H3 Title.ascx</name>
+    </file>
+    <file>
+      <path />
+      <name>No Title.ascx</name>
+    </file>
+  </files>
+</dotnetnuke>

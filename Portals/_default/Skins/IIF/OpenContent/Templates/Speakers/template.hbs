@@ -1,0 +1,20 @@
+<div class="featured-speakers">
+	{{#each Speaker}}
+		<div class="featured-speakers--speaker">
+			<div class="speaker--image">
+				<img src="{{Speaker_Image}}" alt="speaker image" />
+			</div>
+			<div class="speaker--name">
+				{{Speaker_Name}}
+			</div>
+			<div class="speaker--title">
+				{{Speaker_Title}}
+			</div>
+		</div>
+	{{/each}}
+	{{#if View_All}}
+		<div class="featured-speakers--view-all">
+			To see a full list of high-level and public sector speakers at our past events, <a href="{{View_All}}">click here</a>.
+		</div>
+	{{/if}}
+</div>

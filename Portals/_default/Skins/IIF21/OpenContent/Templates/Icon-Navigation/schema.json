@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Nav_Item": {
+      "type": "array",
+      "title": "Navigation Items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Nav_Text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "Nav_Link": {
+            "type": "string",
+            "title": "Link",
+            "required": true
+          },
+          "Icon_Version": {
+            "type": "string",
+            "title": "Icon Version",
+            "enum": [
+              "Image",
+              "FontAwesome4",
+              "FontAwesome5"
+            ],
+            "default": "Image",
+            "required": true
+          },
+          "Nav_Icon_vFour": {
+            "type": "string",
+            "title": "Font Awesome 4 Icon",
+            "dependencies": [
+              "Icon_Version"
+            ]
+          },
+          "Nav_Icon_vFive": {
+            "type": "string",
+            "title": "Font Awesome 5 Icon",
+            "dependencies": [
+              "Icon_Version"
+            ]
+          },
+          "Nav_Image": {
+            "type": "string",
+            "title": "Image",
+            "dependencies": [
+              "Icon_Version"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

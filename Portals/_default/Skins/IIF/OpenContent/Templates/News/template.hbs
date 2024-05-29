@@ -1,0 +1,36 @@
+<div class="news">
+    <h2 class="news--section-title">
+      {{#if Title_Icon}}
+        <span class="section-title--icon">
+            <img src="{{Title_Icon}}" width="71" height="78" alt="Section Icon" />
+        </span>
+      {{/if}}
+        <span class="section-title--title">
+            {{ModuleTitle}}
+        </span>
+    </h2>
+    <div class="news--feed">
+        {{#each News_Feed}}
+            <div class="feed--article">
+                <a href="{{Article_Link}}">
+                    <h3 class="article--title">
+                        {{Article_Title}}
+                    </h3>
+                    <div class="article--info">
+                        <div class="article--date">
+                            {{formatDateTime Article_Date "MMMM dd, yyyy"}}
+                        </div>
+                        <div class="article--content">
+                            {{Article_Content}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {{/each}}
+    </div>
+    {{#if View_All}}
+        <div class="news--all">
+            <a href="{{View_All_Link}}">View All</a>
+        </div>
+    {{/if}}
+</div>

@@ -1,0 +1,27 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Content": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Content_Text": {
+            "type": "text"
+          },
+          "Content_Number": {
+            "type": "text"
+          },
+          "Content_Icon": {
+            "type": "image"
+          },
+          "Content_Icon_Alt": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

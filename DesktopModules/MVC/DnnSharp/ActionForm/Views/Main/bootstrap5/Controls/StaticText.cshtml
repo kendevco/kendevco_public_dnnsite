@@ -1,0 +1,44 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<StaticTextFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderStaticField"))
+{
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "btnc-" + Model.Align.ToString().ToLower(), AddStyles = Model.CssStyles },
+        new ViewDataDictionary(ViewData) { { "renderStaticField", "true" } }
+    )
+}
+else
+{
+    var pAttributes = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+    {
+        Attributes["af-bindvalue"] = pAttributes["af-bindvalue"] = Model.BindValueCompiled;
+        pAttributes["ng-model"] = "form.fields." + Model.Name + ".value";
+    }
+    else
+    {
+        Attributes["value"] = "{{$sce.trustAsHtml(form.fields." + Model.Name + ".value)}}";
+        pAttributes["af-bind-html"] = "form.fields." + Model.Name + ".value";
+        pAttributes["ng-bind-html"] = "afBoundHtml";
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside)
+    {
+        pAttributes["title"] = Model.ShortDescTokenized;
+    }
+
+    <input type="text"
+       id="@Model.ElementId" name="@Model.ElementId"
+       data-fieldid="@Model.Id" data-af-field="@Model.Name"
+       aria-hidden="true" aria-label="hidden input of static text"
+       style="width:0!important;height:0!important;opacity:0!important;position:absolute!important;" tabindex="-1"
+       ng-model="form.fields.@(Model.Name).value"
+       @ElementAttributes() />
+
+    <p class="@Model.CssClass" name="@Model.ElementId" @ElementAttributes(pAttributes)>
+    </p>
+}

@@ -1,0 +1,35 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Text.RegularExpressions;
+@using ToSic.Razor.Blade;
+@{
+  var helpers = CreateInstance("Helpers.cs");
+  // Get parameters
+  // var filePath = DynamicModel.Path;
+  var result = DynamicModel.Result;
+  var language = DynamicModel.Language ?? "html";
+
+  // Prepare variables which are initialized in try/catch
+  int size = Kit.Convert.ToInt(DynamicModel.Size, fallback: 600);
+  var domAttribute = "result-" + CmsContext.Module.Id;
+
+  // Low risk stuff outside of try/catch
+  var rndId = Guid.NewGuid().ToString();
+
+  var aceOptions = new {
+    sourceCodeId = "result" + rndId,
+    language = "ace/mode/" + language,
+  };
+}
+
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.jsdelivr.net/ace/1.2.6/noconflict/ext-language_tools.js" async="false"></script>
+
+<style>
+  .pre-result {
+    background-color: aliceblue;
+  }
+</style>
+
+<pre class="pre-result" id='@("result" + rndId)' style="height: @(size + "px"); font-size: 16px">@result</pre>
+
+@Html.Partial("_source-code.PartAssets.cshtml", new { DomAttribute = domAttribute, AceOptions = aceOptions })

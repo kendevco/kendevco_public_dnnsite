@@ -1,0 +1,37 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.HtmlResultVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+<div id="@Model.PopupElementId"
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     class="af-modal-module modal fade @(Model.Settings.CssName)"
+     af-name="@Model.PopupName"
+     data-moduleid="@Model.Settings.ModuleId">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    @Raw(Model.PopupName)
+                </h4>
+                <button type="button"
+                        class="btn-close"
+                        aria-label="Close"
+                        data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                @try
+                {
+                    @TemplatePartial("_FormContent")
+                }
+                catch (Exception ex)
+                {
+                    <div class="alert alert-warning">
+                        <p>
+                            Error: @ex.Message
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

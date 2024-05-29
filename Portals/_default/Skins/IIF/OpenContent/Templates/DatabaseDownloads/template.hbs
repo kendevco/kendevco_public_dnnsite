@@ -1,0 +1,16 @@
+{{registerscript "js/filedate.min.js"}}
+
+<div class="file-download--wrapper">
+    {{#each Downloads}}
+        <div class="file-download">
+            <a class="file-download--link" href="{{Download_Link}}">
+                <div class="file-download--icon"><i class="fa fa-plus"></i></div>
+                <div class="file-download--details">
+                    <span class="file-download--date">{{Download_Link}}</span>
+                    <strong class="file-download--label">Database file:</strong>
+                    <span class="file-download--title">{{Link_Text}}</span>
+                </div>
+            </a>
+        </div>
+    {{/each}}
+</div>

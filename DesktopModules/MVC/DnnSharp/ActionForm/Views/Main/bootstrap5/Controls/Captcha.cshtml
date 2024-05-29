@@ -1,0 +1,63 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.CaptchaFieldVM>
+@using avt.ActionForm
+
+@{
+    var divRefreshBtnAttr = NewAttributes();
+    var divImgAttr = NewAttributes();
+    var imgAttr = NewAttributes();
+    var divInputTextAttr = NewAttributes();
+    var inputTextAttr = NewAttributes();
+
+    if (Model.OneLine)
+    {
+        AppendClasses(divRefreshBtnAttr, "col-sm-6");
+        AppendClasses(divInputTextAttr, "col-sm-6");
+    }
+    else
+    {
+        AppendClasses(divRefreshBtnAttr, "col-sm-12");
+        AppendClasses(divInputTextAttr, "col-sm-12");
+    }
+
+    AddAttribute(divRefreshBtnAttr, "title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AppendClasses(divImgAttr, "col-xs-10");
+
+    AppendRawStyles(imgAttr, "margin: 0px 4px 2px 0; width: 100%;");
+    AppendRawStyles(imgAttr, "height: 33px;", Model.OneLine);
+
+    AppendRawStyles(inputTextAttr, "margin: 0px 4px 2px 0; width: 100%; height: 33px;");
+
+    AddCommonAttributes(true, true, false, "form-control inpcode");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddPlaceholderAttributes();
+}
+
+
+<div class="row">
+    <div @ElementAttributes(divRefreshBtnAttr)>
+        <div @ElementAttributes(divImgAttr)>
+            <img class="imgcode" src="@Model.ImageUrl" data-af-field="@Model.Name" data-fieldid="@Model.Id" @ElementAttributes(imgAttr) />
+        </div>
+        @if (Model.ShowRefreshButton)
+        {
+            <div>
+                <button type="button" class="btn btn-sm btn-default" ng-click="refreshCaptcha(@(Model.Settings.ModuleId),'@(Model.Name)')">
+                    <i class="fas fa-sync"></i>
+                </button>
+            </div>
+        }
+    </div>
+
+    <input type="hidden"
+           name="@(Model.ElementId)captchaenc"
+           id="@(Model.ElementId)captchaenc"
+           value="@Model.EncryptedCaptcha"
+           data-ng-model="form.fields.@(Model.Name).value" />
+
+    <div @ElementAttributes(divInputTextAttr)>
+        <input type="text"
+               value="@Model.Value"
+               data-ng-model="form.fields.@(Model.Name).tbValue"
+               @ElementAttributes() />
+    </div>
+</div>

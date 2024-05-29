@@ -1,0 +1,28 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.LargeTextFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "form-control dnnsf-text-editor", "keyup");
+    AddPlaceholderAttributes();
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    var ckEditorURL = GetModuleControlUrl("DnnTextEditor", true, true);
+}
+
+<div style="text-align: center; height: 0; overflow: visible;">
+    <img width="32" 
+    height="32" 
+    style="margin-top: 170px;" 
+    alt="rich text editor loading animation"
+    src="@(Model.ModuleStaticUrl())/images/loader-windows.gif" />
+</div>
+
+<iframe frameBorder="0"
+        scrolling="no"
+        style="min-height: @(Model.MinHeight)"
+        src="@(ckEditorURL)"
+        data-content="@(Model.Value)"
+        @ElementAttributes()>
+</iframe>

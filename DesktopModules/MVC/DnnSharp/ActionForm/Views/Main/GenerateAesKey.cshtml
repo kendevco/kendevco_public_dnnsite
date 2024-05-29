@@ -1,0 +1,105 @@
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<script type="text/javascript">window.dnnsfjQuery = window.dnnsfjQuery || window.jQuery;</script>
+
+<div class="bstrap3-material">
+    @* or class="bstrap30" *@
+    <div class="generate-aes-key-container col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="form-group" id="key-size-form">
+            <label class="control-label" for="key-size">Key Size:</label>
+            <!-- Single button -->
+            <div class="input-group">
+                <div class="input-group-btn" id="key-size-dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Size <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-value="128">128 bit</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="192">192 bit</a></li>
+                        <li><a class="dropdown-item" href="#" data-value="256">256 bit</a></li>
+                    </ul>
+                </div>
+                <input class="form-control" disabled type="text" id="key-size" name="keySize">
+                <div class="input-group-btn">
+                    <button type="button" id="generate-key-button" class="btn btn-primary disabled">Generate</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="iv-public-key">IV:</label>
+            <textarea class="form-control" id="iv-public-key" readonly rows="5">
+        </textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="iv-private-key">Key:</label>
+            <textarea class="form-control" id="iv-private-key" readonly rows="5">
+        </textarea>
+        </div>
+        <div id="error-alert" class="alert alert-danger" role="alert"></div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var iv = $("#iv-public-key");
+        var key = $("#iv-private-key");
+        var button = $("#generate-key-button");
+        var keySizeInput = $("#key-size");
+        var errorAlert = $("#error-alert");
+        errorAlert.hide();
+        $('#key-size-dropdown .dropdown-menu li a').on('click', function () {
+            var txt = this.getAttribute('data-value');
+            button.removeClass("disabled");
+            keySizeInput.val(txt);
+        });
+        button.on('click', function (e) {
+            errorAlert.hide();
+            var serviceFramework = $.ServicesFramework(@Dnn.ActiveModule.ModuleID);
+            var keySize = keySizeInput.val();
+            $.ajax({
+                url: dnn.getVar("sf_siteRoot", "/") + "DesktopModules/MVC/DnnSharp/ActionForm/GenerateAesKeySubmit?keySize=" + keySize,
+                method: "POST",
+                beforeSend: serviceFramework.setModuleHeaders,
+                contentType: "application/json",
+                error: function (xhr, ajaxOptions, thrownError) {
+                    errorAlert.text(xhr.status + " " + thrownError);
+                    errorAlert.show();
+                }
+            })
+            .done(function (response) {
+                if (response) {
+                    iv.val(response.IV);
+                    key.val(response.Key);
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .generate-aes-key-container {
+        margin-top: 50px;
+    }
+
+        .generate-aes-key-container div {
+            margin-bottom: 20px;
+        }
+
+    #key-size {
+        width: calc(100% - 20px);
+        margin-left: 10px;
+    }
+
+    #iv-public-key {
+        height: auto;
+        resize: vertical;
+    }
+
+    #iv-private-key {
+        height: auto;
+        resize: vertical;
+    }
+</style>

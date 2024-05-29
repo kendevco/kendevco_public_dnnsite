@@ -1,0 +1,34 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.TrumbowygFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true);
+    AddPlaceholderAttributes();
+    AppendClasses("required-dnnsf", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("file-manager", Model.BaseId + Model.ImageManager, !string.IsNullOrWhiteSpace(Model.ImageManager));
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+}
+
+<div load-on-demand="'trumbowyg'">
+    <div trumbowyg data-itemvalue="value"
+         data-register-control="registerControl(control)"
+         update-field="updateField(field, val)"
+         initial-value="@Model.InitalValue"
+         data-field="settings.Fields['@(Model.Name)']"
+         btns="@Model.Buttons"
+         btns-def="@Model.ButtonDropdowns"
+         btns-grps="@Model.BtnGroups"
+         ngdisabled="@Model.IsConditionallyEnabled.ToString()"
+         lang="@Model.Language"
+         theme="@Model.DarkTheme.ToString()"
+         removeformatpastedoption="@Model.RemoveFormatPastedOption.ToString()"
+         tagstoremoveoption="@Model.TagsToRemoveOption.ToString()"
+         tagstoremove="@Model.TagsToRemove"
+         tagstokeepoption="@Model.TagsToKeepOption.ToString()"
+         tagstokeep="@Model.TagsToKeep"
+         semantic="@Model.Semantic.ToString()"
+         @ElementAttributes()>
+    </div>
+</div>
+<span class="err-placeholder"></span>

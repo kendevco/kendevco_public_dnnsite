@@ -1,0 +1,63 @@
+{{registerscript "js/gallery.min.js"}}
+
+{{#if Template_Settings.Template_Heading}}
+    <div class="gallery-intro">
+        <h1>{{Template_Settings.Template_Heading}}</h1>
+    </div>
+{{/if}}
+{{#if Template_Settings.Template_Intro}}
+    <div class="gallery-intro">
+        <p>{{Template_Settings.Template_Intro}}</p>
+    </div>
+{{/if}}
+
+<div class="gallery" id="{{ModuleTitle}}">
+    <ul class="gallery--filter">
+        {{#if Category_Settings.Disable_View_All}}
+            <!--Dont show anything -->
+        {{else}}
+            <li class="filter--item filter--item__active" category='All'>View All</li>
+        {{/if}}
+        {{#each Category_List}}
+            <li class="filter--item" category='{{Filter_Category}}'>{{Filter_Category}}</li>
+        {{/each}}
+    </ul>
+    <div class="gallery--content" columns='{{Template_Settings.Template_Columns}}'>
+        {{#each Listing}}
+            <div class="gallery--item gallery--item__active" category='{{#each Category_Select}}{{#if @first}}{{Category}}{{else}}_{{Category}}{{/if}}{{/each}}'>
+                <div class="item--image">
+                    {{#if Video_Upload}}
+                        <a href="{{Video_Upload}}" class="fancybox-link" data-fancybox="Fancybox-Image" title="{{Video_Upload_Title}}"{{#if Include_Caption_Lightbox}} data-caption="<strong>{{Media_Title}}</strong> <br/> {{Media_Caption}}"{{/if}}>
+                            <video controls id="bgvid">
+                                <source src="{{Video_Upload}}" type="video/webm">
+                                <source src="{{Video_Upload}}" type="video/mp4">
+                            </video>
+                        </a>
+                    {{/if}}
+                    {{#if Video_Embed}}
+                        <div class="responsive-media">
+                            <a href="{{Video_Embed_Link}}" class="fancybox-link" data-fancybox="Fancybox-Image" title="{{Video_Embed_Title}}"{{#if Include_Caption_Lightbox}} data-caption="<strong>{{Media_Title}}</strong> <br/> {{Media_Caption}}"{{/if}}>
+                                {{Video_Embed}}
+                            </a>
+                        </div>
+                    {{/if}}
+                    {{#if Image}}
+                        <a href="{{Image}}" class="fancybox-link" data-fancybox="Fancybox-Image" title="{{Image_Alt}}"{{#if Include_Caption_Lightbox}} data-caption="<strong>{{Media_Title}}</strong> <br/> {{Media_Caption}}"{{/if}}>
+                            <img src="{{Image}}" alt="{{Image_Alt}}"/>
+                        </a>
+                    {{/if}}
+                </div>
+                {{#if Include_Caption}}
+                    <div class="item--caption">
+                        {{#if Media_Title}}
+                            <span class="caption--text caption--text__title">{{Media_Title}}</span>
+                        {{/if}}
+                        {{#if Media_Caption}}
+                            <span class="caption--text caption--text__description">{{Media_Caption}}</span>
+                        {{/if}}
+                    </div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</div>

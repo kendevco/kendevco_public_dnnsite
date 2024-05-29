@@ -1,0 +1,65 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+</hide>
+@using ToSic.Razor.Blade;
+@using System;
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Safely Linking URLs with Umlauts and similar</h2>
+    <snippet id="basic-safe-url">
+      @{
+        var path = App.Path + "/basics/assets/urls/";
+        var exampleImgName = "göögle plus.png";
+        var resizeParameters = "?w=100";
+        var safeUrl = Tags.SafeUrl(path + exampleImgName + resizeParameters);
+      }
+      <img loading="lazy" src='@safeUrl' id="demo-logo">
+    </snippet>
+    <p>
+      👈 this image is called <code>@exampleImgName</code> - which must be encoded to <code>@Tags.SafeUrl(exampleImgName)</code>
+    </p>
+    <hide-silent> @* Show only this snippet *@
+      @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "basic-safe-url", Size = 170 }) 
+    </hide-silent>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+
+<hide>
+<p>
+  Sometimes you have files with unexpected characters - like umlauts or spaces. The best way to encode this is using <code>Tags.SafeUrl(...)</code> from RazorBlade, or <code>Uri.EscapeUriString(...)</code> from .net. 
+</p>
+<h3>Important notes</h3>
+<ul>
+  <li>
+    Two characters won't resolve properly on a standard web server: <code>+</code> and <code>%</code>. There are ways to work around this, but we would avoid them at all cost. 
+  </li>
+  <li>
+    Other characters like <code>spaces</code>, umlauts (<code>öäè</code>) etc. are no problem. 
+  </li>
+  <li>
+    You may also find suggestions to use <code>Server.UrlEcode(...)</code>. This often doesn't work! 
+  </li>
+  <li>
+    Remember to add <code>@@using System</code> to make this fly
+  </li>
+</ul>
+
+
+<style>
+  #demo-logo {
+    float: left;
+    width: 50px;
+    padding-right: 20px;
+  }
+</style>
+
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 500 }) 
+</hide>

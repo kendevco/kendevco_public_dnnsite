@@ -1,0 +1,100 @@
+.icon-nav {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	max-width: var(--site-width, 1460px);
+	margin: 0 auto;
+	padding: 2em 0;
+}
+.icon-nav .icon-nav--item {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 150px;
+	flex: 1 1 150px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	text-align: center;
+	margin: 0 1em 2em 1em;
+}
+.icon-nav .icon-nav--item .item--text {
+	margin-top: 0.5em;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: var(--theme-link, #2c2e0f);
+	transition: all 0.25s ease;
+}
+.icon-nav .icon-nav--item .item--icon {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 120px;
+	height: 120px;
+	padding: 0 0 15px 0;
+	margin: 0 auto;
+	background: var(--theme-neutral, hsl(207, 28%, 92%));
+	padding: 1em;
+	border: 5px solid var(--theme-white, #fff);
+	border-radius: 50%;
+	overflow: hidden;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+.icon-nav .icon-nav--item .item--icon img {
+	max-width: 100%;
+	height: auto;
+}
+.icon-nav .icon-nav--item .item--icon .fa,
+.icon-nav .icon-nav--item .item--icon .fas,
+.icon-nav .icon-nav--item .item--icon .fab,
+.icon-nav .icon-nav--item .item--icon .far,
+.icon-nav .icon-nav--item .item--icon .fal,
+.icon-nav .icon-nav--item .item--icon .fad {
+	font-size: 50px;
+	color: var(--theme-link,#00e);
+}
+.icon-nav .icon-nav--item .item--icon * {
+	transition: all 0.25s ease;
+}
+
+.icon-nav .icon-nav--item:hover {
+	text-decoration: none;
+}
+
+.icon-nav .icon-nav--item:hover .item--icon * {
+	transform: scale(1.15);
+	color: var(--theme-link-hover, hsla(198, 80%, 62%, 100%));
+}
+.icon-nav .icon-nav--item:hover .item--text {
+	color: var(--theme-link-hover, hsla(198, 80%, 62%, 100%));
+}
+
+
+@media screen and (min-width: 700px) {
+	.icon-nav .icon-nav--item {
+		min-width: 0;
+		-webkit-box-flex: 1;
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.content-container .icon-nav {
+		padding: 0;
+	}
+}

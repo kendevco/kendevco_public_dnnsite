@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Icon_Panel": {
+      "type": "array",
+      "title": "Icon Panels",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Heading": {
+            "type": "string",
+            "title": "Heading"
+          },
+          "Icon": {
+            "type": "string",
+            "title": "Icon"
+          },
+          "Text": {
+            "type": "string",
+            "title": "Description"
+          },
+          "Link": {
+            "type": "string",
+            "title": "Link"
+          }
+        }
+      }
+    }
+  }
+}

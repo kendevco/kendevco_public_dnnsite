@@ -1,0 +1,15 @@
+<div class="media-content" data-type="{{Media_Type}}">
+    {{#if Media_Image}}
+        <figure class="responsive-media">
+            <img src="{{Media_Image}}" alt="{{Media_Image_Alt}}" width="300" height="300" />
+            {{#if Media_Caption}}<figcaption>{{Media_Caption}}</figcaption>{{/if}}
+        </figure>
+        {{else}}
+        {{#if Media_Video}}
+            <figure class="responsive-media">
+                {{Media_Video}}
+                {{#if Media_Caption}}<figcaption>{{Media_Caption}}</figcaption>{{/if}}
+            </figure>
+        {{/if}}
+    {{/if}}
+</div>

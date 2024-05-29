@@ -1,0 +1,59 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<CheckboxFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    var origTitle = "";
+    if (Model.Settings.ShowTooltipTitle)
+    {
+        origTitle = Model.TitleTokenized;
+    }
+}
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    var isLabelTopOrInside = Model.Settings.LabelAlign == eLabelAlign.Top || 
+                             Model.Settings.LabelAlign == eLabelAlign.Inside ||
+                             Model.Settings.FloatingLabels;
+
+    var offsetClass = "";
+    if (!isLabelTopOrInside && Model.ColIndex == 0) {
+        offsetClass = "form-offset-" + Model.Settings.LabelWidth;
+    }
+
+    var toggleSwitchClass = Model.ToggleSwitch ? " form-switch " : "";
+
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "form-check " + offsetClass + toggleSwitchClass },
+        new ViewDataDictionary(ViewData) { {"renderInner", "true" } }
+    )
+}
+else
+{
+    var labelAttrs = NewAttributes();
+    AddAttribute(labelAttrs, "title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) &&
+    Model.Settings.LabelAlign == eLabelAlign.Inside && !Model.Settings.ShowTooltips);
+
+    AddCommonAttributes(true, true, true, "normalCheckBox ignore-submit-hidden-fields", "click");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("checked", "checked", string.Equals("true", Model.Value, StringComparison.OrdinalIgnoreCase));
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+
+    <input type="checkbox" class="form-check-input" @ElementAttributes() />
+    <label class="form-check-label" style="@Model.LabelCssStyles" for="@Model.ElementId" @ElementAttributes(labelAttrs)>
+        @Model.TitleTokenized
+    </label>
+    if (!string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.ShowTooltips)
+    {
+        <span class="popupOnHover"
+              title="@origTitle"
+              data-bs-toggle="popover"
+              data-bs-html="true"
+              data-bs-content="@Model.ShortDescTokenized">
+            <i class="fa fa-info-circle"></i>
+        </span>
+    }
+    <div class="err-placeholder"></div>
+}

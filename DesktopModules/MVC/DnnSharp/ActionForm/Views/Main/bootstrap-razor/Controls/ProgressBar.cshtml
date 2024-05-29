@@ -1,0 +1,36 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.ProgressBarFieldVM>
+@using avt.ActionForm
+
+@{
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AppendClasses("prgrs model-only");
+    AddCommonAttributes(true, true, false, null, "keyup");
+}
+
+<div load-on-demand="'progressbar'">
+    <div progressbar=""
+         value="form.fields.@(Model.Name).value"
+         ptype="'@(Model.Shape)'"
+         displaytexttype="'@(Model.DisplayTextType)'"
+         field-id="@Model.Id"
+         fname="'@(Model.Name)'"
+         minval="@Model.MinVal"
+         maxval="@Model.MaxVal"
+         strokecolor="'@(Model.StrokeColor)'"
+         trailcolor="'@(Model.TrailColor)'"
+         strokewidth="'@(Model.StrokeWidth)'"
+         trailwidth="'@(Model.TrailWidth)'"
+         animation="'@(Model.Animation)'"
+         animationduration="'@(Model.AnimationDuration)'"
+         valuecolor="'@(Model.ValueColor)'"
+         @ElementAttributes()>
+    </div>
+</div>
+
+<style>
+    .prgrs {
+        margin: 10px 20px 20px 20px;
+        position: relative;
+    }
+</style>
+

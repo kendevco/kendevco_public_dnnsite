@@ -1,0 +1,19 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.DisplayImageFieldVM>
+@using avt.ActionForm
+
+@{
+    if (!string.IsNullOrWhiteSpace(Model.ImageURL))
+    {
+        AddAttribute("src", Model.ImageURL);
+    }
+    else
+    {
+        AddAttribute("src", Dnn.PortalSettings.HomeDirectory + "/" + Model.PortalImage);
+    }
+
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("style", Model.CssStyles, !string.IsNullOrWhiteSpace(Model.CssStyles));
+    AppendClasses(Model.CssClass);
+}
+
+<img alt="@Model.Name" @ElementAttributes() />

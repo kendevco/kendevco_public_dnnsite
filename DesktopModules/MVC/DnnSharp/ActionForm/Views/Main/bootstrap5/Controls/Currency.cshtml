@@ -1,0 +1,22 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.CurrencyFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, touchEvent: "keyup");
+    AppendClasses("form-control");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+}
+
+<div load-on-demand="'ngCurrencyv2'">
+    <input type="text"
+           ng-currencyv2
+           update-field="updateField(field, val)"
+           data-field="settings.Fields['@(Model.Name)']"
+           register-control="registerControl(control)"
+           data-form="form"
+
+           @ElementAttributes() />
+</div>

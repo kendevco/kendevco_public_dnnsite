@@ -1,0 +1,25 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.SliderFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddPlaceholderAttributes();
+}
+
+<div load-on-demand="'slider'">
+	<input type="hidden" data-slider="" data-itemvalue="value" update-field="updateField(field, val)"
+		   data-slider-orientation="@Model.SliderOrientation"
+           data-slider-starttext="@Model.StartText"
+           data-slider-endtext="@Model.EndText"
+           data-slider-helptext="@Model.Help"
+           captions="@Model.SliderCaptions"
+           caption-classes="@Model.SliderCaptionClasses"
+           data-slider-min="@Model.MinValue"
+           data-val="@Model.Value"
+           data-slider-width="@Model.Width"
+           data-slider-max="@Model.MaxValue"
+           data-slider-step="@Model.StepValue"
+           displaytooltip="@Model.DisplayTooltip.ToString()"
+           @ElementAttributes()/>
+</div>

@@ -1,0 +1,57 @@
+{
+	"type": "object",
+	"properties": {
+		"ModuleTitle": {
+			"type": "string",
+			"title": "Module Title",
+			"required": true
+		},
+		"Banners": {
+			"type": "array",
+			"title": "Banners",
+			"items": {
+				"type": "object",
+				"properties": {
+					"Banner_Title": {
+						"type": "string",
+						"title": "Banner Title"
+					},
+					"Include_Title": {
+						"type": "bool",
+						"title": "Include Banner Title?"
+					},
+					"Banner_Image": {
+						"type": "string",
+						"title": "Banner Image"
+					},
+					"Banner_Text": {
+						"type": "string",
+						"title": "Banner Text"
+					},
+					"Include_Link": {
+						"type": "bool",
+						"title": "Include Banner Link?"
+					},
+					"Banner_Link_URL": {
+						"type": "string",
+						"title": "Banner Link URL",
+						"dependencies": ["Include_Link"]
+					},
+					"Banner_Link_Text": {
+						"type": "string",
+						"title": "Banner Link Text",
+						"dependencies": ["Include_Link"]
+					}
+				}
+			}
+		},
+		"Display_Pagination": {
+			"type": "boolean",
+			"title": "Display Pagination"
+		},
+		"Auto_Slide": {
+			"type": "boolean",
+			"title": "Auto Slide"
+		}
+	}
+}

@@ -1,0 +1,68 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <h2>2sxc Custom Color-Picker Input Field</h2>
+    <p>
+      2sxc 11 makes it very easy to create custom input fields using standard <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components" target="_blank">WebComponents</a>. 
+      This example shows a color picker using <a href="https://simonwep.github.io/pickr/" target="_blank">Pickr</a>, a cool JS library. 
+    </p>
+    <p>You can learn how to:</p>
+    <ul>
+      <li>Use <code>connector.loadScript(...)</code> to load a js library</li>
+      <li>Use <code>connector.data</code> to get the <code>value</code> and update it</li>
+      <li>How to only update the data if you really change it (so users can cancel the dialog without being asked)</li>
+      <li>How to save <code>null</code> to explicitly not save or reset a value</li>
+      <li>Use <code>disconnectedCallback()</code> to destroy inner objects</li>
+    </ul>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
+</div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+</hide>
+<div class="alert alert-success">
+  <h2>New syntax: String Color-Picker Custom Input Field</h2>
+  <p>
+    This example shows a real string-field uses Pickr to provide a color picker. <br>
+    Hit this edit button to have a look:
+  </p>
+  <snippet id="tb-colorpicker-newsyn">
+  @Kit.Toolbar.Empty().New("UiStringColorPickr").AsTag()
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-newsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+<div class="alert alert-secondary">
+  <h2>Old syntax: String Color-Picker Custom Input Field</h2>
+  <p>
+    This example shows a real string-field uses Pickr to provide a color picker. <br>
+    Hit this edit button to have a look:
+  </p>
+  <snippet id="tb-colorpicker-oldsyn">
+  @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickr" })
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-oldsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+
+
+
+<hide>
+@Html.Partial("_warning.cshtml")
+
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new {
+  Path,
+  File = "../system/field-string-app-color-pickr/index.js",
+  Size = 2500,
+  Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
+})
+</hide>

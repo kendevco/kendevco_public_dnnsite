@@ -1,0 +1,51 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Actions.ShowMessageVM>
+@using System.Web.Mvc
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey(Constants.renderActionResult))
+{
+    <script type="text/javascript">
+        // ShowMessageAction.cshtml
+        (function () {
+            var settings = @(Partial("ShowMessageAction", Model, new ViewDataDictionary(ViewData) { { Constants.renderActionResult, "true" } }));
+            settings.ModuleId = @(Dnn.ActiveModule.ModuleID);
+            events.onFinalActionResult(settings);
+        })();
+    </script>
+}
+else if (!ViewData.ContainsKey(Constants.renderShowMessageHtml))
+{
+    var innerViewData = new ViewDataDictionary(ViewData) {
+        { Constants.renderShowMessageHtml, "true" }
+    };
+    if (!innerViewData.ContainsKey(Constants.renderActionResult))
+    {
+        innerViewData[Constants.renderActionResult] = "true";
+    }
+    var html = Partial("ShowMessageAction", Model, innerViewData);
+    <text>
+        {
+        ResultType: "ShowMessage",
+        Content: @Json(html),
+        Type: "@Model.Type"
+        }
+    </text>
+}
+else
+{
+    <div class="form-root" id="dnn@(Dnn.ActiveModule.ModuleID)root" ng-controller="ActionFormCtrl" ng-init="load('@(Dnn.ActiveModule.ModuleID)')">
+        <div class="submit-confirm">
+            @Raw(Model.Message)
+            @if (Model.Buttons.Any())
+            {
+                <div class="action-buttons">
+                    @foreach (var btn in Model.Buttons)
+                    {
+                        @TemplatePartial("_FieldRender", FieldRendererVM.InputOnly(btn), new ViewDataDictionary(ViewData) { { Constants.renderSingle, "true" } })
+                    }
+                </div>
+            }
+        </div>
+        <div class="server-error alert alert-danger" style="display: none; margin-top: 17px; margin-bottom: 0;"></div>
+    </div>
+}

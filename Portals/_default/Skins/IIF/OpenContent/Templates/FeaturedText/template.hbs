@@ -1,0 +1,21 @@
+<div class="featured-content">
+    {{#each Featured_Content}}
+        <div class="featured-content--item">
+            <div class="item--content-support">
+                {{#if Icon}}
+                    <div class="content-support--icon">
+                        <img src="{{Icon}}" alt="{{#if Icon_Alt}}{{Icon_Alt}}{{else}}Featured Content Icon{{/if}}" width="100" height="100" />
+                    </div>
+                {{/if}}
+                {{#if Button_Link}}
+                    <div class="content-support--button">
+                        <a href="{{Button_Link}}" title="{{#if Button_Link_Title}}{{Button_Link_Title}}{{else}}{{Button_Text}}{{/if}}">{{Button_Text}}</a>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="item--text">
+                {{Text}}
+            </div>
+        </div>
+    {{/each}}
+</div>

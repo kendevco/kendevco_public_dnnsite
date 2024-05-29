@@ -1,0 +1,46 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs"); 
+}
+</hide>
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Hybrid Templates using Preprocessor Directives</h2>
+    <p>
+      Razor is mostly <code>HTML</code> + <code>C#</code>. 
+      But we need often need .net features, which can vary a bit from .net Framework and DNN, or .net core and Oqtane.
+      This is where <code>CmsContext.Platform.Name</code> is used. 
+      Read more about this in the <a href="https://docs.2sxc.org/net-code/razor/hybrid/index.html" target="_blank">docs</a>.
+    </p>
+    <p>
+      When working with normal <code>.cs</code> files <code>#if</code>, <code>#if !</code>, <code>#else</code> and <code>#endif</code> can be used due 
+      to them being compiled by 2sxc. 
+    </p>
+    <p>
+      Using <code>CmsContext.Platform.Name</code> you can switch between files using CmsContext.Platform.Name. Here's a simple example.
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+
+</p>
+</trim>
+
+<hr>
+
+<snippet id="hybrid">
+@Html.Partial("_410-compiler-preprocessor.PartInfo." + CmsContext.Platform.Name + ".cshtml")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "hybrid", Size = 50 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
+
+@* 2sxclint:disable:no-dnn-namespaces *@
+
+</hide>

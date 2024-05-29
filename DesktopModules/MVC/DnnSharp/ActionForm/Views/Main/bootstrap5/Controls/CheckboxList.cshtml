@@ -1,0 +1,122 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.MultipleChoiceMultiSelectFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    var containerAttributes = NewAttributes();
+    containerAttributes["id"] = Model.ElementId;
+    containerAttributes["role"] = "group";
+    containerAttributes["aria-label"] = "checkbox list";
+
+    var containerModel = new ContainerVM(Model)
+                {
+                    Attributes = containerAttributes,
+                    AddClasses = "checkbox-list radiocontainer"
+                };
+
+    @TemplatePartial("_Container", containerModel, new ViewDataDictionary(ViewData) { {"renderInner", "true"} })
+}
+else
+{
+    var fieldsetAttributes = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.Legend))
+    {
+        fieldsetAttributes["class"] = "checkboxlist-fieldset " + Model.FieldsetClasses;
+        fieldsetAttributes["style"] = Model.LegendStyles;
+    }
+
+    var divAttributes = NewAttributes();
+    AppendClasses(divAttributes, "checkbox form-check");
+    AppendClasses(divAttributes, Model.CssClass);
+    AppendClasses(divAttributes, "form-switch", Model.ToggleSwitch);
+    
+    if (Model.Horizontal)
+    {
+        AppendClasses(divAttributes, "checkbox-inline form-check-inline");
+    }
+    if (!string.IsNullOrWhiteSpace(Model.CssStyles))
+    {
+        divAttributes["style"] = Model.CssStyles;
+    }
+
+    var labelAttributes = NewAttributes();
+    if (Model.Settings.LabelAlign == eLabelAlign.Inside && !string.IsNullOrWhiteSpace(Model.ShortDescTokenized))
+    {
+        labelAttributes["title"] = Model.ShortDescTokenized;
+    }
+    AppendClasses(labelAttributes, "form-check-label");
+
+    var checkboxAttributes = NewAttributes();
+    checkboxAttributes["name"] = Model.ElementId + "-{{$index}}";
+    checkboxAttributes["field-id"] = Model.Name;
+
+    if (Model.Settings.ClientSideValidation && !Model.HasValidationCondition)
+    {
+        if (Model.IsRequired)
+        {
+            AppendClasses(checkboxAttributes, "required-cblist");
+        }
+        AppendClasses(checkboxAttributes, Model.CustomValidator1JsName);
+        AppendClasses(checkboxAttributes, Model.CustomValidator2JsName);
+    }
+
+    AppendClasses(checkboxAttributes, "normalCheckBox multiple-choice-checkbox ignore-submit-hidden-fields");
+    AppendClasses(checkboxAttributes, Model.CssClass);
+
+    if (!string.IsNullOrWhiteSpace(Model.ValidationGroup))
+    {
+        AppendClasses(checkboxAttributes, Model.ValidationGroup);
+        if (!string.IsNullOrWhiteSpace(Model.GroupValidator))
+        {
+            AppendClasses(checkboxAttributes, Model.ValidationGroup + "-" + Model.GroupValidatorJsName);
+        }
+    }
+
+    checkboxAttributes["data-validation-group"] = Model.ElementId + "-group";
+    checkboxAttributes["id"] = Model.ElementId + "-{{$index}}";
+    AppendClasses(checkboxAttributes, "form-check-input");
+
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+    {
+        checkboxAttributes["ng-disabled"] = "!(" + Model.BindEnableCompiled + ")";
+    }
+
+    var ngChange = "concatValues(form.fields." + Model.Name + ");";
+    if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+    {
+        ngChange += "form.fields." + Model.Name + ".onChange(form);";
+    }
+
+    if (!Model.IsConditionallyEnabled)
+    {
+        checkboxAttributes["disabled"] = "disabled";
+    }
+    <fieldset @ElementAttributes(fieldsetAttributes)>
+        @if (!string.IsNullOrWhiteSpace(Model.Legend))
+        {
+            <legend class="@Model.LegendClasses" style="@Model.LegendStyles">
+                @Model.Legend
+            </legend>
+        }
+        <div data-ng-cloak=""
+         ng-model="form.fields.@(Model.Name).value"
+         ng-repeat="o in form.fields.@(Model.Name).options"
+         @ElementAttributes(divAttributes)>
+            <label for="@(Model.ElementId)-{{$index}}" @ElementAttributes(labelAttributes)>
+                <span ng-bind-html="$sce.trustAsHtml(o.text)"></span>
+            </label>
+            <input type="checkbox"
+               ng-model="o.selected"
+               data-ng-truevalue="o.value"
+               value="{{o.value}}"
+               ng-change="@ngChange"
+               @ElementAttributes(checkboxAttributes)>
+            <div repeat-done="" ng-if="$last">
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="err-placeholder"></div>
+}

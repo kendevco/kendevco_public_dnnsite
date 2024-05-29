@@ -1,0 +1,60 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{  
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+@*
+  Tag: #DnnOnly - ATM can't work in Oqtane because it uses the Factory command
+  2sxclint:disable:no-dnn-namespaces
+*@
+</hide>
+@using System.Collections.Generic;
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Example from DNN Data</h2>
+    <p>
+      DNN also provides a lot of data about users, pages etc. In this example, we'll list all the pages (tabs) in DNN and mark the one we're on. 
+      Please note that the DNN API isn't very consistent - so sometimes things use <code>ID</code>, sometimes <code>Id</code>, so best really verify the exact names as spelled in the API.
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+<snippet id="dnn-pages">
+@{#if NETCOREAPP}
+  @Html.Partial("../shared/_MessageOqtaneDisabled.cshtml")
+@{#else}
+@{
+  // get the pages
+  var pages = DotNetNuke.Entities.Tabs.TabController.GetPortalTabs(CmsContext.Site.Id, 0, true, false);
+  var current = DotNetNuke.Entities.Tabs.TabController.CurrentPage;
+}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "dnn-pages", Size = 200 }) 
+</hide-silent>
+
+
+<snippet id="dnn-pages-foreach">
+<ul>
+  @foreach(DotNetNuke.Entities.Tabs.TabInfo dnnPage in pages) {
+    <li class='@(dnnPage.TabID == current.TabID ? "selected" : "")'>
+      <a href="@dnnPage.FullUrl" target="_blank">
+        @dnnPage.TabName (#@dnnPage.TabID)
+      </a>
+    </li>
+  }
+</ul>
+
+@{#endif}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "dnn-pages-foreach", Size = 250 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 700 }) 
+</hide>

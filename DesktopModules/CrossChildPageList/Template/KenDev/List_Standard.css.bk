@@ -1,0 +1,123 @@
+.subNavLeftMenuTitle {
+    margin: 0;
+    display: block;
+    font-size: 1em;
+    padding: 14px 0;
+    background: url("images/arrowDownBlueReg.png") no-repeat scroll right 6px center rgba(0, 0, 0, 0);
+    border-top: 1px solid #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+    .subNavLeftMenuTitle a {
+        display: inline-block;
+        padding-left: 20px;
+    }
+
+.subNavLeftMenu {
+    width: 100%;
+}
+
+    .subNavLeftMenu ul {
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .subNavLeftMenu li {
+        /*font-family: Arial;*/
+        list-style-type: none;
+        margin-bottom: 0;
+        padding: 10px 0;
+        display: table;
+        width: 100%;
+    }
+
+        .subNavLeftMenu li a {
+            color: #828383;
+            text-decoration: none;
+            min-height: 24px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .subNavLeftMenu li.selected {
+            background: none repeat scroll 0 0 #00529B;
+        }
+
+            .subNavLeftMenu li.selected a {
+                color: #FFFFFF !important;
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+            }
+
+        .subNavLeftMenu li .expanded {
+            /*float: right;*/
+            font-weight: bold;
+            cursor: pointer;
+            width: 29px;
+            height: 24px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .subNavLeftMenu li.menuLevel1 a {
+            color: #424242;
+            text-decoration: none;
+            padding-left: 30px;
+        }
+
+        .subNavLeftMenu li.menuLevel2 {
+            padding: 8px 0;
+        }
+
+
+            .subNavLeftMenu li.menuLevel2 a {
+                padding-left: 40px;
+            }
+
+        .subNavLeftMenu li.menuLevel3 {
+            padding: 12px 0;
+        }
+
+            .subNavLeftMenu li.menuLevel3 a {
+                padding-left: 50px;
+            }
+
+        .subNavLeftMenu li.menuLevel4 {
+            padding: 12px 0;
+        }
+
+            .subNavLeftMenu li.menuLevel4 a {
+                padding-left: 60px;
+            }
+
+        .subNavLeftMenu li a:hover {
+            color: #1A6CB5;
+        }
+
+        .subNavLeftMenu li.menuLevel2.expand a, .subNavLeftMenu li.menuLevel3.expand a {
+            color: #00529B;
+            -webkit-transition: all 3s ease;
+            -moz-transition: all 3s ease;
+            -o-transition: all 3s ease;
+            -ms-transition: all 3s ease;
+            transition: all 3s ease;
+        }
+
+    .subNavLeftMenu .expanded.plusSign {
+        background: url('images/arrowRightGray.png') no-repeat left center;
+    }
+
+        .subNavLeftMenu .expanded.plusSign:hover {
+            background: url('images/arrowRightBlueLight.png') no-repeat left center;
+        }
+
+    .subNavLeftMenu .expanded.minusSign {
+        background: url('images/arrowDownBlueReg.png') no-repeat left center;
+    }
+
+    .subNavLeftMenu li.selected .expanded.minusSign {
+         background: url('images/arrowDownWhite.png') no-repeat left center;
+    }
+
+    .subNavLeftMenu li.selected .expanded.plusSign {
+         background: url('images/arrowRightWhite.png') no-repeat left center;
+    }

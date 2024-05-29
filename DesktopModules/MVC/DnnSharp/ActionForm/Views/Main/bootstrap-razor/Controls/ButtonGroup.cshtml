@@ -1,0 +1,32 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<ButtonGroupFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    AppendClasses("field-container col-sm-" + Model.ColSpan + " " + Model.CssClass);
+    if (Model.ColOffset > 0)
+    {
+        AppendClasses("col-sm-offset-" + Model.ColOffset);
+    }
+    AppendClasses("btnc-" + Model.ButtonAlign.ToString().ToLower());
+}
+
+<div style="@Model.CssStyles" @ElementAttributes()>
+    @if (Model.IsConditionallyEnabled)
+    {
+        foreach (var btnField in Model.ButtonsList)
+        {
+            if (!btnField.NoDefaultContainer)
+            {
+                @TemplatePartial("_Container", new ContainerVM(btnField), new ViewDataDictionary(ViewData) { { Constants.renderGroup, "true" } })
+            }
+            else
+            {
+                @TemplatePartial("_FieldRender", FieldRendererVM.InputOnly(btnField), new ViewDataDictionary(ViewData) { { Constants.renderGroup, "true" } })
+            }
+        }
+    }
+</div>
+<div class="clearfix"></div>
+

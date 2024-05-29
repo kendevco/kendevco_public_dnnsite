@@ -1,0 +1,24 @@
+﻿@media (min-width: 992px) {
+    /* row 1 */
+    .mHeaderM {
+        width: 468px;
+    }
+
+    /* row 2*/
+    .row2Left, .mHeaderM {
+        padding-left: 0;
+    }
+
+    /* Submenu */
+    .footerWrap .box {
+        display: block !important;
+    }
+
+    /* Home - Hospital Block */
+    .home-hospital-block {
+        width: 456px;
+        display: block;
+        background: #CCCCCC;
+    }
+
+}

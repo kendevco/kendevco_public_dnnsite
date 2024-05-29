@@ -1,0 +1,26 @@
+<div class="icon-nav">
+	{{#each Nav_Item}}
+		<a href="{{Nav_Link}}" class="icon-nav--item" title="{{Nav_Text}}">
+			{{#if Nav_Image}}
+				<div class="item--icon">
+					<img src="{{Nav_Image}}" width="50" height="50" alt="{{Nav_Text}} Icon" />
+				</div>
+			{{/if}}
+			{{#if Nav_Icon_vFour}}
+				<div class="item--icon">
+					<i class="{{Nav_Icon_vFour}}"></i>
+				</div>
+			{{/if}}
+			{{#if Nav_Icon_vFive}}
+				<div class="item--icon">
+					{{Nav_Icon_vFive}}
+				</div>
+			{{/if}}
+			{{#if Nav_Text}}
+				<div class="item--text">
+					{{Nav_Text}}
+				</div>
+			{{/if}}
+		</a>
+	{{/each}}
+</div>

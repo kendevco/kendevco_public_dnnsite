@@ -1,0 +1,96 @@
+table.engage-responsive-table {
+	width: 100%;
+	text-align: left;
+	border: 1px solid #eee;
+	padding: 5px 0;
+}
+/*-- Table Head --*/
+table.engage-responsive-table thead {
+	display: none;
+}
+table.engage-responsive-table thead tr:first-child {
+	display: table-row;
+}
+table.engage-responsive-table thead tr {
+	display: none;
+}
+table.engage-responsive-table thead tr th {
+	padding: 10px 15px 0 15px;
+	min-width: 200px;
+}
+
+/*-- Table Body --*/
+table.engage-responsive-table tbody > tr {
+	display: flex;
+	flex-wrap: wrap;
+	border-bottom: 1px solid #eee;
+}
+table.engage-responsive-table tbody > tr:nth-child(even) {
+	background: #f6f6f6;
+}
+table.engage-responsive-table tbody > tr:nth-child(even) td:first-child {
+	border-top: 1px solid #eee;
+}
+table.engage-responsive-table tbody > tr:nth-child(even) td:last-child {
+	border-bottom: 1px solid #eee;
+}
+table.engage-responsive-table tbody tr td {
+	display: block;
+	padding: 10px 15px 0 15px;
+	min-width: 200px;
+}
+table.engage-responsive-table tbody tr span.cell-heading {
+	display: block;
+	font-weight: bold;
+	font-size: 0.75em;
+	text-transform: uppercase;
+}
+
+@media screen and (min-width: 700px) {
+	.table-overflow {
+		overflow-x: auto;
+	}
+	table.engage-responsive-table {
+		width: 100%;
+		text-align: left;
+		padding: 0;
+	}
+
+	/*-- Table Head --*/
+	table.engage-responsive-table thead {
+		display: table-header-group;
+	}
+	table.engage-responsive-table thead tr th {
+		border-bottom: 1px solid #eee;
+		padding: 10px;
+	}
+
+	/*-- Table Body --*/
+	table.engage-responsive-table tbody > tr {
+		display: table-row;
+		border-bottom: 0;
+	}
+	table.engage-responsive-table tbody > tr:nth-child(even) {
+		background: transparent;
+	}
+	table.engage-responsive-table tbody > tr:nth-child(even) td:first-child {
+		border-top: 0;
+	}
+	table.engage-responsive-table tbody > tr:nth-child(even) td:last-child {
+		border-bottom: 0;
+	}
+	table.engage-responsive-table tbody tr td {
+		display: table-cell;
+		border-bottom: 1px solid #eee;
+		padding: 10px 10px 0 10px;
+	}
+	table.engage-responsive-table tbody tr:nth-child(even) td {
+		background: #f6f6f6;
+	}
+	table.engage-responsive-table tbody tr:last-child() td {
+		border-bottom: 0;
+	}
+	table.engage-responsive-table tbody tr span.cell-heading {
+		display: none;
+	}
+}

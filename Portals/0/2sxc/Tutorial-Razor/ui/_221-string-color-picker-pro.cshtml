@@ -1,0 +1,76 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  CreateInstance("Shared.cs").EnableEditForAnonymous(Edit);
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+
+<div class="row mb-2">
+  <div class="col-lg-7">
+    <h2>2sxc Custom Color-Picker Input Field - Configurable</h2>
+    <p>
+      Input fields may expect some configuration - like default colors or WebApi endpoints. To enable such a configuration, we need a Content-Type which defines all the fields that can be configured. This can be in the app-data, or it can be stored in a subfolder of the field-extension, to make redestribution easier. <br>
+      This example contains the json-exported content-type in the folder <code>/system/field-string-app-color-pickr-pro/.data/contenttypes/</code> so you could just copy the extension folder to another app and use it from there. 
+    </p>
+
+    <p>So in this tutorial you'll learn how to:</p>
+    <ul>
+      <li>To see how the UI changes based on field configuration</li>
+      <li>How to access such pre-configured settings with <code>connector.field.settings</code></li>
+      <li>The Content-Type for configuration is included in the extension folder</li>
+    </ul>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml") 
+</div>
+
+  @Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+</hide>
+
+<div class="alert alert-success">
+  <h2>New syntax: Configurable Color-Picker Input Field</h2>
+  <p>
+    This example shows two color-picker fields, with different initial configurations. <br>
+    Hit this edit button to have a look: 
+  </p>
+  <snippet id="tb-colorpicker-newsyn">
+  @Kit.Toolbar.Empty().New("UiStringColorPickrPro").AsTag()
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-newsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+<div class="alert alert-secondary">
+  <h2>Old syntax: Configurable Color-Picker Input Field</h2>
+  <p>
+    This example shows two color-picker fields, with different initial configurations. <br>
+    Hit this edit button to have a look: 
+  </p>
+  <snippet id="tb-colorpicker-oldsyn">
+  @Edit.Toolbar(toolbar: new [] { "toolbar=empty", "+new?contentType=UiStringColorPickrPro" })
+  </snippet>
+  <hide-silent> @* Show only this snippet *@
+    @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "tb-colorpicker-oldsyn", Size = 50 }) 
+  </hide-silent>
+</div>
+
+
+<hide>
+@Html.Partial("_warning.cshtml")
+
+@Html.Partial("../shared/_source-code.cshtml", new {
+  Path,
+  File = "../system/field-string-app-color-pickr-pro/index.js",
+  Size = 2300,
+  Title = "Source of [App]/system/field-string-app-color-pickr/index.js"
+})
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new {
+  Path,
+  File = "../system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json",
+  Size = 1300,
+  Wrap = true,
+  Title = "Source of [App]/system/field-string-app-color-pickr-pro/.data/contenttypes/System.Fields.459d4ce3-b96b-4664-9947-75e46df9d33e.json"
+})
+
+</hide>

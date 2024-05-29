@@ -1,0 +1,13 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.InvalidFieldViewVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+<div>
+    @LocalizeString("MVC.InvalidFieldView.ErrorMessage", Model.Field.InputType)
+
+    @if (Model.Exception != null)
+    {
+        @LocalizeString("MVC.InvalidFieldView.AdminErrorMessage", Model.Field.ViewName)
+        @Model.Exception.ToString()
+    }
+</div>

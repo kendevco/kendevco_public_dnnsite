@@ -1,0 +1,39 @@
+<div class="content-cards" data-columns='{{Template_Settings.Template_Columns}}'>
+    {{#each Cards}}
+        <div class="card">
+            {{#if Icon_Type}}
+                {{#if Custom_Card_Icon}}
+                    <div class="card--icon">
+                        <img src="{{Custom_Card_Icon}}" width="100" height="100" alt="{{Card_Heading}} Icon" />
+                    </div>
+                {{/if}}
+                {{#if Card_Icon_V4}}
+                    <div class="card--icon">
+                        <i class="{{Card_Icon_V4}}"></i>
+                    </div>
+                {{/if}}
+                {{#if Card_Icon_V5}}
+                    <div class="card--icon">
+                        {{Card_Icon_V5}}
+                    </div>
+                {{/if}}
+            {{/if}}
+            <div class="card--content">
+                {{#if Card_Heading}}
+                    <h2 class="card--heading">{{Card_Heading}}</h2>
+                {{/if}}
+                {{#if Card_SubHeading}}
+                    <span class="card--sub-heading">{{Card_SubHeading}}</span>
+                {{/if}}
+                {{#if Card_Content}}
+                    <div class="card--info">{{Card_Content}}</div>
+                {{/if}}
+                {{#if Add_Link}}
+                    <div class="card--actions">
+                        <a href="{{Card_Link}}" class="actions--button" title="{{Card_Link_Text}}">{{Card_Link_Text}}</a>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

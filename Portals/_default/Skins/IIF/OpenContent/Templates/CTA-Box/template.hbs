@@ -1,0 +1,14 @@
+<div class="cta">
+    {{#each CTA}}
+        <div class="cta-box{{#if CTA_Alt}} cta-box__alt{{/if}}" style="background-image: url('{{CTA_Image}}')">
+            <div class="cta-box--content{{#if Centered_Text}} text-center{{/if}}">
+                {{#if CTA_Title}}<div><h2>{{CTA_Title}}</h2></div>{{/if}}
+                <div>{{CTA_Text}}</div>
+            </div>
+
+            <div class="cta-box--cta">
+                <a href="{{CTA_Link}}">{{CTA_Link_Text}}</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

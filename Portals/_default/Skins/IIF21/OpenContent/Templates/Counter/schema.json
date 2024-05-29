@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Title"
+    },
+    "Module_SubTitle": {
+      "type": "string",
+      "title": "Subtitle"
+    },
+    "Counter": {
+      "type": "array",
+      "title": "Counter",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Counter_Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Counter_End": {
+            "type": "number",
+            "title": "Ending Counter Value",
+            "required": true
+          },
+          "Counter_Data_Type_Prefix": {
+            "type": "string",
+            "title": "Data Prefix",
+            "enum": [
+              "$",
+              "custom"
+            ]
+          },
+          "Custom_Data_Type_Prefix": {
+            "type": "string",
+            "title": "Custom Data Prefix",
+            "dependencies": [
+              "Counter_Data_Type_Prefix"
+            ]
+          },
+          "Counter_Data_Type_Suffix": {
+            "type": "string",
+            "title": "Data Suffix",
+            "enum": [
+              "%",
+              "custom"
+            ]
+          },
+          "Custom_Data_Type_Suffix": {
+            "type": "string",
+            "title": "Custom Data Suffix",
+            "dependencies": [
+              "Counter_Data_Type_Suffix"
+            ]
+          },
+          "Counter_Timing": {
+            "type": "number",
+            "title": "Counter Timing (in milliseconds)"
+          },
+          "Icon_Version": {
+            "type": "string",
+            "title": "Icon Version",
+            "enum": [
+              "v4",
+              "v5"
+            ]
+          },
+          "Icon_v4": {
+            "type": "string",
+            "title": "Icon",
+            "dependencies": [
+              "Icon_Version"
+            ]
+          },
+          "Icon_v5": {
+            "type": "string",
+            "title": "Icon",
+            "dependencies": [
+              "Icon_Version"
+            ]
+          },
+          "Content_Color": {
+            "type": "string",
+            "title": "Content Color",
+            "enum": [
+              "pink",
+              "green",
+              "orange",
+              "blue"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

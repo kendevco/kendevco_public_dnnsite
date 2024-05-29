@@ -1,0 +1,57 @@
+<div class="event-listing" itemscope itemtype="https://schema.org/Organization">
+	<div class="event-listing--featured">
+		{{#each Event_Listing}}
+			{{#if @first}}
+				<a href="{{Link_To_Details}}" class="event" itemscope itemtype="https://schema.org/Event">
+					<span class="event--image" itemprop="image"><img src="{{Event_Image}}" class="event--image" /></span>
+					<span class="event--tag">Latest Event</span>
+					<span class="event--inner">
+						<span class="event--info">
+							<h2 class="event--title" itemprop="name">{{Event_Title}}</h2>
+						</span>
+						<span class="date">
+							{{#if Event_Start_Date}}<meta itemprop="startDate" content="{{formatDateTime Event_Start_Date "MM-dd-yyyy"}}">{{formatDateTime Event_Start_Date "MMMM"}} {{formatDateTime Event_Start_Date "dd"}}, {{formatDateTime Event_Start_Date "yyyy"}}{{/if}}
+							{{#if Event_End_Date}}<meta itemprop="endDate" content="{{formatDateTime Event_End_Date "MM-dd-yyyy"}}"> - {{formatDateTime Event_End_Date "MMMM"}} {{formatDateTime Event_End_Date "dd"}}, {{formatDateTime Event_End_Date "yyyy"}}{{/if}}
+						</span>
+						{{#if Event_Type}}<span class="event--type">{{Event_Type}}</span>{{/if}}
+					</span>
+				</a>
+				{{else}}
+			{{/if}}
+		{{/each}}
+	</div>
+
+	<div class="event-listing--upcoming">
+		{{#each Event_Listing}}
+			{{#if @first}}
+				<h1>Upcoming Events</h1>
+				<div class="event" itemscope itemtype="https://schema.org/Event">
+					<div class="event--info">
+						<h2 class="event--title" itemprop="name">{{#if Link_To_Details}}<a href="{{Link_To_Details}}">{{Event_Title}}</a>{{else}}{{Event_Title}}{{/if}}</h2>
+					</div>
+					<div class="event--date">
+						<span class="date">
+							{{#if Event_Start_Date}}<meta itemprop="startDate" content="{{formatDateTime Event_Start_Date "MM-dd-yyyy"}}">{{formatDateTime Event_Start_Date "MMMM"}} {{formatDateTime Event_Start_Date "dd"}}, {{formatDateTime Event_Start_Date "yyyy"}}{{/if}}
+							{{#if Event_End_Date}}<meta itemprop="endDate" content="{{formatDateTime Event_End_Date "MM-dd-yyyy"}}"> - {{formatDateTime Event_End_Date "MMMM"}} {{formatDateTime Event_End_Date "dd"}}, {{formatDateTime Event_End_Date "yyyy"}}{{/if}}
+						</span>
+					</div>
+				</div>
+				{{else}}
+				<div class="event" itemscope itemtype="https://schema.org/Event">
+					<div class="event--info">
+						<h2 class="event--title" itemprop="name">{{#if Link_To_Details}}<a href="{{Link_To_Details}}">{{Event_Title}}</a>{{else}}{{Event_Title}}{{/if}}</h2>
+					</div>
+					<div class="event--date">
+						<span class="date">
+							{{#if Event_Start_Date}}<meta itemprop="startDate" content="{{formatDateTime Event_Start_Date "MM-dd-yyyy"}}">{{formatDateTime Event_Start_Date "MMMM"}} {{formatDateTime Event_Start_Date "dd"}}, {{formatDateTime Event_Start_Date "yyyy"}}{{/if}}
+							{{#if Event_End_Date}}<meta itemprop="endDate" content="{{formatDateTime Event_End_Date "MM-dd-yyyy"}}"> - {{formatDateTime Event_End_Date "MMMM"}} {{formatDateTime Event_End_Date "dd"}}, {{formatDateTime Event_End_Date "yyyy"}}{{/if}}
+						</span>
+					</div>
+				</div>
+			{{/if}}
+		{{/each}}
+		{{#if All_Events_Link}}
+			<a href="{{All_Events_Link}}" class="event-listing--all"><i class="fa fa-calendar icon"></i> {{#if All_Events_Link_Text}}{{All_Events_Link_Text}}{{else}}View All Events{{/if}}</a>
+		{{/if}}
+	</div>
+</div>

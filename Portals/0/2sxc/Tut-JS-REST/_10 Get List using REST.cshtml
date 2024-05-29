@@ -1,0 +1,65 @@
+<h2>Simple get content-items list with REST</h2>
+<p>
+    The following demo shows how to use simple JavaScript to retrieve all Feedback items in this app.
+</p>
+
+<h2>These is where the categories will appear</h2>
+<div id="message"></div>
+<ol id="categories">
+</ol>
+
+<script>
+
+// This will process the resulting data
+function handleResult(data) {
+    // use the data to show a message
+    $('#message').html("Success, the $.ajax(...) worked! I found " + data.length + " categories, the first one is '" + data[0].Title + "'");
+
+    // use the data to show a list of items
+    var items = [];
+    $.each(data, function(idx, category) {
+        items.push( "<li>" + category.Title + "</li>" );
+    });
+    $(items.join("")).appendTo($('#categories'));
+
+}
+
+// this is the easiest way to get data from inside a dnn-module
+function getAllFeedbackCategoriesEasyWay(moduleId) {
+    $2sxc(moduleId).webApi.get('app/auto/content/Category')
+        .then(handleResult);
+};
+
+// the 
+function getAllFeedbackCategoriesHardWay(moduleId) {
+    // the following line gets a helper object for this module. 
+    var modSxc = $2sxc(moduleId);
+
+    // this is the manual setup using $.ajax
+    var urlToAllItems = modSxc.resolveServiceUrl('app/auto/content/Category')    
+    var dnnSf = $.ServicesFramework(moduleId);
+    $.ajax({
+        url: urlToAllItems,
+        beforeSend:  dnnSf.setModuleHeaders,
+        success: handleResult,
+        error: function(jqXHR, textStatus, errorThrown){
+            alert("Error:" + errorThrown);
+        }
+    });
+};
+
+
+
+// This call will execute the main function when the document is ready
+// Don't try to execute it before, because the DNN security features won't work yet
+// Note that the placeholder Module.ModuleId will be turned into the module number on the server, so the browser will actually have a number
+$(function() { 
+    getAllFeedbackCategoriesEasyWay(@Dnn.Module.ModuleID) 
+});
+</script>
+
+<!-- this includes the $2sxc helpers necessary to work --> 
+<script src="/desktopmodules/tosic_sexycontent/js/2sxc.api.min.js"></script>
+
+<!-- this script just has some tutorial-helpers, not relevant to understand the tutorial code -->
+<script src="@App.Path/assets/tutorial-helpers.js"></script>

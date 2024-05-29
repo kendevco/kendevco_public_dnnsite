@@ -1,0 +1,22 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.SortableInputFieldVM>
+@using avt.ActionForm
+
+@{
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddCommonAttributes(true, true, true, null, "keyup");
+    AddPlaceholderAttributes();
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+}
+
+<div load-on-demand="'sortable'">
+    <div data-sortable=""
+         data-itemvalue="value"
+         update-field="updateField(field, val)"
+         data-items="form.fields.@(Model.Name).options"
+         data-icon-class="@Model.CssIconClass"
+         data-icon-position="@Model.IconPosition"
+         data-drag-by-icon="@Model.DragByIcon"
+         @ElementAttributes()>
+    </div>
+</div>

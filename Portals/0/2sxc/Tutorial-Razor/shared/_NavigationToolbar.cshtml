@@ -1,0 +1,89 @@
+@inherits Custom.Hybrid.Razor14
+@using System.Linq;
+@{
+  var hlp = CreateInstance("Helpers.cs");
+  var currentView = CmsContext.View;
+  var viewMdType = hlp.TutViewMetadataType as string;
+
+  // Enable Fa5 for icons
+  Kit.Page.Activate("FontAwesome5");
+
+  // Fallback for missing metadata
+  var unknownViewMetadata = AsDynamic(new
+  {
+    LinkTitle = "Todo",
+  });
+
+  // Get current datasets
+  var viewMd = AsDynamic((currentView.Metadata.OfType(viewMdType) as IEnumerable<dynamic>).FirstOrDefault() ??
+  unknownViewMetadata);
+  var sortedTutorialSections = (AsList(App.Data["Tutorial"]).Last().Sections as IEnumerable<dynamic>).ToList();
+  var tutorialSection = AsList(sortedTutorialSections)
+    .Where(section => (section.Views as IEnumerable<dynamic>)
+      .Any(view => view.EntityId == currentView.Id))
+    .FirstOrDefault() ?? null;
+  var tutorialSectionIndex = tutorialSection != null ? sortedTutorialSections.FindIndex(section => section.EntityId == tutorialSection.EntityId) : 0;
+}
+
+@if (tutorialSection != null) {
+  var viewList = (tutorialSection.Views as IEnumerable<dynamic>).ToList();
+  var currentIndex = viewList.FindIndex(view => view.EntityId == currentView.Id);
+  var homeTarget = "#" + tutorialSection.NameId;
+  var previousTutorial = currentIndex > 0 
+    ? viewList[currentIndex - 1] 
+    : tutorialSectionIndex > 0 
+      ? (sortedTutorialSections[tutorialSectionIndex - 1].Views as IEnumerable<dynamic>).Last() 
+      : null;
+
+  var nextTutorial = currentIndex < viewList.Count() - 1 
+    ? viewList[currentIndex + 1] 
+    : tutorialSectionIndex < sortedTutorialSections.Count() - 1
+      ? (sortedTutorialSections[tutorialSectionIndex + 1].Views as IEnumerable<dynamic>).First() 
+      : null;
+
+  <div class="alert alert-dark container-fluid">
+    <div class="row justify-content-between">
+      <div class="col-4 text-truncate">
+        @{
+          var previousTutorialMd = previousTutorial != null
+            ? AsDynamic((previousTutorial.Metadata.OfType(viewMdType) as IEnumerable<dynamic>)
+              .FirstOrDefault() ?? unknownViewMetadata)
+            : null;
+          var previousTutorialTarget = previousTutorialMd != null 
+            ? hlp.GetTargetUrl(previousTutorial.ViewNameInUrl.Replace("/.*", "")) 
+            : homeTarget;
+        }
+        @viewList.First().Id
+
+        <a href="@Link.To(parameters: previousTutorialTarget)" class="row">
+          <div class="col-auto">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="col text-truncate">
+            @(previousTutorial != null ? Html.Raw(previousTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+          </div>
+        </a>
+      </div>
+      <div class="col-4 text-center text-truncate">
+        <strong>#@(currentIndex + 1) @Html.Raw(viewMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) </strong>
+      </div>
+      <div class="col-4 text-end text-right">
+        @{
+          var nextTutorialMd = nextTutorial != null ? AsDynamic((nextTutorial.Metadata.OfType(viewMdType) as
+          IEnumerable<dynamic>).FirstOrDefault() ?? unknownViewMetadata) : null;
+          var nextTutorialTarget = nextTutorialMd != null 
+            ? hlp.GetTargetUrl(nextTutorial.ViewNameInUrl.Replace("/.*", ""))
+            : homeTarget;
+        }
+        <a href="@Link.To(parameters: nextTutorialTarget)" class="row">
+          <div class="col text-truncate">
+            @(nextTutorial != null ? Html.Raw(nextTutorialMd.LinkTitle.Replace("<p>", "").Replace("</p>", "")) : "Home")
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+}

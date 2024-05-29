@@ -1,0 +1,205 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+
+    .alert-warning {
+        color: $gray900;
+        background-color: $warn-color;
+    }
+
+    .alert-danger {
+        color: $gray50;
+        background-color: $danger-color;
+    }
+
+    .panel-group {
+        margin: 0;
+        /*margin-top: 16px;*/
+
+        .panel {
+            box-shadow: none;
+            margin-bottom: 0;
+
+            & + .panel {
+                &.panel-default {
+                    margin-top: 4px;
+                }
+            }
+
+            &.deleted {
+                background-color: $danger-color;
+
+                .material-icons, .glyphicon {
+                    color: #f9fafa;
+                }
+            }
+            // Some panels have a plus at the begninng for expanding
+            .plus {
+                margin-right: 8px;
+            }
+
+            &.panel-default {
+                border: 1px solid #CBD2D1;
+                border-left: 2px solid #CBD2D1;
+                border-radius: 4px;
+                color: #222726;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 24px;
+                margin: 0;
+            }
+
+            .panel-heading {
+                background: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 8px 16px;
+                min-height: 47px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                .id {
+                    color: #777;
+                    font-size: 90%;
+                    margin-right: 4px;
+                    margin-left: 6px;
+                }
+
+                .label {
+                    margin-left: 4px;
+                }
+
+                &.deleted {
+                    background-color: $danger-color !important;
+
+                    .material-icons, .glyphicon, .accordion-toggle, small, .btn-link, span:not(.label) {
+                        color: $gray50 !important;
+                    }
+                }
+
+                &:not(.deleted) {
+                    &:hover {
+                        background-color: #f9fafa;
+                    }
+                }
+
+                .panel-button-group {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .btn-with-icon .material-icons {
+                        font-size: 18px;
+                    }
+                }
+
+                .panel-desc {
+                    display: flex;
+                    justify-content: left;
+                    align-items: center;
+                    overflow: hidden;
+                    flex-grow: 1;
+
+                    a {
+                        text-decoration: none;
+                    }
+
+                    .glyphicon-menu-down {
+                        display: inline;
+                    }
+
+                    .glyphicon-menu-up {
+                        display: none;
+                    }
+                }
+
+                .accordion-toggle {
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #222726;
+                    text-overflow: ellipsis;
+                    overflow-x: hidden;
+                    white-space: nowrap;
+                    display: inline-block;
+                }
+            }
+
+            .panel-body {
+                padding: 16px;
+            }
+
+            .btn.btn-link {
+                padding: 4px 8px;
+            }
+
+            .panel-button-group.glyphicons-buttons .btn-link {
+                padding: 6px 10px;
+            }
+
+            .panel-button-group {
+                .btn {
+                    margin-left: 4px;
+                }
+            }
+
+            .btn.btn-sm.btn-default {
+                box-shadow: none;
+                background-color: #f9fafa;
+                border: 1px solid #cbd2d1;
+                color: #222726;
+                font-weight: 400;
+                line-height: 18px;
+                font-size: 14px;
+                border-radius: 4px;
+                padding: 8px 16px;
+                outline: none;
+
+                &.active {
+                    background-color: $primary-color;
+                    color: #F9FAFA;
+                    background-image: none;
+
+                    &:hover {
+                        background-color: #f9fafa;
+                        color: #222726;
+                    }
+                }
+
+                &:hover {
+                    background-color: $primary-color;
+                    color: #F9FAFA;
+                    background-image: none;
+                }
+            }
+        }
+
+        .panel.panel-open {
+            border-left: 2px solid $primary-color;
+
+            > .panel-heading {
+                background: $gray50;
+
+                > .panel-desc {
+                    > .glyphicon-menu-down {
+                        display: none;
+                    }
+
+                    > .glyphicon-menu-up {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+
+    .panel-placeholder {
+        min-height: 52px;
+        padding: 8px 16px;
+        background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba($primary-color, 0.2) 7px, rgba($primary-color, 0.3) 9px );
+    }
+  
+}

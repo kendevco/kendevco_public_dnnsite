@@ -1,0 +1,26 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Banner_Image": {
+      "type": "image"
+    },
+    "Filtered": {
+      "type": "checkbox"
+    },
+    "Banner_Icon": {
+      "type": "image"
+    },
+    "Banner_Text": {
+      "type": "wysihtml"
+    },
+    "Banner_CTA_Text": {
+      "type": "text"
+    },
+    "Banner_CTA_Link": {
+      "type": "text"
+    }
+  }
+}

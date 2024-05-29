@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "Anchor": {
+      "type": "string",
+      "title": "Anchor for quick links (optional)"
+    },
+    "Accordion": {
+      "type": "array",
+      "title": "Accordion",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Panel_Heading": {
+            "type": "string",
+            "title": "Panel Heading Text"
+          },
+          "Panel_Content": {
+            "type": "string",
+            "title": "Panel Content"
+          }
+        }
+      }
+    }
+  }
+}

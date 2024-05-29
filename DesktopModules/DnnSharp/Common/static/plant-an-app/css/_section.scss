@@ -1,0 +1,118 @@
+﻿@import "variables";
+
+.bstrap3-material .papp-admin {
+    .simple-section {
+        padding: 16px;
+    }
+
+    .section-buttons {
+        margin-top: $spacing-small;
+        display: flex;
+        gap: 4px;
+    }
+
+    .subtitle-section-with-number {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        height: 50px;
+        margin: 20px 0;
+        background: $gray50;
+
+        .number {
+            align-items: center;
+            border: 2px solid $primary-color;
+            border-radius: 50%;
+            color: $primary-color;
+            display: flex;
+            font-size: 16px;
+            font-weight: 600;
+            height: 24px;
+            line-height: 22px;
+            justify-content: center;
+            margin-left: 16px;
+            margin-right: 16px;
+            text-align: center;
+            width: 24px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+
+            &.basic-btn {
+                background: none;
+                box-shadow: none;
+                border: 1px solid #cbd2d1;
+                border-radius: 4px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 18px;
+                text-transform: capitalize;
+                color: #222726;
+            }
+
+            .caret {
+                margin-left: 8px;
+                margin-bottom: 2px;
+            }
+        }
+
+        .btn-subtitle-section {
+            .btn {
+                margin: 0;
+            }
+        }
+    }
+
+    .subtitle-with-number-and-def {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: $gray50;
+        height: 50px;
+        margin-bottom: 16px;
+
+        .def {
+            margin-right: 16px;
+            max-width: 60%;
+            text-align: end;
+
+            .help-icon {
+                color: #8B9A98;
+
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .section-content {
+        margin-left: 56px;
+        margin-bottom: 32px;
+        margin-right: 16px;
+    }
+
+    .section-warning {
+        margin: 16px 0;
+    }
+    /*
+        RESPONSIVE
+    */
+
+    @media (max-width: 750px) {
+        .section-content {
+            margin-left: 16px;
+        }
+    }
+}

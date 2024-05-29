@@ -1,0 +1,116 @@
+@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+
+<script type="text/javascript">window.dnnsfjQuery = window.dnnsfjQuery || window.jQuery;</script>
+
+<div class="bstrap3-material">
+    @* or class="bstrap30" *@
+    <div class="generate-rsa-key-container col-xs-12 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="input-group" id="key-size-form">
+            <label class="control-label" for="key-size">Key Size:</label>
+            <input class="form-control" type="text" id="key-size" name="keySize" describedby="help-block">
+            <span id="help-block" class="help-block">The Key Size must be a number between 1024 and 16384 and a multiple of 1024.</span>
+            <div class="input-group-btn">
+                <button type="button" id="generate-key-button" class="btn btn-primary generate-button">Generate</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="iv-public-key">Public Key:</label>
+            <textarea class="form-control" id="iv-public-key" readonly rows="5">
+        </textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="iv-private-key">Private Key:</label>
+            <textarea class="form-control" id="iv-private-key" readonly rows="5">
+        </textarea>
+        </div>
+        <div id="error-alert" class="alert alert-danger" role="alert"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var keySizeForm = $("#key-size-form");
+        var publicKey = $("#iv-public-key");
+        var privateKey = $("#iv-private-key");
+        var errorAlert = $("#error-alert");
+        errorAlert.hide();
+
+        function setErrorState(hasError) {
+            if (hasError) {
+                keySizeForm.addClass("has-error");
+                return;
+            }
+
+            keySizeForm.removeClass("has-error");
+        }
+
+        function validateInput(input) {
+            if (!input) {
+                setErrorState(true);
+                return false;
+            }
+
+            var inputValue = parseInt(input) || 0;
+
+            if ((inputValue < 1024) || (inputValue > 16384) || inputValue % 1024 != 0) {
+                setErrorState(true);
+                //invalid input
+                return false;
+            }
+            setErrorState(false);
+            return true;
+        }
+
+        $("#generate-key-button").on('click', function (e) {
+            errorAlert.hide();
+            var serviceFramework = $.ServicesFramework(@Dnn.ActiveModule.ModuleID);
+
+            var keySize = $("#key-size").val();
+            if (validateInput(keySize)) {
+                $.ajax({
+                    url: dnn.getVar("sf_siteRoot", "/") + "DesktopModules/MVC/DnnSharp/ActionForm/GenerateRsaKeySubmit?keySize=" + keySize,
+                    method: "POST",
+                    beforeSend: serviceFramework.setModuleHeaders,
+                    contentType: "application/json",
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        errorAlert.text(xhr.status + " " + thrownError);
+                        errorAlert.show();
+                    }
+                })
+                .done(function (response) {
+                    if (response) {
+                        publicKey.val(response.PublicKey);
+                        privateKey.val(response.PrivateKey);
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+<style>
+    .generate-rsa-key-container {
+        margin-top: 50px;
+    }
+
+    .generate-rsa-key-container div {
+        margin-bottom: 20px;
+    }
+
+    #iv-public-key {
+        height: auto;
+        resize: vertical;
+    }
+
+    #iv-private-key {
+        height: auto;
+        resize: vertical;
+    }
+    .generate-button {
+        margin-left:10px;
+    }
+</style>

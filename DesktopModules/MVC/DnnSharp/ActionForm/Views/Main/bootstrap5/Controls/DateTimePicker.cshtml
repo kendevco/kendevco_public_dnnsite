@@ -1,0 +1,62 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.DateTimePickerFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, touchEvent: "keyup");
+    AddPlaceholderAttributes();
+
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("field-id", Model.Name);
+    AddAttribute("data-client-format", Model.ClientFormat);
+    AddAttribute("aria-describedby", Model.Name + "-" + Model.Settings.ModuleId.ToString());
+    AddAttribute("module-id", Model.Settings.ModuleId.ToString());
+    AppendClasses("dateandtimeflatpickr");
+
+    if (!string.IsNullOrWhiteSpace(Model.MaxDate))
+    {
+        AddAttribute("max-date", Model.MaxDate);
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.MinDate))
+    {
+        AddAttribute("min-date", Model.MinDate);
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.MaxTime))
+    {
+        AddAttribute("max-time", Model.MaxTime);
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.MinTime))
+    {
+        AddAttribute("min-time", Model.MinTime);
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.FlatpickrOptionsOverride))
+    {
+        AddAttribute("flatpickr-options-override", Model.FlatpickrOptionsOverride);
+    }
+
+    var inputAttributes = NewAttributes();
+    inputAttributes["id"] = Attributes["id"] + "Input";
+    if (!Model.IsConditionallyEnabled)
+    {
+        inputAttributes["disabled"] = "disabled";
+    }
+}
+
+<div load-on-demand="'datetimeflatpickr'">
+    <div datetimeflatpickr=""
+         pickerType="@Model.PickerType"
+         data-form="form"
+         update-field="updateField(field, val)"
+         register-control="registerControl(control)"
+         value="@Model.Value"
+         @ElementAttributes()>
+        <input type="text"
+               data-input=""
+               class="form-control valid-date-@Model.Name"
+               @ElementAttributes(inputAttributes) />
+    </div>
+
+</div>

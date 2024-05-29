@@ -1,0 +1,102 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Prepare helpers
+  var helpers = CreateInstance("Links.cs");
+
+  // Toolbar configuration for use on posts
+  var postToolbarConfig = new [] {
+    "-layout",
+    "%new&show=true?contentType=BlogPost&entityId=0&prefill:PublicationMoment=" + DateTime.Now.ToString("yyyy-MM-dd"),
+    "%delete&show=true"
+  };
+}
+
+<style>
+.book-cover {
+    width: 100%;
+    height: 150px;   // Adjust as needed
+    overflow: hidden;
+    
+    picture {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        img.img-fluid {
+            object-fit: cover;  // Ensures the image covers the entire container
+            height: 100%;
+        }
+    }
+}
+
+.card.h-100.m-0 {
+    background-color: #424267 !important;  // A light grayish background for the card
+    border: none;
+    border-radius: 15px;
+
+    .card-title {
+        color: #008994;  // Dark color for the title
+    }
+
+    .card-text {
+        color: #666;  // Slightly lighter color for the description text
+    }
+
+    .card-footer {
+        background: none;
+        border-top: none;
+    }
+}
+
+
+</style>
+<section class="app-blog5" @Edit.TagToolbar(Content)>
+  <div class="row">
+    <div class="col-12">
+      @* Title / Description of current filter (Author, Category, etc.) *@
+      @Html.Partial("_ListMain.PartHeader.cshtml")
+    </div>
+
+    <div class="col-lg-8">
+      @* Mobile Category filter *@
+      <div class="d-xs-block d-lg-none">
+        @Html.Partial("shared/_Categories.cshtml")
+      </div>
+
+      <div class="row">
+      @* List the posts *@
+      @foreach(var post in AsList(Data["Posts"])) {
+          <article class="app-blog5-list-item effect-zoom mb-5 col-md-4" @Edit.TagToolbar(post, toolbar: postToolbarConfig)>
+              <div class="card h-100 m-0">
+                  <div >
+                      @Html.Partial("shared/_MainImage.cshtml", new { Post = post })
+                  </div>
+                  
+                  <div class="card-body">
+                      <h5 class="card-title">@post.Title</h5>
+                      <p class="card-text">@Html.Raw(post.Teaser)</p>
+                  </div>
+                  
+                  <div class="card-footer">
+                      <a href="@helpers.LinkToDetailsPage(post)" class="btn btn-primary">@Resources.ReadMore</a>
+                  </div>
+              </div>
+          </article>
+      }
+      </div>
+
+      @* Show pagination if configured *@
+      @if (Content.ShowPagination == true) {
+        @Html.Partial("shared/_ListPaging.cshtml")
+      }
+    </div>
+
+    @* Desktop Category filter *@
+    <div class="col-lg-4">
+        @Html.Partial("shared/_Categories.cshtml")
+    </div>
+  </div>
+</section>
+
+@Html.Partial("shared/_Assets.cshtml")

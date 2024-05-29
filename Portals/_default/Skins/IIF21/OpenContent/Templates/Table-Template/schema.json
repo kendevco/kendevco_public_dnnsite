@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Table_Row": {
+      "type": "array",
+      "title": "Table Rows",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Table_Cell": {
+            "type": "array",
+            "title": "Table Columns",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Cell_Heading": {
+                  "type": "string",
+                  "title": "Column Heading"
+                },
+                "Cell_Content": {
+                  "type": "string",
+                  "title": "Column Content"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "CTA": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "CTA_Title": {
+            "type": "text"
+          },
+          "CTA_Text": {
+            "type": "wysihtml"
+          },
+          "Centered_Text": {
+            "type": "checkbox"
+          },
+          "CTA_Image": {
+            "type": "image"
+          },
+          "CTA_Link": {
+            "type": "text"
+          },
+          "CTA_Link_Text": {
+            "type": "text"
+          },
+          "CTA_Alt": {
+            "type": "checkbox"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "Index": true,
+    "detailMetaTitle": "",
+    "templates": {
+        "Staff": {
+            "type": "multiple",
+            "title": "List",
+            "clientSideData": false,
+            "main": {
+                "template": "Template.hbs",
+                "partialTemplate": {},
+                "optionsInTemplate": true,
+                "additionalDataInTemplate": true
+            }
+        }
+    },
+    "dataSource": "MemberDirectoryDataSource",
+    "dataSourceConfig": {
+        "ReIndexModuleOnLoad": true
+    }
+}

@@ -1,0 +1,465 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/****** Object:  Table {databaseOwner}[{objectQualifier}Ecard_Category]    Script Date: 12/23/2014 21:16:31 ******/
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Ecard_Images]') AND type in (N'U'))
+BEGIN
+
+CREATE TABLE {databaseOwner}[{objectQualifier}Ecard_Category](
+	[CategoryId] [int] IDENTITY(1,1) NOT NULL,
+	[ModuleId] [int] NOT NULL,
+	[CategoryName] [nvarchar](100) NULL,
+	[ImageURL] [nvarchar](500) NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NOT NULL,
+	[DisplayOrder] [int] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+ CONSTRAINT [PK_Ecard_Category] PRIMARY KEY CLUSTERED 
+(
+	[CategoryId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_ModuleId]  DEFAULT ((0)) FOR [ModuleId]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_StartDate]  DEFAULT (getdate()) FOR [StartDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_EndDate]  DEFAULT (getdate()) FOR [EndDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_CategoryOrder]  DEFAULT ((0)) FOR [DisplayOrder]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_CreatedDate]  DEFAULT (getdate()) FOR [CreatedDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_IsActive]  DEFAULT ((1)) FOR [IsActive]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Category] ADD  CONSTRAINT [DF_Ecard_Category_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+
+
+
+END
+GO
+
+
+
+
+/****** Object:  Table {databaseOwner}[{objectQualifier}Ecard_Images]    Script Date: 12/23/2014 21:03:00 ******/
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Ecard_Images]') AND type in (N'U'))
+BEGIN
+
+CREATE TABLE {databaseOwner}[{objectQualifier}Ecard_Images](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ModuleId] [int] NULL,
+	[Title] [nvarchar](100) NULL,
+	[ImageUrl] [nvarchar](500) NULL,
+	[CategoryId] [int] NOT NULL,
+	[DisplayOrder] [int] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[ModifiedDate] [datetime] NOT NULL,
+	[SendCount] [int] NOT NULL,
+	[StartDate] [datetime] NOT NULL,
+	[EndDate] [datetime] NOT NULL,
+CONSTRAINT [PK_Ecard_Images] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  CONSTRAINT [DF_Ecard_Images_DisplayOrder]  DEFAULT ((0)) FOR [DisplayOrder]
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  CONSTRAINT [DF_Ecard_Images_IsActive]  DEFAULT ((1)) FOR [IsActive]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  CONSTRAINT [DF_Ecard_Images_IsDeleted]  DEFAULT ((0)) FOR [IsDeleted]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  CONSTRAINT [DF_Ecard_Images_ModifiedDate]  DEFAULT (getdate()) FOR [ModifiedDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  DEFAULT ((0)) FOR [SendCount]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  DEFAULT (getdate()) FOR [StartDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] ADD  DEFAULT (getdate()) FOR [EndDate]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images]  WITH CHECK ADD  CONSTRAINT [FK_Ecard_Images_Ecard_Category] FOREIGN KEY([CategoryId])
+REFERENCES {databaseOwner}[{objectQualifier}Ecard_Category] ([CategoryId])
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Images] CHECK CONSTRAINT [FK_Ecard_Images_Ecard_Category]
+
+
+END
+GO
+
+
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Ecard_Report]') AND type in (N'U'))
+BEGIN
+
+CREATE TABLE {databaseOwner}[{objectQualifier}Ecard_Report](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[EcardId] [int] NOT NULL,
+	[RecipientName] [nvarchar](100) NULL,
+	[SenderName] [nvarchar](100) NULL,
+	[SenderEmail] [nvarchar](100) NULL,
+	[Message] [nvarchar](500) NULL,
+	[Datetime] [datetime] NOT NULL,
+	[IsSubscriber] [bit] NOT NULL,
+	[PatientRoomNumber] [nvarchar](100) NULL,
+	[SentEcardUrl] [nvarchar](800) NULL,
+ CONSTRAINT [PK_Ecard_Report] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Report] ADD  CONSTRAINT [DF_Ecard_Report_Datetime]  DEFAULT (getdate()) FOR [Datetime]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Report] ADD  CONSTRAINT [DF_Ecard_Report_IsSubcriber]  DEFAULT ((0)) FOR [IsSubscriber]
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Report]  WITH CHECK ADD  CONSTRAINT [FK_Ecard_Report_Ecard_Images] FOREIGN KEY([EcardId])
+REFERENCES {databaseOwner}[{objectQualifier}Ecard_Images] ([Id])
+
+
+ALTER TABLE {databaseOwner}[{objectQualifier}Ecard_Report] CHECK CONSTRAINT [FK_Ecard_Report_Ecard_Images]
+
+
+
+
+END
+GO
+
+
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
+
+SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Ecard_Category] ON 
+
+
+/* INSERT QUERY NO: 1 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+5, 2565, 'Get Well Soon', '~/Portals/0/EcardCategory/GetWell1.jpg', '2015-06-01 00:00:00.000', '2030-06-30 00:00:00.000', 30, '2015-06-29 16:19:44.367', 1, 0
+);
+
+/* INSERT QUERY NO: 2 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+6, 2565, 'Thinking of You', '~/Portals/0/EcardCategory/ThinkingofYou1.jpg', '2015-06-01 00:00:00.000', '2099-06-30 00:00:00.000', 40, '2015-06-29 16:22:02.413', 1, 0
+);
+
+/* INSERT QUERY NO: 3 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+8, 3376, 'Birthday', '~/Portals/0/EcardCategory/HappyBirthday1.jpg', '2016-12-01 00:00:00.000', '2030-12-31 00:00:00.000', 60, '2016-12-23 18:49:40.720', 1, 0
+);
+
+/* INSERT QUERY NO: 4 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+11, 3376, 'Congratulations', '~/Portals/0/EcardCategory/congratulation1.jpg', '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000', 70, '2021-04-20 05:56:50.680', 1, 0
+);
+
+/* INSERT QUERY NO: 5 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+12, 3376, 'Seasonal', '~/Portals/0/EcardCategory/spring-1_New.jpg', '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000', 80, '2021-04-20 06:09:12.470', 1, 0
+);
+
+/* INSERT QUERY NO: 6 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+13, 3376, 'Holidays', '~/Portals/0/EcardCategory/christmas_New.jpg', '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000', 90, '2021-04-20 06:12:52.240', 1, 0
+);
+
+/* INSERT QUERY NO: 7 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Category](CategoryId, ModuleId, CategoryName, ImageURL, StartDate, EndDate, DisplayOrder, CreatedDate, IsActive, IsDeleted)
+VALUES
+(
+15, 3376, 'Build your card', '~/Portals/0/EcardCategory/customize.jpg', '2021-05-01 00:00:00.000', '2026-05-31 00:00:00.000', 110, '2021-05-12 03:26:34.847', 1, 0
+);
+
+
+SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Ecard_Category] OFF 
+
+
+
+
+SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Ecard_Images] ON 
+
+
+/* INSERT QUERY NO: 1 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+26, 3376, 'Get Well Soon', '~/Portals/0/Ecards/GetWell1.jpg', 5, 10, 1, 0, '2016-12-23 18:57:00.987', 3714, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 2 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+27, 3376, 'Wishing You a Speedy Recovery', '~/Portals/0/Ecards/SpeedRecovery1.jpg', 5, 20, 1, 0, '2016-12-23 18:57:09.987', 3886, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 3 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+28, 3376, 'Thinking of You Bird', '~/Portals/0/Ecards/ThinkingofYou1.jpg', 6, 10, 1, 0, '2016-12-23 18:58:21.013', 28600, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 4 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+29, 3376, 'Thinking of You Flowers', '~/Portals/0/Ecards/ThinkingofYou2.jpg', 6, 20, 1, 0, '2016-12-23 18:58:29.517', 9275, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 5 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+40, 3376, 'Happy Birthday Balloons', '~/Portals/0/Ecards/HappyBirthday1.jpg', 8, 10, 1, 0, '2016-12-23 19:09:55.390', 499, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 6 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+41, 3376, 'Happy Birthday Gift', '~/Portals/0/Ecards/HappyBirthday2.jpg', 8, 20, 1, 0, '2016-12-23 19:10:05.780', 170, '2016-12-01 00:00:00.000', '2021-12-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 7 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+75, 3376, 'Well Wishes', '~/Portals/0/Ecards/PatientExperienceWeek_eCard.jpg', 6, 30, 1, 0, '2019-04-22 10:09:38.337', 9, '2019-04-23 00:00:00.000', '2019-04-25 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 8 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+136, 3376, 'pride', '~/Portals/0/Ecards/pride1.jpg', 8, 80, 1, 0, '2021-04-19 04:38:54.637', 2, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 9 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+151, 3376, 'Congratulations', '~/Portals/0/Ecards/congratulation1.jpg', 11, 10, 1, 0, '2021-04-20 05:57:20.580', 5, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 10 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+152, 3376, 'Congratulations', '~/Portals/0/Ecards/congratulation2.jpg', 11, 20, 1, 0, '2021-04-20 05:57:42.547', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 11 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+153, 3376, 'Spring', '~/Portals/0/Ecards/spring-1_New.jpg', 12, 10, 1, 0, '2021-04-20 06:09:45.513', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 12 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+154, 3376, 'summer', '~/Portals/0/Ecards/summer-1_Final.jpg', 12, 20, 1, 0, '2021-04-20 06:10:24.167', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 13 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+155, 3376, 'Winter', '~/Portals/0/Ecards/winter-2.jpg', 12, 30, 1, 0, '2021-04-20 06:10:58.180', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 14 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+156, 3376, 'Christmas', '~/Portals/0/Ecards/christmas_New.jpg', 13, 10, 1, 0, '2021-04-20 06:13:25.003', 2, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 15 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+157, 3376, 'Memorial Day', '~/Portals/0/Ecards/memorialDay_New.jpg', 13, 20, 1, 0, '2021-04-20 06:15:26.647', 1, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 16 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+158, 3376, 'Black History Month', '~/Portals/0/Ecards/blackHistoryMonth.jpg', 13, 30, 1, 0, '2021-04-20 06:16:54.753', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 17 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+159, 3376, 'Happy New Year', '~/Portals/0/Ecards/NewYear_New.jpg', 13, 40, 1, 0, '2021-04-20 06:18:15.817', 1, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 18 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+160, 3376, 'Ramadan', '~/Portals/0/Ecards/ramadan.jpg', 13, 50, 1, 0, '2021-04-20 06:20:07.953', 1, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 19 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+161, 3376, 'Fall', '~/Portals/0/Ecards/fall-2_F.jpg', 12, 40, 1, 0, '2021-04-20 12:59:46.200', 1, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 20 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+162, 3376, 'Spring', '~/Portals/0/Ecards/spring.jpg', 5, 30, 1, 0, '2021-04-20 13:01:00.933', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 21 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+163, 3376, 'Fall', '~/Portals/0/Ecards/fall.jpg', 5, 40, 1, 0, '2021-04-20 13:01:24.410', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 22 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+164, 3376, 'Summer', '~/Portals/0/Ecards/summer.jpg', 5, 50, 1, 0, '2021-04-20 13:01:40.757', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 23 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+165, 3376, 'Winter', '~/Portals/0/Ecards/winter.jpg', 5, 60, 1, 0, '2021-04-20 13:01:54.680', 1, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 24 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+175, 3376, 'Hanukkah', '~/Portals/0/Ecards/hanukkah_New.jpg', 13, 80, 1, 0, '2021-04-21 10:06:30.663', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 25 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+176, 3376, 'Hispanic Heritage Month', '~/Portals/0/Ecards/HispanicHeritageMonth_New.jpg', 13, 90, 1, 0, '2021-04-21 10:06:59.197', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 26 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+177, 3376, 'July 4th', '~/Portals/0/Ecards/July-4th.jpg', 13, 100, 1, 0, '2021-04-21 10:07:39.820', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 27 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+178, 3376, 'Native American Heritage Month', '~/Portals/0/Ecards/NativeAmericanHeritageMonth1.jpg', 13, 110, 1, 0, '2021-04-21 10:08:11.083', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 28 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+179, 3376, 'Valentine''s Day', '~/Portals/0/Ecards/valentineDay_New.jpg', 13, 120, 1, 0, '2021-04-21 10:08:48.460', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 29 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+180, 3376, 'Thanksgiving', '~/Portals/0/Ecards/thanksGiving_Final.jpg', 13, 130, 1, 0, '2021-04-21 11:03:37.100', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 30 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+181, 3376, 'Chinese New Year', '~/Portals/0/Ecards/chineseNewYear_F.jpg', 13, 140, 1, 0, '2021-04-21 11:06:16.160', 0, '2021-04-01 00:00:00.000', '2026-04-30 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 31 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+185, 3376, 'Kwanzaa', '~/Portals/0/Ecards/kwanzaa1.jpg', 13, 150, 1, 0, '2021-05-17 05:06:47.780', 0, '2021-05-01 00:00:00.000', '2026-05-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 32 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+186, 3376, 'Design your card', '~/Portals/0/Ecards/upload-greeting.jpg', 15, 10, 1, 0, '2021-05-17 08:35:35.870', 10, '2021-05-01 00:00:00.000', '2026-05-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 33 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+187, 3376, 'It''s a boy', '~/Portals/0/Ecards/HB-boy1_New.jpg', 11, 30, 1, 0, '2021-05-19 11:04:03.443', 2, '2021-05-01 00:00:00.000', '2026-05-31 00:00:00.000'
+);
+
+/* INSERT QUERY NO: 34 */
+INSERT INTO {databaseOwner}[{objectQualifier}Ecard_Images](Id, ModuleId, Title, ImageUrl, CategoryId, DisplayOrder, IsActive, IsDeleted, ModifiedDate, SendCount, StartDate, EndDate)
+VALUES
+(
+188, 3376, 'It''s a girl', '~/Portals/0/Ecards/HB-girl1_New.jpg', 11, 40, 1, 0, '2021-05-19 11:04:32.930', 0, '2021-05-01 00:00:00.000', '2026-05-31 00:00:00.000'
+);
+
+
+
+SET IDENTITY_INSERT {databaseOwner}[{objectQualifier}Ecard_Images] OFF 
+

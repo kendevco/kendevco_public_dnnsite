@@ -1,0 +1,53 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2><em>RazorBlade</em> Fluent Tag API <code>@@Tag.Img().Src(...)</code> and <code>Srcset(...)</code> <em>v3</em></h2>
+      <div>
+        One of the magic bits of the Html5 tags is that they are smart. For example, url properties like <code>Src()</code> or <code>Href()</code> will safely encode if they are not yet encoded. 
+        This is super important for CMS solutions where the image file may easily contain umlaut characters or spaces. <br>
+        <em>Note that it's <code>Srcset()</code> and not <code>SrcSet</code>. For consistency, everything is always lower case. </em>
+      </div>
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+<hr>
+@{
+  // demo of path with umlauts and japanese characters
+  var kaizenUrl = "überschrift-small.png?name=改善";
+  var path = App.Path + "/blade/assets/tag-img/";
+  var kaizenFullPath =  path + kaizenUrl;
+  var kaizenFullHd = kaizenFullPath.Replace("small", "large");
+}
+This file is called @kaizenUrl <br>
+<snippet id="blade-img">
+@Tag.Img().Src(kaizenFullPath)
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img", Size = 40 }) 
+</hide-silent>
+<hide>
+<snippet id="blade-img-pre">
+<pre>@Tag.Img().Src(kaizenFullPath).ToString()</pre>
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "blade-img-pre", Size = 40 }) 
+</hide-silent>
+<hr>
+</hide>
+
+And now the same thing with <code>Srcset</code> which allows high-density images: <br>
+@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2)
+<hide>
+<pre>@Tag.Img().Srcset(kaizenFullPath, 1).Srcset(kaizenFullHd, 2).ToString()</pre>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 400 }) 
+</hide>

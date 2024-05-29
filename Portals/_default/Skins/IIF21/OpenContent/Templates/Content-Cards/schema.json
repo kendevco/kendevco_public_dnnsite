@@ -1,0 +1,103 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Template_Settings": {
+      "type": "object",
+      "title": "Template Settings",
+      "properties": {
+        "Template_Columns": {
+          "type": "string",
+          "title": "Template Columns",
+          "enum": [
+            "2",
+            "3",
+            "4"
+          ],
+          "default": "2",
+          "required": true
+        }
+      }
+    },
+    "Columns": {
+      "type": "string",
+      "title": "Select Number of Columns",
+      "enum": [
+        "two",
+        "three",
+        "four"
+      ],
+      "dependencies": [
+        "Module_Layout"
+      ]
+    },
+    "Cards": {
+      "type": "array",
+      "title": "Cards",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Card_Heading": {
+            "type": "string",
+            "title": "Heading"
+          },
+          "Icon_Type": {
+            "type": "string",
+            "title": "Icon",
+            "enum": [
+              "fontawesome-four",
+              "fontawesome-five",
+              "custom"
+            ]
+          },
+          "Card_Icon_V4": {
+            "type": "string",
+            "title": "Card Icon",
+            "dependencies": [
+              "Icon_Type"
+            ]
+          },
+          "Card_Icon_V5": {
+            "type": "string",
+            "title": "Card Icon",
+            "dependencies": [
+              "Icon_Type"
+            ]
+          },
+          "Custom_Card_Icon": {
+            "type": "string",
+            "title": "Card Icon",
+            "dependencies": [
+              "Icon_Type"
+            ]
+          },
+          "Card_Content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "Add_Link": {
+            "type": "boolean",
+            "title": "Add a link"
+          },
+          "Card_Link": {
+            "type": "string",
+            "title": "Link URL",
+            "dependencies": [
+              "Add_Link"
+            ]
+          },
+          "Card_Link_Text": {
+            "type": "string",
+            "title": "Link Text",
+            "dependencies": [
+              "Add_Link"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

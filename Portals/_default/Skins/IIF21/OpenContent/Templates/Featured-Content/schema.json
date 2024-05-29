@@ -1,0 +1,93 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Featured": {
+      "type": "array",
+      "title": "Featured Content",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Featured_Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Content_Background": {
+            "type": "string",
+            "title": "Content Background  Color"
+          },
+          "Featured_Content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "Featured_Media": {
+            "type": "string",
+            "title": "Choose Media Type",
+            "enum": [
+              "Image",
+              "Video"
+            ],
+            "default": "Image",
+            "required": true
+          },
+          "Featured_Image": {
+            "type": "string",
+            "title": "Image",
+            "dependencies": [
+              "Featured_Media"
+            ]
+          },
+          "Featured_Image_Alt": {
+            "type": "string",
+            "title": "Image Alt Tag",
+            "dependencies": [
+              "Featured_Media"
+            ]
+          },
+          "Featured_Video": {
+            "type": "string",
+            "title": "Video Embed Code",
+            "dependencies": [
+              "Featured_Media"
+            ]
+          },
+          "Media_Caption": {
+            "type": "string",
+            "title": "Media Caption"
+          },
+          "Media_Size": {
+            "type": "string",
+            "title": "Content Size",
+            "enum": [
+              "50-50",
+              "60-40",
+              "70-30"
+            ]
+          },
+          "Add_Link": {
+            "type": "boolean",
+            "title": "Add Link"
+          },
+          "Featured_Link": {
+            "type": "string",
+            "title": "Link",
+            "dependencies": [
+              "Add_Link"
+            ]
+          },
+          "Media_Left": {
+            "type": "boolean",
+            "title": "Position Media Left"
+          },
+          "Media_Right": {
+            "type": "boolean",
+            "title": "Position Media Right"
+          }
+        }
+      }
+    }
+  }
+}

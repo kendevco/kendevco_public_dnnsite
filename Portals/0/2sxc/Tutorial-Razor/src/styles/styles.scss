@@ -1,0 +1,93 @@
+.icon-wrapper {
+  height: 75px;
+  width: 75px;
+  img {
+    object-fit: cover;
+    object-position: left;
+    height: 100%;
+  }
+}
+a {
+  &.deprecated {
+    color: gray;
+  }
+  code {
+    color: #d63384 !important;
+  }
+}
+.tutorial-wrapper {
+  .sub-section {
+    margin-left: 150px;
+    margin-bottom: 20px;
+  }
+  .tutorial-item {
+    > .tutorial-group {
+      display: none;
+    }
+    
+    &.is-expanded {
+      .tutorial-title {
+        border: none;
+
+        > img {
+          &.fa-chevron-up {
+            display: block;
+          }
+
+          &.fa-chevron-down {
+            display: none;
+          }
+        }
+      }
+      > .tutorial-group {
+        display: block;
+      }
+    }
+  }
+  .tutorial-title {
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s linear, border-color 0.3s linear;
+
+    > img {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+
+      &.fa-chevron-up {
+        display: none;
+        padding: 4px 4px 5px;
+      }
+
+      &.fa-chevron-down {
+        padding: 5px 4px 4px;
+      }
+    }
+
+    h2,
+    h3 {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      position: relative;
+      margin: 0;
+
+      span {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    p {
+      display: block;
+      position: relative;
+      margin: 0;
+      font-size: 15px;
+      width: 75%;
+      color: grey;
+    }
+  }
+}

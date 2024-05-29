@@ -1,0 +1,33 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Featured_Content": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "textarea"
+          },
+          "Icon": {
+            "type": "image"
+          },
+          "Icon_Alt": {
+            "type": "text"
+          },
+          "Button_Link": {
+            "type": "text"
+          },
+          "Button_Text": {
+            "type": "text"
+          },
+          "Button_Link_Title": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

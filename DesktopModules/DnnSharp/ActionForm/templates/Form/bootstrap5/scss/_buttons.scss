@@ -1,0 +1,22 @@
+﻿@import "../../../../../Common/static/bootstrap5/variable-overrides";
+
+.af-button-group > button {
+  margin: 4px;
+}
+
+.btn-primary,
+.btn-info {
+  color: #f9fafa;
+}
+
+.btnc-left {
+  text-align: left;
+}
+
+.btnc-center {
+  text-align: center;
+}
+
+.btnc-right {
+  text-align: right;
+}

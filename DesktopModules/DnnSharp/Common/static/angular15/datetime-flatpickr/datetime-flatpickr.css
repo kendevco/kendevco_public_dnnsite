@@ -1,0 +1,11 @@
+﻿.dateandtimeflatpickr input[readonly] {
+  background-color: #fff;
+}
+
+.flatpickr-wrapper {
+  display: block;
+}
+
+.bstrap3-material .flatpickr-monthDropdown-months:focus {
+  background-image: none;
+}

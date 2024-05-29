@@ -1,0 +1,31 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<avt.ActionForm.Core.ViewModels.Main.HtmlResultVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+<div class="row">
+    <div class="c-form form-horizontal @(Model.Settings.FieldSpacing.ToString().ToLower()) label-align-@(Model.Settings.LabelAlign.ToString().ToLower()) col-sm-12">
+        @if (Model.Settings.HasCustomLayout.Value)
+        {
+            @Partial("_CustomLayoutResult", Model.CustomLayout)
+        }
+        else
+        {
+            foreach (var rowFields in Model.Fields.GroupBy(f => f.RowIndex))
+            {
+                <div class="form-group">
+                    @foreach (var field in rowFields)
+                    {
+                        @TemplatePartial("_FieldRender", new FieldRendererVM(field));
+                    }
+                </div>
+            }
+
+            <div class="clearfix"></div>
+        }
+
+        <div class="alert alert-danger server-error" style="display: none;"></div>
+    </div>
+
+    <div class="alert alert-info submit-confirm" style="display: none; text-align: center;"></div>
+
+</div>

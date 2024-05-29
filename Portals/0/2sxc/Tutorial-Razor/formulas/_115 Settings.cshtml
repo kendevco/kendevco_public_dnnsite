@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+  @Html.Partial("_header.cshtml")
+  @{
+    var hlp = CreateInstance("../shared/Helpers.cs");
+    var fancybox = CreateInstance("../shared/Fancybox.cs");
+    Edit.Enabled = true;
+    Kit.Page.Activate("2sxc.JsCore", "2sxc.JsCms", "2sxc.Toolbars");
+  }
+</hide>
+
+<div class="row">
+  <div class="col-md-7">
+    <h2>Formulas affecting Field Settings</h2>
+    <p>We'll show you examples where formulas can be applied to change visibility, required, and more.</p>
+    <p>In this tutorial you'll learn how to:</p>
+    <ul>
+      <li>
+        Change field and group visibility
+      </li>
+      <li>
+        Make fields required
+      </li>
+      <li>
+        Make fields disabled
+      </li>
+      <li>
+        and much more...
+      </li>
+    </ul>
+    <br>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+@Html.Partial("../shared/_WarnAnonymousIfFeatureIsOff.cshtml")
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Single Field visibility",
+  Instructions = "This formula determines the visibility of the Description field. It only becomes visible when the Title field isn't empty.",
+  ContentType = "FormulasBasic",
+  FieldName = "Description"
+})
+
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Required fields",
+  Instructions = "This formula determines wether the Name field is required. It becomes required if the age isn't specified.",
+  ContentType = "FormulasRequired",
+  FieldName = "Name"
+})
+
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Disabled fields",
+  Instructions = "This formula determines wether the ApiKeyV2 field is disabled. It becomes disabled if the UseNewFeatures field is true.",
+  ContentType = "FormulasDisabled",
+  FieldName = "ApiKeyV2"
+})
+
+
+
+@* Errors and Warnings *@
+@Html.Partial("_PartFormulas.cshtml", new {
+  Title = "Warnings and Errors based on Value",
+  Instructions = "This formula shows a warning if a field has upper case letters, and an error if empty.",
+  ContentType = "FormulasValidation",
+  FieldName = "Title"
+})
+

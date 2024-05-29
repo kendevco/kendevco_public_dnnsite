@@ -1,0 +1,46 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Tabs": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Tab_Text": {
+            "type": "text"
+          },
+          "Tab_ID": {
+            "type": "number",
+            "helper": "Make sure to set your \"Tab Content ID\" to the value you enter here"
+          },
+          "Panel_Columns": {
+            "type": "select",
+            "sort": false,
+            "optionLabels": [
+              "1 100% Column",
+              "60% Left / 40% Right",
+              "50% Left / 50% Right",
+              "40% Left / 60% Right"
+            ]
+          },
+          "Panel": {
+            "type": "array",
+            "items": {
+              "fields": {
+                "Panel_ID": {
+                  "type": "number",
+                  "helper": "Must be same as your Tab ID"
+                },
+                "Content": {
+                  "type": "ckeditor",
+                  "configset": "full"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

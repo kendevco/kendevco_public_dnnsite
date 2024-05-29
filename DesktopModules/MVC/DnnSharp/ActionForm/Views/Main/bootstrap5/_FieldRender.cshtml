@@ -1,0 +1,43 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<FieldRendererVM>
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@{
+    var isLabelTopOrInside = Model.Field.Settings.LabelAlign == eLabelAlign.Top || 
+                             Model.Field.Settings.LabelAlign == eLabelAlign.Inside ||
+                             Model.Field.Settings.FloatingLabels;
+}
+
+@if (!Model.NoLabel && !isLabelTopOrInside)
+{
+    @TemplatePartial("_Label", new FieldLabelVM(Model.Field))
+}
+@if (!Model.NoDefaultContainer)
+{
+    @TemplatePartial("_Container", new ContainerVM(Model.Field))
+}
+else
+{
+    try
+    {
+        object viewName;
+        if (ViewData.TryGetValue(Constants.overrideViewName, out viewName))
+        {
+            @TemplatePartial(viewName.ToString(), Model.Field)
+        }
+        else
+        {
+            @TemplatePartial(Model.Field.ViewName, Model.Field)
+        }
+    }
+    catch (Exception ex)
+    {
+        LogError(ex);
+        var _ex = ex;
+        if (!Dnn.User.IsInRole(Dnn.PortalSettings.AdministratorRoleName))
+        {
+            _ex = null;
+        }
+        @TemplatePartial("_InvalidFieldView", new InvalidFieldViewVM(Model.Field, _ex))
+    }
+}

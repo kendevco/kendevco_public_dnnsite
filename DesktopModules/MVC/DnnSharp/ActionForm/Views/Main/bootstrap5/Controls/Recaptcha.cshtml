@@ -1,0 +1,17 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.RecaptchaFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "keyup");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+}
+
+<div load-on-demand="'vcRecaptcha'">
+    <div vc-recaptcha=""
+         update-field="updateField(field, val)"
+         data-register-control="registerControl(control)"
+         key="'@Model.SiteKey'"
+         field="settings.Fields['@(Model.Name)']"
+         @ElementAttributes()>
+    </div>
+</div>

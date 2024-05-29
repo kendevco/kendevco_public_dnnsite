@@ -1,0 +1,29 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Table_Row": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Table_Cell": {
+            "type": "accordion",
+            "items": {
+              "fields": {
+                "Cell_Heading": {
+                  "type": "text"
+                },
+                "Cell_Content": {
+                  "type": "ckeditor",
+                  "configset": "full",
+                  "helper": "Recommended not to use tables or too much html here"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

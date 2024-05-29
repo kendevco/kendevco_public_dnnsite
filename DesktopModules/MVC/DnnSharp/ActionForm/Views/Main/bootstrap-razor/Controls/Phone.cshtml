@@ -1,0 +1,33 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.TextFieldVM>
+@using avt.ActionForm
+
+@{
+
+    AddCommonAttributes(true, true, true, touchEvent: "keyup");
+    AddPlaceholderAttributes();
+
+    AddAttribute("data-field", "settings.Fields['" + Model.Name + "']");
+    AddAttribute("international", Model.International.ToString());
+    AddAttribute("initial", Model.Value);
+    AddAttribute("initial-country", Model.InitialCountry);
+    AddAttribute("preferred-countries", Model.PreferredCountries);
+    AddAttribute("validation", Model.Validation.ToString());
+    AddAttribute("removeflag", Model.RemoveFlag.ToString());
+    AddAttribute("placeholder-option", Model.PlaceholderOption);
+    AddAttribute("placeholder", Model.CustomPlaceholder, Model.PlaceholderOption == "custom");
+
+    AppendClasses("form-control");
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("readonly", "readonly", Model.Readonly);
+}
+
+<div load-on-demand="'phone'">
+    <input type="tel"
+           submit-data=""
+           name="phone"
+           autocomplete="tel"
+           phone=""
+           update-field="updateField(field, val)"
+           data-register-control="registerControl(control)"
+           @ElementAttributes() />
+</div>

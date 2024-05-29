@@ -1,0 +1,149 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<MultipleChoiceMultiSelectFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "checkbox-list" },
+        new ViewDataDictionary(ViewData) { { "renderInner", "true" } }
+    )
+}
+else
+{
+    var input1Attrs = NewAttributes();
+    AppendClasses(input1Attrs, "form-control");
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+    {
+        AppendClasses(input1Attrs, "required-ddwithcb");
+    }
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+    {
+        input1Attrs["ng-disabled"] = "!(" + Model.BindEnableCompiled + ")";
+    }
+    if (!Model.IsConditionallyEnabled)
+    {
+        input1Attrs["disabled"] = "disabled";
+    }
+
+    var buttonAttrs = NewAttributes();
+    if (!Model.IsConditionallyEnabled)
+    {
+        buttonAttrs["disabled"] = "disabled";
+    }
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+    {
+        buttonAttrs["ng-disabled"] = "!(" + Model.BindEnableCompiled + ")";
+    }
+
+    var fieldsetAttrs = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.Legend))
+    {
+        AppendClasses(fieldsetAttrs, "checkboxlist-fieldset");
+        AppendClasses(fieldsetAttrs, Model.FieldsetClasses);
+    }
+
+    var labelAttrs = NewAttributes();
+    if (!string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside)
+    {
+        labelAttrs["title"] = Model.ShortDescTokenized;
+    }
+
+    var input2Attrs = NewAttributes();
+    if (Model.MaxSelection > -1)
+    {
+        input2Attrs["max-selection"] = Model.MaxSelection.ToString();
+    }
+    AppendClasses(input2Attrs, "normalCheckBox ddwcb-checkbox ignore-submit-hidden-fields");
+
+    if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+    {
+        input2Attrs["ng-change"] = "concatValues(form.fields." + Model.Name + "); form.fields." + Model.Name + ".onChange(form);";
+    }
+    if (!Model.IsConditionallyEnabled)
+    {
+        input2Attrs["disabled"] = "disabled";
+    }
+
+    <div class="input-group">
+        <input type="text"
+           id="@(Model.ElementId)"
+           name="@(Model.ElementId)"
+           readonly="readonly"
+           ng-click="form.fields.@(Model.Name).show = true;"
+           data-val="{{form.fields.@(Model.Name).value}}"
+           ng-model="form.fields.@(Model.Name).text"
+           style="cursor: text; background-color: #fff;"
+           @ElementAttributes(input1Attrs) />
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                title="{{form.fields.@(Model.Name).show ? 'Click to collapse' : 'Click to expand'}}"
+                ng-click="form.fields.@(Model.Name).show = !form.fields.@(Model.Name).show;"
+                dropdown-name="form.fields.@(Model.Name)"
+                dropdown-watch
+                disable-checkboxes="@(Model.DisableCheckboxes)"
+                @ElementAttributes(buttonAttrs)>
+
+                <span class="glyphicon glyphicon-chevron-down"
+                  ng-class="{ 'glyphicon-chevron-down': !form.fields.@(Model.Name).show, 'glyphicon-chevron-up': form.fields.@(Model.Name).show }">
+                </span>
+            </button>
+        </span>
+    </div>
+
+    <div ng-cloak class="dropdown-absolute">
+        <div class="panel panel-default dropdown-panel"
+         ng-show="form.fields.@(Model.Name).show">
+
+            <div style="text-align: center;">
+                @if (Model.MaxSelection == -1)
+                {
+                    <a href="" ng-click="form.fields.@(Model.Name).checkAll(); concatValues(form.fields.@(Model.Name))">
+                        @LocalizeString("button.selectall")
+                    </a>
+                    <text>|</text>
+                }
+
+                <a href="" ng-click="form.fields.@(Model.Name).uncheckAll(); concatValues(form.fields.@(Model.Name))">
+                    @LocalizeString("button.clearall")
+                </a>
+            </div>
+
+            <fieldset style="@(Model.FieldsetStyles)"
+                  @ElementAttributes(fieldsetAttrs)>
+                @if (!string.IsNullOrWhiteSpace(Model.Legend))
+                {
+                    <legend class="@Model.LegendClasses" style="@Model.LegendStyles">
+                        @(Model.Legend)
+                    </legend>
+                }
+
+                <div class="checkbox @(Model.CssClass)" style="@Model.CssStyles"
+                 ng-repeat="o in form.fields.@(Model.Name).options">
+                    <label @ElementAttributes(labelAttrs)>
+                        <input type="checkbox"
+                           data-value="form.fields.@(Model.Name).value"
+                           validation-group="@(Model.ElementId)-group"
+                           name="@(Model.ElementId)-{{$index}}"
+                           id="@(Model.ElementId){{$index}}"
+                           ng-model="o.selected"
+                           ng-truevalue="o.value"
+                           value="{{o.path}}"
+                           ng-change="concatValues(form.fields.@(Model.Name)); form.fields.@(Model.Name).onChange(form);"
+                           ng-disabled="o.disabled"
+                           @ElementAttributes(input2Attrs) />
+                        {{ o.text }}
+                    </label>
+                    <div repeat-done ng-if="$last">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="err-placeholder"></div>
+}

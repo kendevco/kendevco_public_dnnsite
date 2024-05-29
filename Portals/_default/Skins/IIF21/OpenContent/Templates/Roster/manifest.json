@@ -1,0 +1,21 @@
+{
+    "Index": true,
+    "detailMetaTitle": "",
+    "templates": {
+        "Rosters": {
+            "type": "multiple",
+            "title": "Rosters",
+            "clientSideData": false,
+            "main": {
+                "template": "template.hbs",
+                "optionsInTemplate": true,
+                "dataInTemplate": true
+            }
+        }
+    },
+    "disableEdit": true,
+    "dataSource": "RosterDataSource",
+    "dataSourceConfig": {
+        "ReIndexModuleOnLoad": true
+    }
+}

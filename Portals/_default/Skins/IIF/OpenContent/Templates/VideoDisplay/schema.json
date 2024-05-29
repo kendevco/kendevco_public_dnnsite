@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Video": {
+      "type": "array",
+      "title": "Videos",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Embed_Code": {
+            "type": "string",
+            "title": "Video Embed Code"
+          }
+        }
+      }
+    }
+  }
+}

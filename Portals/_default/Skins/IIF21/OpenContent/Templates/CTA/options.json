@@ -1,0 +1,30 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "CTA_Label": {
+      "type": "text"
+    },
+    "CTA_Image": {
+      "type": "image",
+      "uploadfolder": "CTA-Banners",
+      "typeahead": {
+        "Folder": "CTA-Banners"
+      }
+    },
+    "CTA_Heading": {
+      "type": "text"
+    },
+    "CTA_Content": {
+      "type": "ckeditor",
+      "configset": "basic"
+    },
+    "CTA_Button_Text": {
+      "type": "text"
+    },
+    "CTA_Button_Link": {
+      "type": "text"
+    }
+  }
+}

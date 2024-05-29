@@ -1,0 +1,15 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.DeviceFingerprintFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "form-control device-fingerprint", "keyup");
+}
+
+<div load-on-demand="'devicefingerprint'">
+    <input type="hidden" data-val=""
+           update-field="updateField(field, val)"
+           data-field="settings.Fields['@(Model.Name)']"
+           devicefingerprint=""
+           dev-fp-opts="@Model.FPOptions"
+           @ElementAttributes() />
+</div>

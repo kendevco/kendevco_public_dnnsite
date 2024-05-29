@@ -1,0 +1,73 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text",
+      "placeholder": "Module Title"
+    },
+    "Twitter_Feed": {
+      "type": "array",
+      "items": {
+        "fields": {
+          "Profile_Name": {
+            "type": "text"
+          },
+          "Twitter_Handle": {
+            "type": "text"
+          },
+          "Profile_Image": {
+            "type": "image"
+          },
+          "Tweet_Content": {
+            "type": "wysihtml"
+          },
+          "Tweet_Date": {
+            "type": "date",
+            "picker": {}
+          }
+        }
+      }
+    },
+    "Display_Pagination": {
+      "type": "checkbox"
+    },
+    "Display_Arrows": {
+      "type": "checkbox"
+    },
+    "Auto_Slide": {
+      "type": "checkbox"
+    },
+    "Items_Per_Slide": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "Items_Per_Slide_Tablet": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "Items_Per_Slide_Mobile": {
+      "type": "select",
+      "sort": false,
+      "optionLabels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    }
+  }
+}

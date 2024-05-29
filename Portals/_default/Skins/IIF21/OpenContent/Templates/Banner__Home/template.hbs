@@ -1,0 +1,16 @@
+{{registerstylesheet "css/template.css"}}
+
+<div class="banner banner__home" style="background-image: url({{Banner_Image}});">
+    <div class="banner--container">
+    	<div class="banner--content">
+			<div class="banner--heading">
+				{{#if Banner_Content.Content_Heading}}<h1>{{Banner_Content.Content_Heading}}</h1>{{/if}}
+			</div>
+			{{#if Banner_Content.Content_Text}}
+				<div class="banner--body">
+					{{Banner_Content.Content_Text}}
+				</div>
+			{{/if}}
+    	</div>
+    </div>
+</div>

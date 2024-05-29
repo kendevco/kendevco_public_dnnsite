@@ -1,0 +1,456 @@
+﻿@media (max-width: 767px) {
+    #giving .navlink a, #giving .navdrop a {
+        padding-right: 0px;
+    }
+    .container {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .content-block .inner {
+        margin: 3%;
+        width: 94%;
+    }
+
+    /*Row 2*/
+    .row2 {
+        padding: 0;
+    }
+
+    .row2Left {
+        padding: 0 5px;
+    }
+
+    .row2right {
+        display: block;
+        padding: 10px;
+        border: 1px solid #e6e6e6;
+        text-align: center;
+        width: 100%;
+    }
+
+        .row2right .input-group {
+            float: none;
+            margin: 0 auto 0 auto;
+            width: 100%;
+        }
+
+        .row2right .searchSkinObjectPreview {
+            text-align: left;
+        }
+
+
+    /** Push Menu **/
+    .overlay {
+        height: 0;
+        display: block;
+        opacity: 0;
+        position: relative;
+    }
+
+    .overlay-show {
+        display: block;
+        position: absolute;
+        top: 0;
+        opacity: 0.8;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        z-index: 10000;
+    }
+
+
+    .push {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        left: 0;
+    }
+
+        .push.open-mainNav {
+            left: 240px;
+            -webkit-transition: all .2s linear;
+            -moz-transition: all .2s linear;
+            -o-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+
+    /* Footer */
+    /* Footer row 1 */
+    .footerRow1 {
+    }
+
+        .footerRow1 .col-md-6,
+        .footerRow1 .col-md-12 {
+            border-bottom: 1px solid white;
+        }
+
+    .genInfoNum {
+        text-align: left;
+    }
+
+    /*Footer row 2*/
+    .footerRow2 {
+        padding: 20px 10px 0 10px;
+    }
+
+    .footerWrap .box {
+        display: none;
+    }
+
+    .footerWrap {
+        margin: 0 0 20px 0;
+        border: 1px solid white;
+    }
+
+    .footerRow2 .footerGroup {
+        margin: 0;
+        padding: 0;
+    }
+
+    .footerWrap .boxcontent {
+        border-top: 1px solid white;
+    }
+
+        .footerWrap .boxcontent ul {
+            margin: 0 0 0 10px;
+        }
+
+    .footerBar .barspan {
+        font-size: 1.4em;
+    }
+
+    /* row-footer */
+    .bjcLogo, .washLogo {
+        padding: 0 20px 20px 20px;
+    }
+
+    .national {
+        margin: 0 20px 20px 20px;
+    }
+
+    .bjcLogo img, .washLogo img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Home - Hospital Block */
+    .home-hospital-block {
+        width: 100%;
+        height: auto;
+        display: block;
+        background: #CCCCCC;
+    }
+        .home-hospital-block img {
+            width: 100%;
+        }
+
+    .h_bottomleftpane_content {
+        background: none;
+    }
+    .h_bottomleftpane {
+        width: 100%;
+        /*background: #CCCCCC;*/
+        text-align: center;
+    }
+
+    .h_bottomrightpane {
+        width: 100%;
+        /*background: red;*/
+    }
+
+    /* Main Navigation */
+    #mainNav {
+        position: absolute;
+        top: 0;
+        left: -240px;
+        background: #fff;
+        width: 240px;
+        height: 100%;
+        box-sizing: border-box;
+        -moz-box-shadow: inset -10px 0 10px -8px rgba(0, 0, 0, .2);
+        -webkit-box-shadow: inset -10px 0 10px -8px rgba(0, 0, 0, .2);
+        box-shadow: inset -10px 0 10px -8px rgba(0, 0, 0, .2);
+    }
+
+    .dropBox {
+        display: none;
+    }
+
+    #mainNav .navvert {
+        display: none;
+    }
+
+    #mainNav > ul > li {
+        display: block;
+        margin: 0 10px 0 10px;
+        float: none;
+        text-align: left;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+        #mainNav > ul > li > div > a {
+            display: block;
+            color: #00529b;
+            padding: 10px 0 10px 0;
+        }
+
+        #mainNav > ul > li > div:hover > a {
+            color: #1a6cb5;
+            text-shadow: none;
+            background: #fff;
+            transition: none;
+        }
+
+        #mainNav > ul > li > div > a:hover .icon-arrow-right-generic {
+            color: #1a6cb5;
+        }
+
+    .navlink:after, .navdrop:after {
+        display: none !important;
+    }
+
+    #mainNav .icon-arrow-right-generic {
+        color: #898a8a;
+        float: right;
+        display: inline-block;
+        margin: 4px 0 0 0;
+        font-size: 10px;
+    }
+
+    .dropBox {
+        display: none;
+    }
+
+    .caret {
+        display: none;
+    }
+
+    .navlink:hover, .navdrop:hover, #mainNav > ul > li.active > div:hover > a {
+        background: #fff;
+    }
+
+        .navlink:hover a, .navdrop:hover a {
+            color: #fff;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+            transition: none;
+        }
+
+        .nav-line, .nav-line.add {
+            width: 100%;        
+        }
+        li.first .nav-line {
+            margin-left: 0px;
+        }
+        .navlink:hover > .nav-line, .navdrop:hover > .nav-line {
+            display: none;
+        }
+
+    #mainNav > ul > li.activeNav > .navlink > .nav-line, #mainNav > ul > li.activeNav > .navdrop > .nav-line {
+        display: none;
+    }
+
+
+    /* 2 col template*/
+    .two_col_left {
+        float: right;
+    }
+
+    .two_col_right {
+        padding-left: 10px;
+        float: left;
+    }
+
+    .h_bottomleftpane2 {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .h_bottomrightpane2 {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 3 col template*/
+    .three_col_midright {
+        float: left;
+        padding-left: 0;
+    }
+
+
+    /* Custom Left Contact Information */
+    #mainNav .contactWrapM {
+        margin-top: 10px;
+        padding-top: 0;
+    }
+
+    .contactWrapM li:first-child {
+        border-top: 1px solid #e6e6e6;
+    }
+
+    .contactWrapM a {
+        display: block;
+        padding: 10px 0 10px 0;
+        color: #828383 !important;
+    }
+
+        .contactWrapM a:hover, .contactWrapM a:hover .icon-arrow-right-generic {
+            color: #2774b9 !important;
+        }
+
+    .contactWrapM .icon-get-directions {
+        margin: 0 8px 0 0;
+        font-size: 16px !important;
+    }
+
+    .contactWrapM .icon-contact {
+        margin: 0 8px 0 0;
+        font-size: 11px !important;
+    }
+
+    .contactWrapM .icon-arrow-right-generic {
+        float: right;
+        display: inline-block;
+        margin: 4px 0 0 0;
+        font-size: 10px;
+    }
+
+    /***************************************************************/
+
+    /* Contact Modal */
+    #modalContact {
+    }
+
+    body .modal-contact {
+        position: absolute;
+        width: 300px;
+        top: 10px;
+        left: 50%;
+        /* must be half of the width, minus scrollbar on the left (30px) */
+        margin-left: -150px;
+    }
+
+    #modalContact .modal-header {
+        border: none;
+    }
+
+    #modalContact .modal-title {
+        text-align: center;
+        font-family: "opensanslight", sans-serif;
+        font-size: 1.571em;
+        text-transform: uppercase;
+        color: #000;
+    }
+
+    #modalContact .modal-body {
+        padding: 0 20px 20px 20px;
+    }
+
+    .mBtn {
+        display: table;
+        width: 100%;
+        margin: 0 0 20px 0;
+        border: 1px solid #e6e6e6;
+    }
+
+        .mBtn a {
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mBtn .mBtnLeft {
+            display: table-cell;
+            vertical-align: middle;
+            margin: 0;
+            color: #00529b;
+            width: 38px;
+            padding: 0 0 0 11px;
+            border-right: 1px solid #e6e6e6;
+        }
+
+        .mBtn .mBtnRight {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 10px;
+            font-family: "opensans", sans-serif !important;
+            font-size: 1em;
+            line-height: 1.25em;
+            text-transform: uppercase;
+            color: #000;
+            vertical-align: middle;
+        }
+
+        .mBtn a:hover .mBtnLeft {
+            color: #1a6cb5;
+        }
+
+        .mBtn a:hover .mBtnRight {
+            color: #1a6cb5;
+        }
+
+        .mBtn .genInfo {
+            margin: 10px 0 0 0;
+        }
+
+    /********************************/
+
+    /** Home - Health Library **/
+    .healthNews .healthInfoGroup .healthInfoWrap {
+        border: none;
+    }
+
+    .healthNews .healthInfoGroup #healthInfoPanel {
+        display: none;
+        background-color: #0099CC;
+        margin: 0;
+    }
+
+    .healthNews .healthInfoGroup .healthInfoBar {
+        background-color: #0099CC;
+    }
+
+    .healthNews .healthInfoGroup .barspan, .healthNews .healthInfoGroup .healthInfoBar .baricon {
+        color: white;
+    }
+
+    .healthNews .healthInfoGroup .box h4 {
+        color: white;
+    }
+
+    .healthNews .healthInfoGroup #healthInfoPanel .boxmore a {
+        border-top: none;
+        color: white;
+    }
+
+    /********************************/
+
+    #navmenu li.navItem {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .director {
+        padding-bottom: 20px;
+    }
+
+    .director-item {
+        padding-bottom: 0px;
+    }
+
+    .bottom-content-inner {
+        width: 100%;
+        max-width: 300px;
+    }
+    .bottom-content-inner img {
+        width: 100%;
+    }
+    .bottom-content-right {
+        padding-top: 30px;
+    }
+    .bottom-content-title {
+        padding: 20px 0px 20px 0px; 
+    }
+}

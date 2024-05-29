@@ -1,0 +1,20 @@
+2023-06-27T23:39:00 16.01.00 - UpgradeModule starting
+2023-06-27T23:39:00 16.01.00 - IsUpgradeComplete checking - Check on Start UpgradeModule
+2023-06-27T23:39:00 16.01.00 - File checked: 'C:\inetpub\KenDev\desktopmodules\tosic_sexycontent\Upgrade\Log\16.01.00.resources'
+2023-06-27T23:39:00 16.01.00 - IsUpgradeComplete: False
+2023-06-27T23:39:00 16.01.00 - version / upgrade-complete test passed
+2023-06-27T23:39:00 16.01.00 - is-upgrade-running test passed
+2023-06-27T23:39:00  - set upgrade running - True
+2023-06-27T23:39:00  - set upgrade running - True - error!
+2023-06-27T23:39:00 16.01.00 - ----- Upgrade to 16.01.00 started -----
+2023-06-27T23:39:00 16.01.00 - version-list check / switch done
+2023-06-27T23:39:00 16.01.00 - ClientResourceManager- seems to be last item in version-list, will clear
+2023-06-27T23:39:00 16.01.00 - ClientResourceManager- done clearing
+2023-06-27T23:39:00 15.02.00 - IsUpgradeComplete checking - first check
+2023-06-27T23:39:00 15.02.00 - File checked: 'C:\inetpub\KenDev\desktopmodules\tosic_sexycontent\Upgrade\Log\15.02.00.resources'
+2023-06-27T23:39:00 15.02.00 - IsUpgradeComplete: True
+2023-06-27T23:39:00 16.01.00 - updated upgrade-complete status to True
+2023-06-27T23:39:00 16.01.00 - ----- Upgrade to 16.01.00 completed -----
+2023-06-27T23:39:00  - set upgrade running - False
+2023-06-27T23:39:00  - set upgrade running - False - done
+2023-06-27T23:39:00 16.01.00 - UpgradeModule done / returning

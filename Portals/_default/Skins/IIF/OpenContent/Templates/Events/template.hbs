@@ -1,0 +1,43 @@
+<div class="events">
+    <div class="events--section-title">
+        {{#if View_Calendar}}
+            <div class="section-title--calendar">
+                <a href="{{View_Calendar_Link}}" alt="View Full Calendar">View Full Calendar</a>
+            </div>
+        {{/if}}
+    </div>
+    <div class="events--feed">
+        {{#each Events_Feed}}
+            <a href="{{Event_Link}}" class="feed--event" title="{{#if Event_Link_Title}}{{Event_Link_Title}}{{else}}Event Link{{/if}}">
+                {{#if Event_Image}}
+                    <div class="event--image">
+                        <div class="image--inner">
+                            <img src="{{Event_Image}}" width="50" height="90" alt="{{#if Event_Image_Alt}}{{Event_Image_Alt}}{{else}}Event Image{{/if}}" />
+                        </div>
+                    </div>
+                {{/if}}
+                <div class="event--content">
+                    <h3 class="event--title">
+                        {{Event_Title}}
+                    </h3>
+                    <div class="event--info">
+                        <div class="event--location">
+                            {{Event_Location}}
+                        </div>
+                        <div class="event--date">
+                            {{#if Event_Date_Range}}
+
+                                <span>{{formatDateTime Event_Start_Date "MMMM dd"}}</span> to <span>{{formatDateTime Event_End_Date "MMMM dd"}}</span>
+
+                                {{else}}
+
+                                {{formatDateTime Event_Date "MMMM dd"}}
+
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {{/each}}
+    </div>
+</div>

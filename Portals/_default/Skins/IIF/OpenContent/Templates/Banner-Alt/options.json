@@ -1,0 +1,48 @@
+{
+	"fields": {
+		"ModuleTitle": {
+			"type": "text",
+			"placeholder": "Module Title"
+		},
+		"Banners": {
+			"type": "accordion",
+			"items": {
+				"fields": {
+					"Banner_Title": {
+						"type": "text"
+					},
+					"Include_Title": {
+						"type": "checkbox"
+					},
+					"Banner_Image": {
+						"type": "image"
+					},
+					"Banner_Text": {
+						"type": "textarea"
+					},
+					"Include_Link": {
+						"type": "checkbox"
+					},
+					"Banner_Link_URL": {
+						"type": "url",
+						"dependencies": {
+							"Include_Link": ["true"]
+						}
+					},
+					"Banner_Link_Text": {
+						"type": "text",
+						"dependencies": {
+							"Include_Link": ["true"]
+						}
+					}
+				}
+			}
+		},
+		"Display_Pagination": {
+			"type": "checkbox"
+		},
+		"Auto_Slide": {
+			"type": "checkbox"
+		}
+	}
+}

@@ -1,0 +1,16 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.LargeTextFieldVM>
+@using avt.ActionForm
+
+@{
+    AddCommonAttributes(true, true, true, "form-control", "keyup");
+    AddPlaceholderAttributes();
+    AppendClasses("required-dnnsf", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+
+    AddAttribute("floating-label", "", Model.Settings.FloatingLabels);
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    AddAttribute("data-af-richedit", "", Model.IsRichEdit);
+}
+
+@*Don't add spaces inside the tag, they will also appear inside the textarea*@
+<textarea rows="@Model.Rows" @ElementAttributes()>@Model.Value</textarea>

@@ -1,0 +1,35 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "Nav_Item": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Text": {
+            "type": "text"
+          },
+          "Link": {
+            "type": "url"
+          },
+          "Link_Target": {
+            "type": "checkbox"
+          },
+          "Link_Title": {
+            "type": "text"
+          },
+          "Icon": {
+            "type": "image"
+          },
+          "Icon_Alt": {
+            "type": "text"
+          }
+        }
+      }
+    },
+    "Remove_Limit": {
+      "type": "checkbox"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="cta-banner{{#if Filtered}} cta-banner__filtered{{/if}}" {{#if Banner_Image}}style="background-image: url('{{Banner_Image}}')"{{/if}}>
+    <div class="banner--content">
+        {{#if Banner_Icon}}
+        <div class="banner--icon">
+            <img src="{{Banner_Icon}}" width="80" height="80" alt="Banner Icon" />
+        </div>
+        {{/if}}
+        <div class="banner--text">
+            <div>{{Banner_Text}}</div>
+            <div class="banner--cta">
+                <a href="{{Banner_CTA_Link}}">{{Banner_CTA_Text}}</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,147 @@
+﻿/*
+    Variables
+*/
+
+@import "../../../../Common/static/bootstrap5/variable-overrides";
+
+.hide {
+    display: none !important;
+}
+
+.w-max-content {
+    width: max-content;
+}
+
+.form-root {
+    @import "scss/_layout";
+    @import "scss/_buttons";
+    @import "scss/_file-upload";
+    /*
+    Library for autocomplete dropdowns
+    */
+    .angucomplete-holder {
+        position: relative;
+
+        .angucomplete-dropdown {
+            padding: $dropdown-padding-y $dropdown-padding-x;
+            border: $dropdown-border-width solid $dropdown-border-color;
+            border-radius: $dropdown-border-radius;
+            background: $dropdown-bg;
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+        }
+    }
+
+    .angucomplete-row,
+    .angucomplete-searching {
+        padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+    }
+
+    .angucomplete-selected-row {
+        background-color: $dropdown-link-hover-bg;
+        color: $dropdown-link-hover-color;
+    }
+
+    .angucomplete-title {
+        cursor: default;
+    }
+
+    .file-manager {
+        min-height: 300px;
+    }
+
+    .dropdown-absolute {
+        position: absolute;
+        z-index: 1030;
+    }
+
+    .submit-progress {
+        visibility: hidden;
+
+        img {
+            width: auto;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        &.stretch {
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* dropdown with checkboxes */
+.field-container.checkbox-list {
+    .dropdown-panel {
+        padding: 16px;
+    }
+
+    .ddwcb-checkbox-container {
+        margin-left: 4px;
+    }
+}
+
+.af-warning {
+    color: #c92332;
+    background-color: #f5f6f6;
+    padding: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/*checkbox*/
+.field-container.form-check {
+    padding-left: 0;
+
+    .form-check-input {
+        float: none;
+        margin-left: 4px;
+    }
+}
+
+/*radio-boxes - Support transitioning from BS3 to BS5 lib*/
+.btn-default {
+    /* .btn-outline-primary */
+    color: #009688;
+    border-color: #009688;
+
+    :hover {
+        background-color: var(--pbColor);
+        border-color: var(--pbColor);
+        color: var(--pbFontColor);
+    }
+}
+
+.table-inline {
+    width: auto;
+}
+
+.touch-signature-canvas {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: default;
+}
+
+@media only screen and (max-width: 575px) {
+    .form-root {
+        .form-group {
+            flex-direction: column;
+            grid-column: 1/13 !important;
+            grid-row: auto !important;
+
+            .field-container {
+                padding-left: 0;
+            }
+
+            label.control-label {
+                text-align: left;
+            }
+        }
+    }
+}

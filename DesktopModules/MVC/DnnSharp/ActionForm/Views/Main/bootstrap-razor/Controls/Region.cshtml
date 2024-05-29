@@ -1,0 +1,142 @@
+﻿@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<RegionFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    var containerAttributes = NewAttributes();
+
+    if (!string.IsNullOrWhiteSpace(Model.CountryField))
+    {
+        containerAttributes["ng-init"] = "wireRegion('" + Model.Name + "','" + Model.CountryField + "')";
+    }
+    containerAttributes["data-country"] = Model.BaseId + Model.CountryField;
+
+    var containerModel = new ContainerVM(Model)
+                {
+                    Attributes = containerAttributes,
+                    AddClasses = "region-root"
+                };
+    @TemplatePartial("_Container", containerModel, new ViewDataDictionary(ViewData) { {"renderInner", "true"} })
+}
+else
+{
+    var hiddenInputAttributes = NewAttributes();
+    hiddenInputAttributes["name"] = Model.ElementId;
+    hiddenInputAttributes["id"] = Model.ElementId;
+    hiddenInputAttributes["value"] = "{{countries['" + Model.CountryField + "'].regions.length ? form.fields." + Model.Name + ".ddValue : form.fields." + Model.Name + ".tbValue }}";
+
+    var divLoadingAttributes = NewAttributes();
+    divLoadingAttributes["ng-show"] = "countries['" + Model.CountryField + "'].loading";
+
+    AddCommonAttributes(false, false, false, "form-control region-textbox");
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+    {
+        AppendClasses("required");
+    }
+    AddPlaceholderAttributes();
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    var inputNgChange = "setRegionFieldValue('textbox');";
+    if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+    {
+        inputNgChange += "form.fields." + Model.Name + ".onChange(form)";
+    }
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+    if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+    {
+        AddAttribute("ng-disabled", "!(" + Model.BindEnableCompiled + ")");
+    }
+
+    <input type="hidden" @ElementAttributes(hiddenInputAttributes) />
+
+    <div class="region-loading"
+     ng-cloak
+     @ElementAttributes(divLoadingAttributes)>
+        @LocalizeString("message.pleaseWait", "Please wait...")
+    </div>
+
+    <input type="text"
+       ng-model="form.fields.@(Model.Name).tbValue"
+       id="@(Model.ElementId)tb"
+       ng-hide="countries['@(Model.CountryField)'].regions.length || countries['@(Model.CountryField)'].loading"
+       ng-change="@inputNgChange"
+       @ElementAttributes() />
+
+    if (!string.IsNullOrWhiteSpace(Model.CountryField))
+    {
+        var selectAttributes = NewAttributes();
+        AppendClasses(selectAttributes, "form-control region-dropdown");
+        if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+        {
+            AppendClasses(selectAttributes, "required");
+        }
+
+        AddAttribute(selectAttributes, "title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+        AddAttribute(selectAttributes, "disabled", "disabled", !Model.IsConditionallyEnabled);
+
+        if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+        {
+            selectAttributes["af-bindvalue"] = Model.BindValueCompiled;
+            selectAttributes["af-bindfrom"] = "form.fields." + Model.Name + ".options";
+        }
+
+        var selectNgChange = "setRegionFieldValue('dropdown')";
+        if (!string.IsNullOrWhiteSpace(Model.BindOnChange))
+        {
+            selectNgChange += "; form.fields." + Model.Name + ".onChange(form)";
+        }
+        AddAttribute(selectAttributes, "disabled", "disabled", !Model.IsConditionallyEnabled);
+
+        if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+        {
+            selectAttributes["data-af-bindvalue"] = Model.BindValueCompiled;
+            selectAttributes["data-af-bindfrom"] = "couuntries['" + Model.CountryField + "'].regions";
+        }
+
+        if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+        {
+            selectAttributes["ng-disabled"] = "!(" + Model.BindEnableCompiled + ")";
+        }
+
+        <select ng-cloak
+        id="@(Model.ElementId)dd"
+        ng-model="form.fields.@(Model.Name).ddValue"
+        ng-change="@selectNgChange"
+        ng-options="c.value as c.text for c in countries['@(Model.CountryField)'].regions"
+        data-val="{{form.fields.@(Model.Name).value}}"
+        ng-show="countries['@(Model.CountryField)'].regions.length &amp;&amp; !countries['@(Model.CountryField)'].loading"
+        @ElementAttributes(selectAttributes)>
+
+            <option value="">
+                @if (Model.Settings.LabelAlign == eLabelAlign.Inside)
+                {
+                    @Model.TitleTokenized
+                }
+                else
+                {
+                    @Model.Empty
+                }
+            </option>
+        </select>
+        if (Model.OtherTextbox)
+        {
+            var otherAttributes = NewAttributes();
+
+            if (!string.IsNullOrWhiteSpace(Model.BindEnableCompiled))
+            {
+                otherAttributes["ng-disabled"] = Model.BindEnableCompiled;
+            }
+
+            otherAttributes["ng-show"] = "countries['" + Model.CountryField + "'].regions.length && form.fields." + Model.Name + ".showOtherTextbox";
+
+            <input type="text"
+       id="@(Model.ElementId)-$other"
+       class="form-control"
+       ng-model="form.fields@(Model.Name).otherValue"
+       ng-change="setRegionFieldValue('other')"
+       @ElementAttributes(otherAttributes)>
+        }
+    }
+}

@@ -1,0 +1,51 @@
+﻿@media (min-width: 992px) {
+    /* row 1 */
+    .mHeaderM {
+        width: 468px;
+    }
+
+    /* row 2*/
+    .row2Left, .mHeaderM {
+        padding-left: 0;
+    }
+
+    /* Submenu */
+    .footerWrap .box {
+        display: block !important;
+    }
+
+    /* Home - Hospital Block */
+    .home-hospital-block {
+        width: 456px;
+        display: block;
+        background: #CCCCCC;
+    }
+
+
+    /* 2 col template*/
+    .two_col_left {
+        padding-left: 0;
+    }
+
+    .two_col_right {
+        padding-right: 0;
+    }
+
+    /* 3 col template*/
+    .three_col_left {
+        padding-left: 0;
+    }
+
+    .contentCol {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .three_col_midright .three_col_middle {
+        padding-right: 20px;
+    }
+
+    .three_col_midright .three_col_right {
+        padding-right: 0;
+    }
+}

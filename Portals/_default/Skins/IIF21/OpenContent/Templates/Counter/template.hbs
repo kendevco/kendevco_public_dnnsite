@@ -1,0 +1,50 @@
+{{registerscript "template.min.js"}}
+
+<div class="counter-container">
+    {{#if ModuleTitle}} 
+        <div class="counter-intro">
+            {{#if Module_SubTitle}}
+                <span>{{Module_SubTitle}}</span>
+            {{/if}}
+            <h1>{{ModuleTitle}}</h1>
+        </div>
+    {{/if}}
+    {{#each Counter}}
+        <div class="counter counter__with-icon" data-count="{{Counter_End}}" data-timing="{{#if Counter_Timing}}{{Counter_Timing}}{{else}}1000{{/if}}"{{#if Content_Color}} data-color="{{Content_Color}}"{{/if}}>
+        	{{#if Custom_Data_Type_Prefix}}
+                <span class="counter--type counter--type__prefix">
+                    {{Custom_Data_Type_Prefix}}
+                </span>
+                {{else}}
+                {{#if Counter_Data_Type_Prefix}}
+                    <span class="counter--type counter--type__prefix">
+                        {{Counter_Data_Type_Prefix}}
+                    </span>
+                {{/if}}
+            {{/if}}
+            <span class="counter--data">0</span>
+            {{#if Custom_Data_Type_Suffix}}
+                <span class="counter--type counter--type__suffix">
+                    {{Custom_Data_Type_Suffix}}
+                </span>
+                {{else}}
+                {{#if Counter_Data_Type_Suffix}}
+                    <span class="counter--type counter--type__suffix">
+                        {{Counter_Data_Type_Suffix}}
+                    </span>
+                {{/if}}
+            {{/if}}
+            <div class="counter--content">
+                {{#if Counter_Title}}<div class="content--title">{{Counter_Title}}</div>{{/if}}
+                {{#if Counter_Subtitle}}<div class="content--subtitle">{{Counter_Subtitle}}</div>{{/if}}
+            </div>
+            <div class="counter--icon">
+                {{#if Icon_v4}}
+                    <i class="{{Icon_v4}}"><span class="sr-only">{{Card_Heading}} Icon</span></i>
+                {{else}}
+                    {{Icon_v5}}    
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

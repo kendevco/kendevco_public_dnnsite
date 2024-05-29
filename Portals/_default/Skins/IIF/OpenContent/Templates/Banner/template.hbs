@@ -1,0 +1,51 @@
+{{registerstylesheet "css/swiper.min.css"}}
+
+<div class="rotator">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {{#each Banners}}
+            <div class="swiper-slide rotator--banner">
+                <img class="banner--image" src="{{Banner_Image}}" alt="Rotator Image {{@index}}: {{Banner_Title}}">
+                <div class="banner--content">
+                    {{#if Banner_Text}}
+                        <div class="banner--overlay">
+                            {{#if Include_Title~}}
+                            <h2 class="banner--title">{{Banner_Title}}</h2>
+                            {{~/if}}
+                            <p class="banner--text">{{Banner_Text}}</p>
+                        </div>
+                    {{/if}}
+                    {{#if Include_Link~}}
+                    <a class="banner--link" href="{{Banner_Link_URL}}">{{Banner_Link_Text}}</a>
+                    {{~/if}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{#if Display_Pagination}}<div class="swiper-pagination"></div>{{/if}}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var bannerSwiper = new Swiper('.rotator .swiper-container', {
+            autoplayDisableOnInteraction: true,
+            loop: true,
+            effect: 'fade',
+            {{#if Auto_Slide}}
+            autoplay: {
+                delay: 3500,
+            },
+            {{/if}}
+            {{#if Display_Pagination}}
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + '</span>';
+                },
+            }
+            {{/if}}
+        });
+    });
+</script>

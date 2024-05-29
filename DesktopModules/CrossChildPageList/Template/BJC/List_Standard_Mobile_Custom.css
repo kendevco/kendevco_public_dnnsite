@@ -1,0 +1,79 @@
+@media (max-width: 767px) 
+{
+	.subNavLeftMenuContainer 
+	{
+		border: none;
+		box-shadow: none;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel]
+	{
+		border: 0;
+		margin-left: 0;
+		margin-right: 0;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel] > a
+	{
+		width: 100%;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel] > a
+	{
+		background: none no-repeat scroll 97% 50% / 22px 22px #4c98d2;
+		font-family: Arial,Helvetica,Sans-Serif;
+		font-size: 18px;
+		font-weight: normal;
+		padding-right: 60px;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel]:hover > a 
+	{
+		color: #FFFFFF;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel].selected > a 
+	{
+		width: 100%;
+		color: #02418E;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel].expand 
+	{
+		padding-bottom: 0;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel] span.expanded 
+	{
+		width: auto;
+		right: 2%;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel] .expanded .navicon 
+	{
+		border: 0;
+		background: url(images/icon_arrow_collapse-white.png) no-repeat left top transparent;
+		height: 20px;
+	}
+	
+	.subNavLeftMenu li[class*=menuLevel].expand .expanded .navicon  
+	{
+		background: url(images/icon_arrow_expand-white.png) no-repeat left top transparent;
+	}
+	
+	.subNavLeftMenu li.menuLevel2.hasChild 
+	{
+		padding-left: 20px;
+	}
+	
+	.subNavLeftMenu li.menuLevel2.hasChild > a 
+	{
+		width: 100%;
+	}
+	
+	.subNavLeftMenu li.menuLevel2.hasChild span.expanded 
+	{
+		height: 35px;
+		margin-top: 0;
+	}
+}

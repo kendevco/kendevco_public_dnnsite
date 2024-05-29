@@ -1,0 +1,71 @@
+@inherits Custom.Hybrid.Razor12
+@using ToSic.Razor.Blade;
+@{
+  // Prepare helpers
+  var helpers = CreateInstance("Links.cs");
+
+  // Toolbar configuration for use on posts
+  var postToolbarConfig = new[] {
+"-layout",
+"%new&show=true?contentType=BlogPost&entityId=0&prefill:PublicationMoment=" + DateTime.Now.ToString("yyyy-MM-dd"),
+"%delete&show=true"
+};
+}
+<section class="app-blog5" @Edit.TagToolbar(Content)>
+  <div class="row">
+    <div class="col-12">
+      @* Title / Description of current filter (Author, Category, etc.) *@
+      @Html.Partial("_ListMain.PartHeader.cshtml")
+    </div>
+
+    <div class="col-lg-8">
+      @* Mobile Category filter *@
+      <div class="d-xs-block d-lg-none">
+        @Html.Partial("shared/_Categories.cshtml")
+      </div>
+
+      @* List the posts *@
+      
+      <div class="row card-deck co-container-outer mb-12 mb-md-5">
+        <div class="co-container-inner">
+           <div class="row">
+        @foreach (var post in AsList(Data["Posts"]))
+        {
+          <div class="app-blog5-list-item effect-zoom col-md-6 mb-4 mb-md-5 row" @Edit.TagToolbar(post, toolbar:
+          postToolbarConfig)>
+            <div class="col-4">
+              @* Image of the post *@
+              @Html.Partial("shared/_MainImage.cshtml", new { Post = post, Settings = Settings.Images.BlogCards })
+            </div>
+
+              <div class="col-8">
+                <h5 class="card-title">@post.Title</h5>
+                                  
+                  @Html.Partial("shared/_AuthorDateAndCategoriesCard.cshtml", new { Post = post, HeadingType = "h3"})
+                <a href="@helpers.LinkToDetailsPage(post)"
+                class="btn btn-outline-primary stretched-link">@Resources.ReadMore</a>
+              </div>
+
+            </div>
+
+        }
+        </div>
+        </div>
+      </div>
+
+
+      @* Show pagination if configured *@
+      @if (Content.ShowPagination == true)
+      {
+        @Html.Partial("shared/_ListPaging.cshtml")
+      }
+    </div>
+
+    @* Desktop Category filter *@
+    <div class="col-lg-4">
+      @Html.Partial("shared/_Categories.cshtml")
+    </div>
+  </div>
+</section>
+
+@Html.Partial("shared/_Assets.cshtml")

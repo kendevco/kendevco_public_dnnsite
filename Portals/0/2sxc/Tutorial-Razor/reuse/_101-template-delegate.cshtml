@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var linker = CreateInstance("../shared/Helpers.cs");
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+@{
+  var normalText = "this is text, it doesn't have tags";
+  var htmlText = "this string <em>has</em> html <strong>tags</strong>";
+}
+
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Reuse Code Snippet with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+    <p>If you just need a quick simple snippet, Template Delegates are the way to go. 
+      They are very limited so only ideal for simple stuff. More complex stuff should use
+      @linker.TutLink("Razor Components with @Html.Partial and DynamicModel", "reuse110"). 
+    </p>
+    <div>
+      Note that in the following code <code>item</code> is the thing passed into the function.
+    </div>
+    @{
+      // Simple Hybrid (Dnn/Oqtane) Template Delegate
+      Func<dynamic, object> BoldLi = @<li>
+        <strong>
+          @Html.Raw(item)
+        </strong>
+      </li>;
+    }
+    <ul>
+      @BoldLi(normalText)
+      @BoldLi(htmlText)
+      @BoldLi("this is just a bold line")
+    </ul>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+<trim>
+
+<hr>
+<h2>Complex Data with <code>Func&lt;dynamic,object&gt;</code> Template Delegate</h2>
+<p>if you have multiple values, you need to merge in into one object like this: </p>
+<snippet id="reuse-function">
+@{
+  // Simple Hybrid (Dnn/Oqtane) Template Delegate
+  Func<dynamic, dynamic> FancyLink = @<li>
+    <strong style="color: @item.Color">
+      @Html.Raw(item.Label)
+      @if(item.AddStar) {
+        <text>🌟</text>
+      }
+    </strong>
+  </li>;
+}
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-function", Size = 220 }) 
+</hide-silent>
+<ul>
+  @FancyLink(new { Label = normalText, Color = "red", AddStar = true })
+  @FancyLink(new { Label = htmlText, Color = "lime", AddStar = false })
+</ul>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 1000 }) 
+</hide>

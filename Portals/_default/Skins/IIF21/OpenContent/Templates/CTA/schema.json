@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "CTA_Label": {
+      "type": "string",
+      "title": "Content Label"
+    },
+    "CTA_Image": {
+      "type": "string",
+      "title": "CTA Background Image"
+    },
+    "CTA_Heading": {
+      "type": "string",
+      "title": "Heading"
+    },
+    "CTA_Content": {
+      "type": "string",
+      "title": "Content"
+    },
+    "CTA_Button_Text": {
+      "type": "string",
+      "title": "CTA Button Text"
+    },
+    "CTA_Button_Link": {
+      "type": "string",
+      "title": "CTA Button Link"
+    }
+  }
+}

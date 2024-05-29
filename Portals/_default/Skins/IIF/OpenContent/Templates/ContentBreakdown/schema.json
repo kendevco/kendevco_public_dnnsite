@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Content": {
+      "type": "array",
+      "title": "Content Breakdown",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Content_Text": {
+            "type": "string",
+            "title": "Content Text"
+          },
+          "Content_Number": {
+            "type": "string",
+            "title": "Content Number"
+          },
+          "Content_Icon": {
+            "type": "string",
+            "title": "Content Icon"
+          },
+          "Content_Icon_Alt": {
+            "type": "string",
+            "title": "Icon Alt Text (for accessibility)"
+          }
+        }
+      }
+    }
+  }
+}

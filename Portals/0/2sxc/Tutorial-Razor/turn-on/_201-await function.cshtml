@@ -1,0 +1,69 @@
+@inherits Custom.Hybrid.Razor14
+@using ToSic.Razor.Blade;
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+<trim>
+  <div class="row">
+    <div class="col-lg-7">
+      <h2>Await custom conditions through functions</h2>
+      <p>
+        This page waits for a function to return true, then executes a JavaScript function with turnOn and passes a domAttribute as parameter.
+        The executed JavaScript then triggers thirdparty library code, which modifies the DOM element in the page that causes an animation.
+      </p>
+      <br>
+      In this tutorial you'll learn how to:
+      <ul>
+        <li>
+          Execute a JavaScript function <b>after</b> a custom condition was met
+        </li>
+      </ul>
+      Look at the element below to see the effect. 
+    </div>
+    @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+  </div>
+</trim>
+<hide>
+  <br>
+</hide>
+
+@{
+  // Use the PageService to activate turnOn
+  Kit.Page.Activate("turnOn");
+  
+  // Create unique DOM attribute with Module Id
+  var uniqueDomAttrubute = "turn-on-example-" + CmsContext.Module.Id;
+}
+
+@* Inject attribute into DIV, to make it accessible for query *@
+<div @uniqueDomAttrubute></div>
+
+@* 
+  Wait for function to return true, 
+  then execute the window.turnOnTutorial201.init function 
+  and pass the domAttribute as JSON 
+*@
+
+<turnOn turn-on='{ 
+  "await": "window.turnOnTutorial201.ready()", 
+  "run": "window.turnOnTutorial201.init()", 
+  "data": { "domAttribute": "@uniqueDomAttrubute" } }'></turnOn>
+
+@* Include thirdparty library from CDN *@
+<script src="https://unpkg.com/spritejs@3/dist/spritejs.js"></script>
+
+@* Include local JavaScript file *@
+<script src="@App.Path/turn-on/_201-multi-file.js"></script>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 800 }) 
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  Size = 1050,
+  File = "_201-await function.js"
+})
+</hide>

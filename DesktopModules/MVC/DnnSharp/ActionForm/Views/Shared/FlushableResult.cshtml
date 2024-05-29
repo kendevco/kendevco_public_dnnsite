@@ -1,0 +1,13 @@
+@inherits avt.ActionForm.Core.ViewModels.FormWebViewPage<object>
+@{
+    var id = Guid.NewGuid();
+}
+<script id="@id" type="text/javascript">
+    // FlushableResult.cshtml
+    (function () {
+        var settings = @HtmlSafeJson(Model);
+        settings.ModuleId = @(Dnn.ActiveModule.ModuleID);
+
+        events.onFlushableActionResult(settings);
+    })();
+</script>

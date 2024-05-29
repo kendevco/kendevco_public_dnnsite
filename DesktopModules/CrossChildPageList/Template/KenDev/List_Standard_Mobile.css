@@ -1,0 +1,103 @@
+@media (max-width: 767px) {
+    .subNavLeftMenu {
+        width: 100%;
+    }
+
+    .subNavLeftMenuTitle {
+        display: none;
+    }
+
+    .subNavLeftMenu li.menuLevel1,
+    .subNavLeftMenu li.menuLevel2 {
+        clear: both;
+        list-style: none outside none;
+        margin-bottom: 2px;
+        margin-top: 2px;
+        position: relative;
+        padding: 0;
+        border-top: 0;
+    }
+
+    .subNavLeftMenu li.menuLevel2 {
+        padding-left: 20px;
+    }
+
+        /*.subNavLeftMenu li.menuLevel3 {
+        padding-left: 40px;
+    }*/
+
+        .subNavLeftMenu li.menuLevel1 > a,
+        .subNavLeftMenu li.menuLevel2 > a {
+            font-size: 18px;
+            line-height: 24px;
+            display: block;
+            padding: 10px 30px 10px 10px;
+            text-decoration: none;
+            background: url('images/mobile-arrow.png') 96% 50% no-repeat #66bdd7;
+            background-size: 22px 22px;
+            background-position: -webkit-calc(100% - 15px) center; /* Sf 6 */
+            background-position: right 15px center; /* Cr 25+, FF 13+, IE 9+, Op 10.5+ */
+            color: #FFFFFF;
+            border-radius: 4px;
+            font-family: Arial,Helvetica,Sans-Serif;
+        }
+
+    .subNavLeftMenu li.selected a, .subNavLeftMenu li.selected a:hover {
+        background-color: #05549C;
+        background-image: none;
+        color: #FFFFFF !important;
+    }
+
+    .subNavLeftMenu li a:hover {
+        background-color: #66bdd7;
+        color: #FFFFFF !important;
+    }
+
+    .subNavLeftMenu li.menuLevel2 > a {
+        padding-right: 20px;
+    }
+
+    .subNavLeftMenu li.menuLevel3 > a {
+        padding-right: 40px;
+    }
+
+    .subNavLeftMenu li.menuLevel1 .expanded {
+        margin-top: 0;
+        height: 32px;
+        width: 40px;
+        float: left;
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        z-index: 999;
+        cursor: pointer;
+        background-color: transparent !important;
+        border-radius: 4px;
+        background: url('images/navicon.png') 50% 50% no-repeat #66bdd7 !important;
+        background-size: 24px 24px !important;
+    }
+
+    .subNavLeftMenu li.menuLevel1.selected.hasChild .expanded {
+        background-color: #05549C !important;
+    }
+
+    .subNavLeftMenu li.menuLevel1 .expanded {
+        margin-top: 3px;
+    }
+
+        .subNavLeftMenu li.menuLevel1.hasChild > a {
+            background-image: none;
+        }
+
+    .subNavLeftMenu .expanded.plusSign {
+        background-image: none;
+    }
+
+    .subNavLeftMenu li.menuLevel1.expand {
+        padding-bottom: 0;
+    }
+
+    .subNavLeftMenu li.parentSelected a {
+        color: #FFF !important;
+    }
+}

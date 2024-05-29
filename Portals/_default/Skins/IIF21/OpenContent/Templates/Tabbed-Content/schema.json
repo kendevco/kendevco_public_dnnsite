@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title"
+    },
+    "Tabs": {
+      "type": "array",
+      "title": "Tabs",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Tab_Text": {
+            "type": "string",
+            "title": "Tab Text",
+            "required": true
+          },
+          "Tab_ID": {
+            "type": "number",
+            "title": "Tab ID (Number)",
+            "required": true
+          },
+          "Panel_Columns": {
+            "type": "string",
+            "title": "Tab Content Columns",
+            "enum": [
+              "100",
+              "60-40",
+              "50-50",
+              "40-60"
+            ],
+            "default": "100",
+            "required": true
+          },
+          "Panel": {
+            "type": "array",
+            "title": "Tab Content",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Panel_ID": {
+                  "type": "number",
+                  "title": "Tab Content ID (Number)",
+                  "required": true
+                },
+                "Content": {
+                  "type": "string",
+                  "title": "Content"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

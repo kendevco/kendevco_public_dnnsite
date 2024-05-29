@@ -1,0 +1,10 @@
+.media-content figure {
+    margin: 0;
+}
+.media-content[data-type="Image"] figure {
+    padding-bottom: 0;
+}
+.media-content img {
+    width: auto;
+    max-width: 100%;
+}

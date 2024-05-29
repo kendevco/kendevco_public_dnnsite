@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Speaker": {
+      "type": "array",
+      "title": "Speakers",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Speaker_Name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "Speaker_Title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "Speaker_Image": {
+            "type": "string",
+            "title": "Image"
+          }
+        }
+      }
+    },
+    "View_All": {
+      "type": "string",
+      "title": "View All Speakers Link"
+    }
+  }
+}

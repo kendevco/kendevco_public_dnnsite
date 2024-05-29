@@ -1,0 +1,13 @@
+2022-01-31T21:47:22 11.00.00 - UpgradeModule starting
+2022-01-31T21:47:22 11.00.00 - IsUgradeComplete checking - Check on Start UpgradeModule
+2022-01-31T21:47:22 11.00.00 - IsUgradeComplete: False
+2022-01-31T21:47:22 11.00.00 - version / upgrade-complete test passed
+2022-01-31T21:47:22 11.00.00 - is-upgrade-running test passed
+2022-01-31T21:47:22  - set upgrade running - True
+2022-01-31T21:47:22  - set upgrade running - True - error!
+2022-01-31T21:47:22 11.00.00 - ----- Upgrade to 11.00.00 started -----
+2022-01-31T21:47:22 11.00.00 - version-list check / switch done
+2022-01-31T21:47:22 11.00.00 - ----- Upgrade to 11.00.00 completed -----
+2022-01-31T21:47:22  - set upgrade running - False
+2022-01-31T21:47:22  - set upgrade running - False - done
+2022-01-31T21:47:22 11.00.00 - UpgradeModule done / returning

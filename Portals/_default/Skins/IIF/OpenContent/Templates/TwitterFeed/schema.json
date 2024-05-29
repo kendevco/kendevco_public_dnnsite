@@ -1,0 +1,83 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Twitter_Feed": {
+      "type": "array",
+      "title": "Twitter Feed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Profile_Name": {
+            "type": "string",
+            "title": "Profile Name"
+          },
+          "Twitter_Handle": {
+            "type": "string",
+            "title": "Twitter Handle"
+          },
+          "Profile_Image": {
+            "type": "string",
+            "title": "Profile Image"
+          },
+          "Tweet_Content": {
+            "type": "string",
+            "title": "Tweet Content"
+          },
+          "Tweet_Date": {
+            "title": "Tweet Date"
+          }
+        }
+      }
+    },
+    "Display_Pagination": {
+      "type": "boolean",
+      "title": "Display Pagination"
+    },
+    "Display_Arrows": {
+      "type": "boolean",
+      "title": "Display Arrows"
+    },
+    "Auto_Slide": {
+      "type": "boolean",
+      "title": "Auto Slide"
+    },
+    "Items_Per_Slide": {
+      "type": "string",
+      "title": "Items Per Slide (Desktop Sizes)",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "Items_Per_Slide_Tablet": {
+      "type": "string",
+      "title": "Items Per Slide (Tablet Sizes)",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "Items_Per_Slide_Mobile": {
+      "type": "string",
+      "title": "Items Per Slide (Mobile Sizes)",
+      "enum": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    }
+  }
+}

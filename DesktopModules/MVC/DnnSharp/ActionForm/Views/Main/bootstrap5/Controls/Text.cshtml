@@ -1,0 +1,101 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.TextFieldVM>
+@using avt.ActionForm
+
+@{
+    Attributes["type"] = Model.HtmlInputType;
+    Attributes["angulartextbox"] = "";
+
+    if (!string.IsNullOrWhiteSpace(Model.Mask))
+    {
+        Attributes["data-input-mask"] = Model.Mask;
+        Attributes["mask-options"] = Model.MaskOptions;
+    }
+
+    if (Model.Settings.ClientSideValidation)
+    {
+        if (!string.IsNullOrWhiteSpace(Model.ConfirmationOf))
+        {
+            Attributes["data-password-confirm"] = Model.BaseId + Model.ConfirmationOf;
+        }
+        if (!string.IsNullOrWhiteSpace(Model.ConfirmationOfTextBox))
+        {
+            Attributes["data-textbox-confirm"] = Model.BaseId + Model.ConfirmationOfTextBox;
+        }
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside)
+    {
+        Attributes["title"] = Model.ShortDescTokenized;
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.MaxLength))
+    {
+        Attributes["maxlength"] = Model.MaxLength;
+    }
+
+    if (!Model.IsConditionallyEnabled)
+    {
+        Attributes["disabled"] = "disabled";
+    }
+
+    if (Model.Readonly)
+    {
+        Attributes["readonly"] = "readonly";
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.AutocompleteUrl))
+    {
+        Attributes["data-autocomplete-url"] = Model.AutocompleteUrl;
+    }
+
+    if (Model.HtmlInputType == "number")
+    {
+        Attributes["enforce-min-max-number"] = ""; // this is a directive in script.js
+        Attributes["max-number"] = Model.MaxValue;
+        Attributes["min-number"] = Model.MinValue;
+        Attributes["ng-blur"] = "enforceMinMaxOnBlur($event.target.value)"; // this is a function inside the directive
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.AutofillAttribute))
+    {
+        Attributes["autocomplete"] = Model.AutofillAttribute;
+    }
+
+    if (!string.IsNullOrWhiteSpace(Model.AutofillName))
+    {
+        Attributes["name"] = Model.AutofillName;
+    }
+
+    AddPlaceholderAttributes();
+
+    AppendClasses("form-control");
+    if (Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition)
+    {
+        AppendClasses("required-dnnsf");
+    }
+
+    AddCommonAttributes(true, true, true, touchEvent: "keyup");
+}
+
+<div load-on-demand="'angulartextbox'">
+    <input af-field-title="@Model.TitleTokenized" defer-request-by="@Model.DeferRequestBy"
+           @ElementAttributes() />
+
+</div>
+
+@if (Model.Settings.FloatingLabels)
+{
+    <label for="@Model.ElementId">@Model.TitleTokenized</label>
+}
+
+@if (Model.ShowHidePassword)
+{
+    <div class="container-btn-vertical-center">
+        <button type="button" class="btn btn-default" ng-click="showPassword($event)">
+            <i class="fa fa-eye"></i>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="hidePassword($event)" style="display:none">
+            <i class="fa fa-eye-slash"></i>
+        </button>
+    </div>
+}

@@ -1,0 +1,65 @@
+@inherits Custom.Hybrid.Razor14
+<hide>
+@Html.Partial("_header.cshtml")
+@{
+  var hlp = CreateInstance("../shared/Helpers.cs");
+}
+</hide>
+
+<trim>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Reuse Shared Templates</h2>
+    <p>
+      Partial templates are <code>cshtml</code> files which you can use multiple times. Typically they will contain something which you need in many places, like a menu or a data-visualizer which gets data as a parameter, and then creates a different table each time. Here's how to use it with <code>Html.Partial(...)</code> (or <code>RenderPage</code> in older versions). 
+    </p>
+  </div>
+  @Html.Partial("../shared/_DefaultInfoSection.cshtml")
+</div>
+</trim>
+
+<hr>
+<h3>Just render the same, external file into here</h3>
+<hide>
+  <p>This uses <code>@@Html.Partial</code> to get the file <code>_line.cshtml</code> 3 times.</p>
+</hide>
+<snippet id="reuse-partial">
+@Html.Partial("_line.cshtml")
+@Html.Partial("_line.cshtml")
+@Html.Partial("_line.cshtml")
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-partial", Size = 100 }) 
+</hide-silent>
+
+
+<hr>
+<h2>Passing in values</h2>
+<hide>
+<p>The next example passes in a word to the sub-template, so that can change what it does based on the variable. The called template will get the parameters on <code>DynamicModel</code> (see code below)</p>
+</hide>
+<snippet id="reuse-partial-pass-values">
+@Html.Partial("_box.cshtml", new { Label = "Hello, this is the first line" })
+@Html.Partial("_box.cshtml", new { Label = "Second line!", Color = "red" })
+@Html.Partial("_box.cshtml", new { Label = "I'm last!", Color = "blue" })
+</snippet>
+<hide-silent> @* Show only this snippet *@
+  @Html.Partial("../shared/_source-code.cshtml", new { Path, Snippet = "reuse-partial-pass-values", Size = 100 }) 
+</hide-silent>
+
+<hide>
+@Html.Partial("../shared/_PreCodeFooter.cshtml")
+@Html.Partial("../shared/_source-code.cshtml", new { Path, Size = 600 }) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path, 
+  File = "line",
+  Size = 100, 
+}) 
+
+@Html.Partial("../shared/_source-code.cshtml", new { 
+  Path,
+  File = "box",
+  Size = 200, 
+}) 
+</hide>

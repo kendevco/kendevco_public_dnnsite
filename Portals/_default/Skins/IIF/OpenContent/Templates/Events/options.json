@@ -1,0 +1,53 @@
+{
+  "fields": {
+    "ModuleTitle": {
+      "type": "text"
+    },
+    "View_Calendar": {
+      "type": "checkbox"
+    },
+    "View_Calendar_Link": {
+      "type": "text"
+    },
+    "Events_Feed": {
+      "type": "accordion",
+      "items": {
+        "fields": {
+          "Event_Title": {
+            "type": "text"
+          },
+          "Event_Image": {
+            "type": "image"
+          },
+          "Event_Image_Alt": {
+            "type": "text"
+          },
+          "Event_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Event_Date_Range": {
+            "type": "checkbox"
+          },
+          "Event_Start_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Event_End_Date": {
+            "type": "date",
+            "picker": {}
+          },
+          "Event_Location": {
+            "type": "text"
+          },
+          "Event_Link": {
+            "type": "text"
+          },
+          "Event_Link_Title": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}

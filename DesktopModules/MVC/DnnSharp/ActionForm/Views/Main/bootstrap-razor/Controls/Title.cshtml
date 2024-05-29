@@ -1,0 +1,35 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<avt.ActionForm.Core.ViewModels.Main.TitleFieldVM>
+@using avt.ActionForm
+
+@{
+
+    if (string.IsNullOrWhiteSpace(Model.Size))
+    {
+        throw new Exception("No title size specified.");
+    }
+
+    AppendClasses("section-title");
+    AddAttribute("style", Model.LabelCssStyles, !string.IsNullOrWhiteSpace(Model.LabelCssStyles));
+    AddAttribute("title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    if (!string.IsNullOrWhiteSpace(Model.BindValueCompiled))
+    {
+        AddAttribute("af-bindvalue", Model.BindValueCompiled);
+    }
+    else
+    {
+        AddAttribute("ng-bind-html", "$sce.trustAsHtml(form.fields." + Model.Name + ".value)");
+    }
+
+    AddAttribute("ng-show", Model.BindShowCompiled, !string.IsNullOrWhiteSpace(Model.BindShowCompiled));
+}
+
+<@(Model.Size) id="@(Model.Name)-@(Model.Settings.ModuleId)"
+               ng-model="form.fields.@(Model.Name).value"
+               @ElementAttributes()>
+</@(Model.Size)>
+
+@if (Model.ShowLine)
+{
+    <hr />
+}

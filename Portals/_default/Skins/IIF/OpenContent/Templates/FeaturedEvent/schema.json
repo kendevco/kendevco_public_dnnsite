@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "ModuleTitle": {
+      "type": "string",
+      "title": "Module Title",
+      "required": true
+    },
+    "Event_Title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "Event_Date": {
+      "type": "string",
+      "title": "Date"
+    },
+    "Event_Location": {
+      "type": "string",
+      "title": "Location"
+    },
+    "Event_Image": {
+      "type": "string",
+      "title": "Image"
+    },
+    "Event_CTA": {
+      "type": "array",
+      "title": "Buttons",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Event_Link": {
+            "type": "string",
+            "title": "Button Link"
+          },
+          "Event_Link_Text": {
+            "type": "string",
+            "title": "Button Text"
+          }
+        }
+      }
+    }
+  }
+}

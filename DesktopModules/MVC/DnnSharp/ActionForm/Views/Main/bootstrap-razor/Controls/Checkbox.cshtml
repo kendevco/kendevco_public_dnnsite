@@ -1,0 +1,40 @@
+@inherits avt.ActionForm.Core.ViewModels.FormFieldWebViewPage<CheckboxFieldVM>
+@using System.Web.Mvc
+@using avt.ActionForm
+@using avt.ActionForm.Core.ViewModels.Main
+
+@if (!ViewData.ContainsKey("renderInner"))
+{
+    @TemplatePartial(
+        "_Container",
+        new ContainerVM(Model) { AddClasses = "form-checkbox" },
+        new ViewDataDictionary(ViewData) { { "renderInner", "true" } }
+    )
+}
+else
+{
+    var labelAttrs = NewAttributes();
+    AddAttribute(labelAttrs, "title", Model.ShortDescTokenized, !string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.LabelAlign == eLabelAlign.Inside);
+
+    AddCommonAttributes(true, true, true, "normalCheckBox ignore-submit-hidden-fields", "click");
+    AppendClasses("required", Model.Settings.ClientSideValidation && Model.IsRequired && !Model.HasValidationCondition);
+    AddAttribute("checked", "checked", string.Equals("true", Model.Value, StringComparison.OrdinalIgnoreCase));
+    AddAttribute("disabled", "disabled", !Model.IsConditionallyEnabled);
+
+    var spanAttrs = NewAttributes();
+    AddAttribute(spanAttrs, "data-original-title", Model.TitleTokenized, Model.Settings.ShowTooltipTitle);
+
+    <div class="checkbox">
+        <label style="@Model.LabelCssStyles" @ElementAttributes(labelAttrs)>
+            <input type="checkbox" @ElementAttributes() />
+            <span>
+                @Model.TitleTokenized
+            </span>
+            @if (!string.IsNullOrWhiteSpace(Model.ShortDescTokenized) && Model.Settings.ShowTooltips)
+            {
+                <span class="glyphicon glyphicon-info-sign popupOnHover" data-placement="top" data-container="body" data-content="@Model.ShortDescTokenized" data-html="true" @ElementAttributes(spanAttrs)></span>
+            }
+        </label>
+        <div class="err-placeholder"></div>
+    </div>
+}
